@@ -1,0 +1,366 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - AI Task Optimizer{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="header-gradient p-4 rounded fade-in">
+                <h1 class="display-5 fw-bold">Welcome back, {{ profile.name or profile.username or 'User' }}!</h1>
+                <p class="lead">Optimize your daily schedule with AI-powered recommendations</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="row mb-4">
+        {% set total_tasks = (tasks.pending|length + tasks.completed|length) %}
+        <div class="col-md-3 slide-in-left">
+            <div class="stat-card">
+                <div class="card-body text-center">
+                    <i class="fas fa-tasks fa-2x text-primary mb-2"></i>
+                    <h5 class="card-title">Pending Tasks</h5>
+                    <div class="stat-number">{{ tasks.pending|length }}</div>
+                    {% set pending_pct = (total_tasks and ((tasks.pending|length / total_tasks) * 100) or 0) | int %}
+                    <div class="d-flex align-items-center mt-2">
+                        <div class="progress flex-grow-1" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ pending_pct }}">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: {{ pending_pct }}%"></div>
+                        </div>
+                        <span class="ms-2 text-muted">{{ pending_pct }}%</span>
+                    </div>
+                    <div class="mt-1">
+                        <small class="text-muted">{{ tasks.pending|length }} tasks pending</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 slide-in-left">
+            <div class="stat-card">
+                <div class="card-body text-center">
+                    <i class="fas fa-check-circle fa-2x text-success mb-2"></i>
+                    <h5 class="card-title">Completed Tasks</h5>
+                    <div class="stat-number">{{ tasks.completed|length }}</div>
+                    {% set completed_pct = (total_tasks and ((tasks.completed|length / total_tasks) * 100) or 0) | int %}
+                    <div class="d-flex align-items-center mt-2">
+                        <div class="progress flex-grow-1" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ completed_pct }}">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: {{ completed_pct }}%"></div>
+                        </div>
+                        <span class="ms-2 text-muted">{{ completed_pct }}%</span>
+                    </div>
+                    <div class="mt-1">
+                        <small class="text-muted">{{ tasks.completed|length }} tasks completed</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 slide-in-right">
+            <div class="stat-card">
+                <div class="card-body text-center">
+                    <i class="fas fa-calendar-check fa-2x text-info mb-2"></i>
+                    <h5 class="card-title">Schedules Generated</h5>
+                    <div class="stat-number">{{ tasks.schedules|length }}</div>
+                    {% set schedules_pct = ((tasks.schedules|length * 10) if tasks.schedules else 0) %}
+                    {% set schedules_pct = schedules_pct if schedules_pct < 100 else 100 %}
+                    <div class="d-flex align-items-center mt-2">
+                        <div class="progress flex-grow-1" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ schedules_pct }}">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: {{ schedules_pct }}%"></div>
+                        </div>
+                        <span class="ms-2 text-muted">{{ schedules_pct }}%</span>
+                    </div>
+                    <div class="mt-1">
+                        <small class="text-muted">{{ tasks.schedules|length }} schedules created</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 slide-in-right">
+            <div class="stat-card">
+                <div class="card-body text-center">
+                    <i class="fas fa-user fa-2x text-warning mb-2"></i>
+                    <h5 class="card-title">Profile Status</h5>
+                    <div class="stat-number">{{ '✓' if profile.name else '✗' }}</div>
+                    {% set profile_pct = 100 if profile.name else 0 %}
+                    <div class="d-flex align-items-center mt-2">
+                        <div class="progress flex-grow-1" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ profile_pct }}">
+                            <div class="progress-bar bg-warning" role="progressbar" style="width: {{ profile_pct }}%"></div>
+                        </div>
+                        <span class="ms-2 text-muted">{{ profile_pct }}%</span>
+                    </div>
+                    <div class="mt-1">
+                        <small class="text-muted">{{ 'Profile complete' if profile.name else 'Profile incomplete' }}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card bounce-in">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0"><i class="fas fa-bolt me-2"></i>Quick Actions</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <button class="btn btn-primary w-100" onclick="location.href='/tasks'">
+                                <i class="fas fa-plus me-2"></i>Add Task
+                            </button>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <button class="btn btn-success w-100" onclick="generateSchedule()">
+                                <i class="fas fa-calendar-alt me-2"></i>Generate Schedule
+                            </button>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <button class="btn btn-info w-100" onclick="location.href='/profile'">
+                                <i class="fas fa-user-edit me-2"></i>Edit Profile
+                            </button>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <button class="btn btn-secondary w-100" onclick="location.href='/schedule'">
+                                <i class="fas fa-eye me-2"></i>View Schedule
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Tasks -->
+    <div class="row">
+        <div class="col-lg-6 slide-in-left">
+            <div class="card">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0"><i class="fas fa-list-check me-2"></i>Pending Tasks</h5>
+                    <span class="badge bg-primary">{{ tasks.pending|length }}</span>
+                </div>
+                <div class="card-body">
+                    {% if tasks.pending %}
+                        {% for task in tasks.pending[:5] %}
+                        <div class="card task-card priority-{{ task.priority }} mb-3" onclick="completeTask({{ loop.index0 }})">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="card-title">{{ task.description }}</h6>
+                                    <span class="badge bg-{{ 'danger' if task.priority == 'high' else 'warning' if task.priority == 'medium' else 'success' }}">{{ task.priority }}</span>
+                                </div>
+                                <p class="card-text">
+                                    <small class="text-muted">
+                                        <i class="fas fa-clock me-1"></i>{{ task.duration }} | 
+                                        <i class="fas fa-tag me-1"></i>{{ task.type }}
+                                    </small>
+                                </p>
+                                <p class="card-text">{{ task.preferences }}</p>
+                                <button class="btn btn-sm btn-success complete-task-btn">
+                                    <i class="fas fa-check me-1"></i>Complete
+                                </button>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% if tasks.pending|length > 5 %}
+                        <div class="text-center">
+                            <a href="/tasks" class="btn btn-outline-primary">View All Tasks</a>
+                        </div>
+                        {% endif %}
+                    {% else %}
+                        <p class="text-muted text-center">No pending tasks. <a href="/tasks">Add some tasks</a> to get started!</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 slide-in-right">
+            <div class="card">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0"><i class="fas fa-chart-line me-2"></i>Your Profile</h5>
+                    <a href="/profile" class="btn btn-sm btn-outline-primary">Edit</a>
+                </div>
+                <div class="card-body">
+                    {% if profile.name %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p><strong>Name:</strong> {{ profile.name }}</p>
+                                <p><strong>Role:</strong> {{ profile.role or 'Not set' }}</p>
+                                <p><strong>Peak Energy:</strong> {{ profile.peak_energy or 'Not set' }}</p>
+                                <p><strong>Study Preference:</strong> {{ profile.study_preference or 'Not set' }}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><strong>Schedule Days:</strong> {{ profile.schedule_days or 0 }}</p>
+                                <p><strong>Workout Preference:</strong> {{ profile.workout_preference or 'Not set' }}</p>
+                                <p><strong>Family Time:</strong> {{ profile.family_time or 'Not set' }}</p>
+                                <p><strong>Main Goals:</strong> {{ profile.main_goals or 'Not set' }}</p>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <h6>Weekly Schedule:</h6>
+                            <div class="progress mt-2">
+                                <div class="progress-bar" role="progressbar" style="width: {{ ((profile.schedule_days or 0) / 7 * 100)|int }}%"></div>
+                            </div>
+                            <div class="d-flex justify-content-between mt-1">
+                                <small class="text-muted">Progress</small>
+                                <small class="text-muted">{{ ((profile.schedule_days or 0) / 7 * 100)|int }}%</small>
+                            </div>
+                        </div>
+                    {% else %}
+                        <p class="text-muted text-center">No profile found. <a href="/profile">Create your profile</a> to get personalized schedule recommendations!</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function generateSchedule() {
+    // Show percentage progress instead of loading line
+    const btn = $('.btn-success');
+    const originalText = btn.html();
+    btn.prop('disabled', true);
+    
+    // Create progress bar
+    btn.html(`
+        <div class="d-flex align-items-center">
+            <div class="progress flex-grow-1 me-2" style="height: 5px;">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%"></div>
+            </div>
+            <span class="progress-text">0%</span>
+        </div>
+    `);
+    
+    // Simulate progress
+    let progress = 0;
+    const interval = setInterval(() => {
+        progress += Math.floor(Math.random() * 10) + 5;
+        if (progress >= 100) {
+            progress = 100;
+            clearInterval(interval);
+        }
+        
+        $('.progress-bar').css('width', progress + '%');
+        $('.progress-text').text(progress + '%');
+    }, 200);
+    
+    $.ajax({
+        url: '/api/schedule',
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({}),
+        success: function(response) {
+            clearInterval(interval);
+            btn.html(originalText);
+            btn.prop('disabled', false);
+            showNotification('Schedule generated successfully!', 'success');
+            setTimeout(() => {
+                window.location.href = '/schedule';
+            }, 1500);
+        },
+        error: function(xhr) {
+            clearInterval(interval);
+            btn.html(originalText);
+            btn.prop('disabled', false);
+            
+            // Handle different error responses
+            if (xhr.responseJSON && xhr.responseJSON.error) {
+                if (xhr.responseJSON.error === "Profile incomplete") {
+                    showNotification('Please complete your profile first. Go to Profile section to add your wake up and sleep times.', 'error');
+                } else if (xhr.responseJSON.error === "No tasks") {
+                    showNotification('Please add some tasks first. Go to Tasks section to add your pending tasks.', 'error');
+                } else {
+                    showNotification(xhr.responseJSON.message || 'Error generating schedule', 'error');
+                }
+            } else {
+                showNotification('Error generating schedule', 'error');
+            }
+        }
+    });
+}
+
+function completeTask(index) {
+    // Show percentage progress for task completion
+    const btn = $('.complete-task-btn').eq(index);
+    const originalText = btn.html();
+    btn.prop('disabled', true);
+    
+    // Create progress bar
+    btn.html(`
+        <div class="d-flex align-items-center">
+            <div class="progress flex-grow-1 me-2" style="height: 3px;">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%"></div>
+            </div>
+        </div>
+    `);
+    
+    // Simulate progress
+    let progress = 0;
+    const interval = setInterval(() => {
+        progress += Math.floor(Math.random() * 20) + 10;
+        if (progress >= 100) {
+            progress = 100;
+            clearInterval(interval);
+        }
+        
+        $('.complete-task-btn .progress-bar').css('width', progress + '%');
+    }, 100);
+    
+    const data = {
+        action: 'complete',
+        index: index
+    };
+    
+    $.ajax({
+        url: '/api/tasks',
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        success: function(response) {
+            clearInterval(interval);
+            showNotification('Task completed successfully!', 'success');
+            setTimeout(() => {
+                location.reload();
+            }, 1500);
+        },
+        error: function() {
+            clearInterval(interval);
+            btn.html(originalText);
+            btn.prop('disabled', false);
+            showNotification('Error completing task', 'error');
+        }
+    });
+}
+
+function showNotification(message, type) {
+    // Create notification element
+    const notification = $(`
+        <div class="notification alert alert-${type === 'success' ? 'success' : 'danger'} position-fixed" style="top: 20px; right: 20px; z-index: 9999;">
+            ${message}
+        </div>
+    `);
+    
+    // Add to body
+    $('body').append(notification);
+    
+    // Remove after 3 seconds
+    setTimeout(() => {
+        notification.fadeOut(() => {
+            notification.remove();
+        });
+    }, 3000);
+}
+
+// Add hover effects to cards
+$(document).ready(function() {
+    $('.card').hover(
+        function() {
+            $(this).css('transform', 'translateY(-5px)');
+        },
+        function() {
+            $(this).css('transform', 'translateY(0)');
+        }
+    );
+});
+</script>
+{% endblock %}

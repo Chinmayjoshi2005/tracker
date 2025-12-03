@@ -1,0 +1,423 @@
+{% extends "base.html" %}
+
+{% block title %}Profile - AI Task Optimizer{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="header-gradient p-4 rounded mb-4 fade-in">
+                <h1 class="display-5 fw-bold">User Profile</h1>
+                <p class="lead">Manage your personal information and preferences for optimal scheduling</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card bounce-in">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0"><i class="fas fa-user-edit me-2"></i>Profile Information</h5>
+                </div>
+                <div class="card-body">
+                    <form id="profileForm">
+                        <!-- Personal Information Section -->
+                        <div class="section-header mb-3">
+                            <h5 class="text-primary"><i class="fas fa-user me-2"></i>Personal Information</h5>
+                            <hr>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="name" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" id="name" name="name" value="{{ profile.name or '' }}" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="role" class="form-label">Role</label>
+                                <select class="form-select" id="role" name="role" required>
+                                    <option value="">Select Role</option>
+                                    <option value="student" {% if profile.role == 'student' %}selected{% endif %}>Student</option>
+                                    <option value="working professional" {% if profile.role == 'working professional' %}selected{% endif %}>Working Professional</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label for="main_goals" class="form-label">Main Goals</label>
+                                <textarea class="form-control" id="main_goals" name="main_goals" rows="3" placeholder="e.g., Improve grades, Learn coding, Stay healthy">{{ profile.main_goals or '' }}</textarea>
+                            </div>
+                        </div>
+                        
+                        <!-- Energy & Preferences Section -->
+                        <div class="section-header mb-3 mt-4">
+                            <h5 class="text-primary"><i class="fas fa-bolt me-2"></i>Energy & Preferences</h5>
+                            <hr>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="peak_energy" class="form-label">Peak Energy Time</label>
+                                <select class="form-select" id="peak_energy" name="peak_energy" required>
+                                    <option value="">Select Energy Level</option>
+                                    <option value="morning" {% if profile.peak_energy == 'morning' %}selected{% endif %}>Morning</option>
+                                    <option value="afternoon" {% if profile.peak_energy == 'afternoon' %}selected{% endif %}>Afternoon</option>
+                                    <option value="evening" {% if profile.peak_energy == 'evening' %}selected{% endif %}>Evening</option>
+                                    <option value="night" {% if profile.peak_energy == 'night' %}selected{% endif %}>Night</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="study_preference" class="form-label">Study Preference</label>
+                                <select class="form-select" id="study_preference" name="study_preference" required>
+                                    <option value="">Select Preference</option>
+                                    <option value="silence" {% if profile.study_preference == 'silence' %}selected{% endif %}>Silence</option>
+                                    <option value="background noise" {% if profile.study_preference == 'background noise' %}selected{% endif %}>Background Noise</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Health & Wellness Section -->
+                        <div class="section-header mb-3 mt-4">
+                            <h5 class="text-primary"><i class="fas fa-heartbeat me-2"></i>Health & Wellness</h5>
+                            <hr>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="workout_preference" class="form-label">Workout Preference</label>
+                                <select class="form-select" id="workout_preference" name="workout_preference" required>
+                                    <option value="">Select Preference</option>
+                                    <option value="morning" {% if profile.workout_preference == 'morning' %}selected{% endif %}>Morning</option>
+                                    <option value="evening" {% if profile.workout_preference == 'evening' %}selected{% endif %}>Evening</option>
+                                    <option value="flexible" {% if profile.workout_preference == 'flexible' %}selected{% endif %}>Flexible</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="workout_impact" class="form-label">Workout Impact</label>
+                                <select class="form-select" id="workout_impact" name="workout_impact" required>
+                                    <option value="">Select Impact</option>
+                                    <option value="energized" {% if profile.workout_impact == 'energized' %}selected{% endif %}>Energized</option>
+                                    <option value="tired" {% if profile.workout_impact == 'tired' %}selected{% endif %}>Tired</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="bedtime" class="form-label">Bedtime</label>
+                                <input type="text" class="form-control" id="bedtime" name="bedtime" placeholder="e.g., 10:30 PM" value="{{ profile.sleep_schedule.bedtime if profile.sleep_schedule else '' }}" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="wake_time" class="form-label">Wake Time</label>
+                                <input type="text" class="form-control" id="wake_time" name="wake_time" placeholder="e.g., 6:30 AM" value="{{ profile.sleep_schedule.wake_time if profile.sleep_schedule else '' }}" required>
+                            </div>
+                        </div>
+                        
+                        <!-- Schedule Section -->
+                        <div class="section-header mb-3 mt-4">
+                            <h5 class="text-primary"><i class="fas fa-calendar me-2"></i>Weekly Schedule</h5>
+                            <hr>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="schedule_days" class="form-label">Schedule Days Per Week</label>
+                            <input type="number" class="form-control" id="schedule_days" name="schedule_days" min="0" max="7" value="{{ profile.schedule_days or 5 }}" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Weekly Schedule Details</label>
+                            <div id="weeklySchedule">
+                                {% if profile.weekly_schedule %}
+                                    {% for day, schedule in profile.weekly_schedule.items() %}
+                                    <div class="row schedule-row mb-2">
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" name="schedule_day[]" placeholder="Day (e.g., Monday)" value="{{ day }}">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" name="schedule_start[]" placeholder="Start Time" value="{{ schedule.start }}">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="schedule_end[]" placeholder="End Time" value="{{ schedule.end }}">
+                                                <button class="btn btn-outline-danger remove-schedule" type="button"><i class="fas fa-trash"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                {% else %}
+                                <div class="row schedule-row mb-2">
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="schedule_day[]" placeholder="Day (e.g., Monday)">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="schedule_start[]" placeholder="Start Time">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="schedule_end[]" placeholder="End Time">
+                                            <button class="btn btn-outline-danger remove-schedule" type="button"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                            <button type="button" class="btn btn-outline-primary mt-2" id="addScheduleRow"><i class="fas fa-plus me-1"></i> Add Schedule Day</button>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="family_time" class="form-label">Family Time</label>
+                            <input type="text" class="form-control" id="family_time" name="family_time" placeholder="e.g., 6:00-8:00 PM" value="{{ profile.family_time or '' }}" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-save me-2"></i>Save Profile</button>
+                        <button type="button" id="aiOptimizeBtn" class="btn btn-success ms-2"><i class="fas fa-robot me-2"></i>AI Optimize</button>
+                    </form>
+                    <div id="aiOptimizeResult" class="mt-3"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card slide-in-right">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0"><i class="fas fa-lightbulb me-2"></i>Tips</h5>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Accurate profile information helps generate better schedules</li>
+                        <li>Be honest about your energy levels throughout the day</li>
+                        <li>Specify your sleep schedule for optimal rest periods</li>
+                        <li>Include all regular commitments in your weekly schedule</li>
+                        <li>Update your goals regularly to reflect changing priorities</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card mt-4 slide-in-right">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i>Current Profile</h5>
+                    <span class="badge bg-secondary" id="profileStatusLabel">Incomplete</span>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="progress flex-grow-1" style="height: 8px;">
+                                <div class="progress-bar" id="profileCompletionBar" role="progressbar" style="width: 0%"></div>
+                            </div>
+                            <span class="ms-2" id="profileCompletionText">0%</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <ul class="list-unstyled mb-0" id="profileChecklist"></ul>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="small text-muted mb-2">Missing fields</div>
+                            <div id="missingFields" class="d-flex flex-wrap gap-2"></div>
+                        </div>
+                    </div>
+                    <div class="mt-3 d-flex gap-2">
+                        <a href="#name" class="btn btn-sm btn-outline-primary">Fill Personal Info</a>
+                        <a href="#peak_energy" class="btn btn-sm btn-outline-primary">Set Preferences</a>
+                        <a href="#schedule_days" class="btn btn-sm btn-outline-primary">Weekly Schedule</a>
+                    </div>
+                    <script>
+                        const profileData = {{ profile|tojson }};
+                        function computeCompletion(p) {
+                            const checks = [
+                                ['name', !!p.name],
+                                ['role', !!p.role],
+                                ['peak_energy', !!p.peak_energy],
+                                ['study_preference', !!p.study_preference],
+                                ['family_time', !!p.family_time],
+                                ['workout_preference', !!p.workout_preference],
+                                ['workout_impact', !!p.workout_impact],
+                                ['main_goals', !!p.main_goals],
+                                ['bedtime', !!(p.sleep_schedule && p.sleep_schedule.bedtime)],
+                                ['wake_time', !!(p.sleep_schedule && p.sleep_schedule.wake_time)],
+                                ['schedule_days', !!p.schedule_days],
+                                ['weekly_schedule', !!p.weekly_schedule]
+                            ];
+                            const total = checks.length;
+                            const filled = checks.filter(c => c[1]).length;
+                            const missing = checks.filter(c => !c[1]).map(c => c[0]);
+                            return { total, filled, missing, checks };
+                        }
+                        function renderProfileSummary() {
+                            const { total, filled, missing, checks } = computeCompletion(profileData || {});
+                            const pct = Math.floor((filled / total) * 100);
+                            document.getElementById('profileCompletionBar').style.width = pct + '%';
+                            document.getElementById('profileCompletionText').textContent = pct + '%';
+                            const statusEl = document.getElementById('profileStatusLabel');
+                            statusEl.className = 'badge ' + (pct === 100 ? 'bg-success' : pct > 50 ? 'bg-warning' : 'bg-secondary');
+                            statusEl.textContent = pct === 100 ? 'Complete' : pct > 50 ? 'Partially Complete' : 'Incomplete';
+                            const checklist = document.getElementById('profileChecklist');
+                            checklist.innerHTML = '';
+                            checks.forEach(([key, ok]) => {
+                                const labelMap = {
+                                    name: 'Name', role: 'Role', peak_energy: 'Peak Energy', study_preference: 'Study Preference',
+                                    family_time: 'Family Time', workout_preference: 'Workout Preference', workout_impact: 'Workout Impact',
+                                    main_goals: 'Main Goals', bedtime: 'Bedtime', wake_time: 'Wake Time', schedule_days: 'Schedule Days',
+                                    weekly_schedule: 'Weekly Schedule'
+                                };
+                                const li = document.createElement('li');
+                                li.className = 'd-flex align-items-center mb-2';
+                                li.innerHTML = `<i class="${ok ? 'fas fa-check-circle text-success' : 'fas fa-times-circle text-danger'} me-2"></i> ${labelMap[key]}`;
+                                checklist.appendChild(li);
+                            });
+                            const missingEl = document.getElementById('missingFields');
+                            missingEl.innerHTML = '';
+                            missing.forEach(m => {
+                                const labelMap = {
+                                    name: 'Name', role: 'Role', peak_energy: 'Peak Energy', study_preference: 'Study Preference',
+                                    family_time: 'Family Time', workout_preference: 'Workout Preference', workout_impact: 'Workout Impact',
+                                    main_goals: 'Main Goals', bedtime: 'Bedtime', wake_time: 'Wake Time', schedule_days: 'Schedule Days',
+                                    weekly_schedule: 'Weekly Schedule'
+                                };
+                                const a = document.createElement('a');
+                                a.className = 'badge rounded-pill text-bg-light';
+                                a.textContent = labelMap[m];
+                                a.href = '#' + m;
+                                missingEl.appendChild(a);
+                            });
+                        }
+                        renderProfileSummary();
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Add schedule row
+    document.getElementById('addScheduleRow').addEventListener('click', function() {
+        const scheduleContainer = document.getElementById('weeklySchedule');
+        const newRow = document.createElement('div');
+        newRow.className = 'row schedule-row mb-2 animated fadeIn';
+        newRow.innerHTML = `
+            <div class="col-md-4">
+                <input type="text" class="form-control" name="schedule_day[]" placeholder="Day (e.g., Monday)">
+            </div>
+            <div class="col-md-4">
+                <input type="text" class="form-control" name="schedule_start[]" placeholder="Start Time">
+            </div>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="schedule_end[]" placeholder="End Time">
+                    <button class="btn btn-outline-danger remove-schedule" type="button"><i class="fas fa-trash"></i></button>
+                </div>
+            </div>
+        `;
+        scheduleContainer.appendChild(newRow);
+    });
+
+    // Remove schedule row with animation
+    document.getElementById('weeklySchedule').addEventListener('click', function(e) {
+        if (e.target.closest('.remove-schedule')) {
+            const row = e.target.closest('.schedule-row');
+            row.style.transition = 'all 0.3s ease';
+            row.style.transform = 'translateX(100px)';
+            row.style.opacity = '0';
+            
+            setTimeout(() => {
+                row.remove();
+            }, 300);
+        }
+    });
+
+    // Form submission
+    document.getElementById('profileForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Show loading animation
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<span class="loading"></span> Saving...';
+        submitBtn.disabled = true;
+        
+        // Collect form data
+        const formData = new FormData(this);
+        const data = {};
+        
+        // Simple fields
+        for (let [key, value] of formData.entries()) {
+            if (!key.endsWith('[]')) {
+                data[key] = value;
+            }
+        }
+        
+        // Handle sleep schedule
+        data.sleep_schedule = {
+            bedtime: formData.get('bedtime'),
+            wake_time: formData.get('wake_time')
+        };
+        
+        // Handle weekly schedule
+        const days = formData.getAll('schedule_day[]');
+        const starts = formData.getAll('schedule_start[]');
+        const ends = formData.getAll('schedule_end[]');
+        
+        data.weekly_schedule = {};
+        for (let i = 0; i < days.length; i++) {
+            if (days[i] && starts[i] && ends[i]) {
+                data.weekly_schedule[days[i]] = {
+                    start: starts[i],
+                    end: ends[i],
+                    type: "college/work"
+                };
+            }
+        }
+        
+        // Send data to server
+        $.ajax({
+            url: '/api/profile',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            success: function(response) {
+                showNotification('Profile saved successfully!', 'success');
+                setTimeout(() => {
+                    location.reload();
+                }, 1500);
+            },
+            error: function() {
+                showNotification('Error saving profile', 'error');
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+    });
+    
+    // Add focus effects to form elements
+    $('.form-control, .form-select').focus(function() {
+        $(this).css('box-shadow', '0 0 0 0.25rem rgba(106, 17, 203, 0.25)');
+        $(this).css('border-color', '#6a11cb');
+    });
+    
+    $('.form-control, .form-select').blur(function() {
+        $(this).css('box-shadow', '');
+    });
+});
+
+function showNotification(message, type) {
+    // Create notification element
+    const notification = $(`
+        <div class="notification alert alert-${type === 'success' ? 'success' : 'danger'} position-fixed" style="top: 20px; right: 20px; z-index: 9999; animation: slideInRight 0.3s ease;">
+            ${message}
+        </div>
+    `);
+    
+    // Add to body
+    $('body').append(notification);
+    
+    // Remove after 3 seconds
+    setTimeout(() => {
+        notification.fadeOut(() => {
+            notification.remove();
+        });
+    }, 3000);
+}
+</script>
+{% endblock %}
