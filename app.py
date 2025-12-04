@@ -12,7 +12,16 @@ import secrets
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = secrets.token_hex(16)  # Generate a random secret key
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///task_optimizer.db'
+
+# Database configuration
+if os.environ.get('VERCEL'):
+    # Vercel filesystem is read-only, so we use /tmp for SQLite
+    # NOTE: Data will be lost on every redeploy/restart!
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/task_optimizer.db'
+else:
+    # Local development
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///task_optimizer.db'
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize extensions
