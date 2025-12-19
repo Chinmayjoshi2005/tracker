@@ -3,10 +3,11 @@ from flask_login import LoginManager, login_user, logout_user, login_required, c
 import json
 import os
 from datetime import datetime, timedelta
-from tracker import AITaskOptimizer
-from models import db, User, Task, Schedule, ScheduleFeedback
-from forms import LoginForm, RegistrationForm, ProfileForm, TaskForm
+
 from llm_service import get_llm_service
+from analytics_service import AnalyticsService
+from models import db, User, Task, Schedule, ScheduleFeedback, ChatMessage, LoginHistory
+from forms import LoginForm, RegistrationForm, ProfileForm, TaskForm
 
 import secrets
 
@@ -112,6 +113,12 @@ def login():
             user = User.query.filter_by(username=form.username.data).first()
             if user and user.check_password(form.password.data):
                 login_user(user, remember=form.remember_me.data)
+                
+                # Record login history
+                login_record = LoginHistory(user_id=user.id)
+                db.session.add(login_record)
+                db.session.commit()
+                
                 return redirect(url_for('index'))
             else:
                 flash('Invalid username or password')
@@ -166,7 +173,14 @@ def index():
         'schedules': {str(schedule.date): schedule.schedule_data for schedule in schedules}
     }
     
-    return render_template('index.html', profile=current_user, tasks=tasks_data)
+    # Analytics
+    analytics = AnalyticsService()
+    login_chart = analytics.generate_login_chart(current_user.id)
+    task_chart = analytics.generate_task_chart(current_user.id)
+    completion_score = analytics.predict_completion_probability(current_user.id)
+    
+    return render_template('index.html', profile=current_user, tasks=tasks_data, 
+                         login_chart=login_chart, task_chart=task_chart, completion_score=completion_score)
 
 @app.route('/profile')
 @login_required
@@ -409,10 +423,46 @@ def api_ai_chat():
         
         # Check if Ollama is available
         if llm_service.check_ollama_status():
+            # Save user message
+            user_msg = ChatMessage(user_id=current_user.id, role='user', content=user_message)
+            db.session.add(user_msg)
+            db.session.commit()
+            
+            # Get recent history
+            history = ChatMessage.query.filter_by(user_id=current_user.id).order_by(ChatMessage.timestamp.desc()).limit(10).all()
+            history.reverse() # Oldest first
+            
+            conversation_history = []
+            current_exchange = {}
+            for msg in history:
+                if msg.role == 'user':
+                    current_exchange['user'] = msg.content
+                elif msg.role == 'assistant':
+                    current_exchange['assistant'] = msg.content
+                    if 'user' in current_exchange:
+                        conversation_history.append(current_exchange)
+                        current_exchange = {}
+            
             # Generate response using LLM
-            response = llm_service.generate_general_response(user_message)
+            user_profile = {
+                'name': current_user.name,
+                'role': current_user.role,
+                'main_goals': current_user.main_goals,
+                'peak_energy': current_user.peak_energy,
+                'study_preference': current_user.study_preference,
+            }
+            response = llm_service.generate_general_response(
+                user_message,
+                conversation_history,
+                user_profile
+            )
             
             if response:
+                # Save AI response
+                ai_msg = ChatMessage(user_id=current_user.id, role='assistant', content=response)
+                db.session.add(ai_msg)
+                db.session.commit()
+                
                 return jsonify({"status": "success", "response": response})
         
         # Fallback response if LLM is not available
@@ -423,6 +473,30 @@ def api_ai_chat():
         
     except Exception as e:
         return jsonify({"error": "server_error", "message": f"Failed to process message: {str(e)}"}), 500
+
+@app.route('/api/chat/history', methods=['GET'])
+@login_required
+def api_get_chat_history():
+    """Get chat history for the current user"""
+    try:
+        messages = ChatMessage.query.filter_by(user_id=current_user.id).order_by(ChatMessage.timestamp.asc()).all()
+        return jsonify({
+            "status": "success",
+            "messages": [msg.to_dict() for msg in messages]
+        })
+    except Exception as e:
+        return jsonify({"error": "server_error", "message": str(e)}), 500
+
+@app.route('/api/chat/clear', methods=['POST'])
+@login_required
+def api_clear_chat():
+    """Clear chat history for the current user"""
+    try:
+        ChatMessage.query.filter_by(user_id=current_user.id).delete()
+        db.session.commit()
+        return jsonify({"status": "success", "message": "Chat history cleared"})
+    except Exception as e:
+        return jsonify({"error": "server_error", "message": str(e)}), 500
 
 def _fallback_optimize(user, pending_tasks, prompt, date_str):
     """Fallback rule-based optimization when LLM is unavailable"""
@@ -435,23 +509,7 @@ def _fallback_optimize(user, pending_tasks, prompt, date_str):
 
     # Simple prompt parsing to adjust blocks
     p = prompt.lower()
-    wants_college = any(k in p for k in ["college", "class", "lecture"]) or (user.role and "student" in user.role)
-    wants_exam = "exam" in p or "test" in p
     wants_morning_focus = "morning" in p and ("focus" in p or "deep" in p)
-    # Extract time range like "7:00 AM to 5:30 PM"
-    import re
-    time_match = re.search(r"(\d{1,2}:\d{2}\s*(?:am|pm))\s*(?:to|-)\s*(\d{1,2}:\d{2}\s*(?:am|pm))", p, re.IGNORECASE)
-    college_time_range = None
-    if time_match:
-        start_str = time_match.group(1).upper().replace('AM',' AM').replace('PM',' PM').replace('  ',' ')
-        end_str = time_match.group(2).upper().replace('AM',' AM').replace('PM',' PM').replace('  ',' ')
-        # Normalize and validate
-        try:
-            _ = datetime.strptime(start_str.strip(), "%I:%M %p")
-            _ = datetime.strptime(end_str.strip(), "%I:%M %p")
-            college_time_range = (start_str.strip(), end_str.strip())
-        except Exception:
-            college_time_range = None
 
     schedule_items = []
 
@@ -469,58 +527,30 @@ def _fallback_optimize(user, pending_tasks, prompt, date_str):
     he_start_dt = max(cursor, he_target)
     he_end_dt = he_start_dt + timedelta(minutes=120)
 
-    c_start_dt = None
-    c_end_dt = None
-    if college_time_range:
-        c_start_dt = parse_time_str(college_time_range[0])
-        c_end_dt = parse_time_str(college_time_range[1])
+    task_desc = pending_tasks[0].description if pending_tasks else "Focus on key objectives"
+    task_type = pending_tasks[0].type if pending_tasks else "work"
+    schedule_items.append({"time": f"{fmt(he_start_dt)} - {fmt(he_end_dt)}", "task": f"Deep work - {task_desc}", "reason": "High-energy block aligned to your prompt", "type": task_type})
+    cursor = he_end_dt
 
-    if c_start_dt and he_start_dt < c_start_dt:
-        if he_end_dt <= c_start_dt:
-            task_desc = pending_tasks[0].description if pending_tasks else "Focus on key objectives"
-            task_type = pending_tasks[0].type if pending_tasks else "work"
-            schedule_items.append({"time": f"{fmt(he_start_dt)} - {fmt(he_end_dt)}", "task": f"Deep work - {task_desc}", "reason": "High-energy block aligned to your prompt", "type": task_type})
-            cursor = he_end_dt
-        else:
-            adj_end_dt = c_start_dt
-            if (adj_end_dt - he_start_dt).total_seconds() >= 1800:
-                task_desc = pending_tasks[0].description if pending_tasks else "Focus on key objectives"
-                task_type = pending_tasks[0].type if pending_tasks else "work"
-                schedule_items.append({"time": f"{fmt(he_start_dt)} - {fmt(adj_end_dt)}", "task": f"Deep work - {task_desc}", "reason": "High-energy block aligned to your prompt", "type": task_type})
-                cursor = adj_end_dt
-    elif not c_start_dt:
-        task_desc = pending_tasks[0].description if pending_tasks else "Focus on key objectives"
-        task_type = pending_tasks[0].type if pending_tasks else "work"
-        schedule_items.append({"time": f"{fmt(he_start_dt)} - {fmt(he_end_dt)}", "task": f"Deep work - {task_desc}", "reason": "High-energy block aligned to your prompt", "type": task_type})
-        cursor = he_end_dt
-
-    if not c_start_dt or (cursor + timedelta(minutes=30)) <= c_start_dt:
-        break_start_dt = cursor + timedelta(minutes=15)
-        break_end_dt = break_start_dt + timedelta(minutes=15)
-        schedule_items.append({"time": f"{fmt(break_start_dt)} - {fmt(break_end_dt)}", "task": "Break", "reason": "Short reset", "type": "break"})
-        cursor = break_end_dt
-
-    if c_start_dt:
-        if cursor < c_start_dt:
-            cursor = c_start_dt
-        schedule_items.append({"time": f"{fmt(c_start_dt)} - {fmt(c_end_dt)}", "task": "College classes", "reason": "Prompt-specified college hours", "type": "college"})
-        cursor = c_end_dt
+    break_start_dt = cursor + timedelta(minutes=15)
+    break_end_dt = break_start_dt + timedelta(minutes=15)
+    schedule_items.append({"time": f"{fmt(break_start_dt)} - {fmt(break_end_dt)}", "task": "Break", "reason": "Short reset", "type": "break"})
+    cursor = break_end_dt
+    work_start_dt = cursor + timedelta(minutes=15)
+    work_end_dt = work_start_dt + timedelta(minutes=90)
+    
+    if len(pending_tasks) > 1:
+        task2 = f"Project work - {pending_tasks[1].description}"
+        type2 = pending_tasks[1].type
+    elif pending_tasks:
+        task2 = "Review and refine work"
+        type2 = "work"
     else:
-        work_start_dt = cursor + timedelta(minutes=15)
-        work_end_dt = work_start_dt + timedelta(minutes=90)
+        task2 = "Project work - Advance your goals"
+        type2 = "work"
         
-        if len(pending_tasks) > 1:
-            task2 = f"Project work - {pending_tasks[1].description}"
-            type2 = pending_tasks[1].type
-        elif pending_tasks:
-            task2 = "Review and refine work"
-            type2 = "work"
-        else:
-            task2 = "Project work - Advance your goals"
-            type2 = "work"
-            
-        schedule_items.append({"time": f"{fmt(work_start_dt)} - {fmt(work_end_dt)}", "task": task2, "reason": "Continued focus", "type": type2})
-        cursor = work_end_dt
+    schedule_items.append({"time": f"{fmt(work_start_dt)} - {fmt(work_end_dt)}", "task": task2, "reason": "Continued focus", "type": type2})
+    cursor = work_end_dt
 
     lunch_start_dt = cursor + timedelta(minutes=60)
     lunch_end_dt = lunch_start_dt + timedelta(minutes=60)
@@ -529,7 +559,7 @@ def _fallback_optimize(user, pending_tasks, prompt, date_str):
 
     afternoon_start_dt = cursor + timedelta(minutes=60)
     afternoon_end_dt = afternoon_start_dt + timedelta(minutes=90)
-    schedule_items.append({"time": f"{fmt(afternoon_start_dt)} - {fmt(afternoon_end_dt)}", "task": "College/Work commitments" if wants_college else "Task review & planning", "reason": "Aligned with prompt", "type": "college/work"})
+    schedule_items.append({"time": f"{fmt(afternoon_start_dt)} - {fmt(afternoon_end_dt)}", "task": "Task review & planning", "reason": "Aligned with prompt", "type": "work"})
     cursor = afternoon_end_dt
 
     # Family
@@ -788,11 +818,11 @@ with app.app_context():
         admin_user = User.query.filter_by(username='admin').first()
         if not admin_user:
             admin_user = User(username='admin', email='admin@example.com', is_admin=True)
-            admin_user.set_password('admin123')
+            admin_user.set_password(os.environ.get("ADMIN_PASSWORD", "change_me_now"))
             db.session.add(admin_user)
             db.session.commit()
     except Exception as e:
         print(f"Error creating admin user: {e}")
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5012)
+    app.run(debug=False, port=5012)

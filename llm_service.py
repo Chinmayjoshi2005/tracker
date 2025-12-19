@@ -5,10 +5,25 @@ versatile AI assistance including task scheduling, programming help,
 conversations, and more based on user requests.
 """
 
+
 import requests
 import json
 from datetime import datetime, timedelta
 from typing import Dict, List, Optional
+from llm_config import PROMPT_CONFIG
+
+# Intent detection utility
+def detect_intent(user_prompt: str) -> str:
+    prompt = user_prompt.lower()
+    if any(w in prompt for w in ["error", "bug", "fix", "not working"]):
+        return "debug"
+    if any(w in prompt for w in ["plan", "schedule", "routine"]):
+        return "planning"
+    if any(w in prompt for w in ["learn", "explain", "how", "what is"]):
+        return "learning"
+    if any(w in prompt for w in ["lazy", "tired", "motivate", "focus"]):
+        return "motivation"
+    return "general"
 
 
 class OllamaLLMService:
@@ -33,7 +48,7 @@ class OllamaLLMService:
             bool: True if service is available, False otherwise
         """
         try:
-            response = requests.get(f"{self.base_url}/api/tags", timeout=5)
+            response = requests.get(f"{self.base_url}/api/tags", timeout=3.0)
             return response.status_code == 200
         except Exception:
             return False
@@ -84,94 +99,34 @@ class OllamaLLMService:
         if conversation_history:
             for exchange in conversation_history[-5:]:  # Last 5 exchanges
                 history_text += f"User: {exchange.get('user', '')}\nAssistant: {exchange.get('assistant', '')}\n\n"
-        
-        # Create the comprehensive general prompt
-        prompt = '''You are a helpful, knowledgeable, and versatile AI assistant named AI Task Optimizer Assistant. You can help with a wide variety of tasks including but not limited to:'''
-        
+
+        # Inject intent detection
+        intent = detect_intent(user_input)
+
+        system_role = PROMPT_CONFIG.get('system_role', 'helpful AI assistant')
+
+        prompt = f"""
+You are a {system_role} AI assistant.
+
+USER INTENT:
+{intent}
+
+RULES:
+- Always adapt tone and depth based on user intent
+- Be strict if motivation or discipline related
+- Be concise and practical
+"""
+        prompt += "\nCONVERSATION HISTORY:\n" + history_text + "\n"
+        prompt += "CURRENT USER REQUEST:\n" + user_input + "\n\n"
+        prompt += "INSTRUCTIONS:\n"
+        style_instructions = PROMPT_CONFIG.get('style_instructions', [])
+        for instruction in style_instructions:
+            prompt += f"- {instruction}\n"
+        prompt += "- You are NOT restricted to specific topics\n"
         prompt += '''
-
-1. GENERAL CONVERSATION:
-   - Friendly greetings and casual chat
-   - Answering questions on any topic
-   - Providing explanations and definitions
-
-2. PROGRAMMING ASSISTANCE:
-   - Writing code in any programming language
-   - Debugging and explaining code
-   - Algorithm design and optimization
-   - Best practices and coding standards
-
-3. EDUCATIONAL SUPPORT:
-   - Explaining complex concepts
-   - Homework and study help
-   - Research assistance
-
-4. PRODUCTIVITY AND TASK MANAGEMENT:
-   - Schedule optimization (your specialty)
-   - Time management advice
-   - Goal setting and planning
-
-5. CREATIVE HELP:
-   - Writing assistance
-   - Brainstorming ideas
-   - Creative problem solving
-
-CONVERSATION HISTORY:
-''' + history_text + '''
-
-CURRENT USER REQUEST:
-''' + user_input + '''
-
-INSTRUCTIONS:
-- Be helpful, friendly, and concise
-- If the user asks for code, provide complete, working examples with explanations
-- If asked about task scheduling, you can leverage your expertise in that area
-- For complex requests, break them down into manageable steps
-- Always prioritize accuracy and clarity
-- If you don't know something, admit it honestly rather than making things up
-
 RESPONSE FORMAT:
-Provide your response directly without any special formatting. Be conversational and helpful.
-
-EXAMPLE RESPONSES:
-
-User: Hi, how are you?
-Assistant: Hello! I'm doing well, thank you for asking. I'm here and ready to help with whatever you need - whether it's scheduling tasks, writing code, answering questions, or just having a chat. What can I assist you with today?
-
-User: Can you write a Python program to check if a number is even or odd?
-Assistant: Sure! Here's a simple Python program to check if a number is even or odd:
-
-```python
-# Function to check if a number is even or odd
-def check_even_odd(number):
-    if number % 2 == 0:
-        return "Even"
-    else:
-        return "Odd"
-
-# Get input from user
-num = int(input("Enter a number: "))
-
-# Check and display result
-result = check_even_odd(num)
-print(f"{num} is {result}")
-```
-
-This program works by using the modulo operator (%) to check if there's a remainder when dividing by 2. If there's no remainder (0), the number is even; otherwise, it's odd.
-
-User: What's the capital of France?
-Assistant: The capital of France is Paris. It's located in the north-central part of the country and is one of the largest cities in Europe.
-
-User: Can you help me organize my day?
-Assistant: Absolutely! I'd be happy to help you organize your day. To create the best schedule for you, I'll need some information:
-
-1. What tasks do you need to accomplish today?
-2. When do you typically wake up and go to bed?
-3. When are you most energetic (morning, afternoon, evening)?
-4. Do you have any fixed commitments (meetings, classes, etc.)?
-
-With this information, I can create a personalized schedule that maximizes your productivity while respecting your energy levels and commitments.'''
-        
+Provide your response directly. Be extremely concise.
+'''
         return prompt
     
     def create_prompt(self, user_profile: Dict, tasks: List[Dict], user_prompt: str = "") -> str:
@@ -186,6 +141,9 @@ With this information, I can create a personalized schedule that maximizes your 
         Returns:
             str: Formatted prompt for the LLM
         """
+        # Detect intent
+        intent = detect_intent(user_prompt)
+
         # Extract profile information
         name = user_profile.get('name', 'User')
         role = user_profile.get('role', 'not specified')
@@ -197,16 +155,27 @@ With this information, I can create a personalized schedule that maximizes your 
         family_time = user_profile.get('family_time', 'Not specified')
         
         # Extract sleep schedule
-        sleep_schedule = user_profile.get('sleep_schedule', {})
+        sleep_schedule = user_profile.get('sleep_schedule')
         if isinstance(sleep_schedule, str):
-            sleep_schedule = json.loads(sleep_schedule)
+            try:
+                sleep_schedule = json.loads(sleep_schedule)
+            except:
+                sleep_schedule = {}
+        if not sleep_schedule:
+            sleep_schedule = {}
+            
         wake_time = sleep_schedule.get('wake_time', '7:00 AM')
         bedtime = sleep_schedule.get('bedtime', '11:00 PM')
         
         # Extract weekly schedule
-        weekly_schedule = user_profile.get('weekly_schedule', {})
+        weekly_schedule = user_profile.get('weekly_schedule')
         if isinstance(weekly_schedule, str):
-            weekly_schedule = json.loads(weekly_schedule)
+            try:
+                weekly_schedule = json.loads(weekly_schedule)
+            except:
+                weekly_schedule = {}
+        if not weekly_schedule:
+            weekly_schedule = {}
         
         # Format tasks
         tasks_text = ""
@@ -241,6 +210,14 @@ PENDING TASKS:
 
 USER REQUEST:
 {user_prompt if user_prompt else "Create an optimized schedule for today"}
+
+USER INTENT:
+{intent}
+
+Behavioral Guidance:
+- If intent is motivation → be strict and corrective
+- If intent is learning → explain simply
+- If intent is planning → prioritize realism
 
 CRITICAL INSTRUCTIONS:
 1. **Time Blocking**: Create specific time blocks from {wake_time} to {bedtime}
@@ -388,7 +365,7 @@ Respond ONLY with valid JSON. No markdown formatting, no code blocks, no explana
                 'max_tokens': 2500
             }
         }
-        
+
         # Check if user wants creativity vs strict adherence
         prompt_lower = user_prompt.lower()
         if any(word in prompt_lower for word in ['strict', 'exact', 'specific', 'must']):
@@ -397,10 +374,16 @@ Respond ONLY with valid JSON. No markdown formatting, no code blocks, no explana
         elif any(word in prompt_lower for word in ['flexible', 'creative', 'suggest', 'ideas']):
             # User wants more creative suggestions
             params[complexity]['temperature'] += 0.1
-        
+
+        # Smarter temperature control based on intent
+        if "motivate" in user_prompt.lower():
+            params[complexity]["temperature"] = 0.6
+        if "explain" in user_prompt.lower():
+            params[complexity]["temperature"] = 0.7
+
         # Clamp temperature between 0.3 and 0.9
         params[complexity]['temperature'] = max(0.3, min(0.9, params[complexity]['temperature']))
-        
+
         return params[complexity]
     
     def _validate_and_score_schedule(self, schedule_data: Dict, user_profile: Dict, tasks: List[Dict]) -> Dict:
@@ -607,7 +590,7 @@ Respond ONLY with valid JSON. No markdown formatting, no code blocks, no explana
         except:
             return 60
     
-    def generate_general_response(self, user_input: str, conversation_history: List[Dict] = None) -> Optional[str]:
+    def generate_general_response(self, user_input: str, conversation_history: List[Dict] = None, user_profile: Dict = None) -> Optional[str]:
         """
         Generate a general response for conversation and assistance
         
@@ -620,18 +603,25 @@ Respond ONLY with valid JSON. No markdown formatting, no code blocks, no explana
         """
         if not self.check_ollama_status():
             return None
-        
+
         # Determine if this is a scheduling request
         scheduling_keywords = ['schedule', 'plan', 'organize', 'task', 'productivity', 'time', 'day', 'week', 'optimize']
         is_scheduling_request = any(keyword in user_input.lower() for keyword in scheduling_keywords)
-        
+
         if is_scheduling_request:
             # Return a message directing user to the scheduling feature
             return "I notice you're asking about scheduling or task organization. For the best scheduling experience, please use the dedicated scheduling feature in the application. You can add your tasks in the 'Tasks' section and then generate a schedule in the 'Schedule' section. This will allow me to create a personalized schedule based on your profile and preferences."
-        
-        # Create general prompt
-        prompt = self.create_general_prompt(user_input, conversation_history)
-        
+
+        # Profile-awareness: inject profile and intent into prompt
+        profile_text = ""
+        if user_profile:
+            profile_text = json.dumps(user_profile, indent=2)
+
+        prompt = self.create_general_prompt(
+            f"USER PROFILE:\n{profile_text}\n\nUSER INPUT:\n{user_input}",
+            conversation_history
+        )
+
         try:
             payload = {
                 "model": self.model,
@@ -640,25 +630,29 @@ Respond ONLY with valid JSON. No markdown formatting, no code blocks, no explana
                 "options": {
                     "temperature": 0.7,
                     "top_p": 0.9,
-                    "max_tokens": 2048,
+                    "max_tokens": 150,
                     "repeat_penalty": 1.1,
                     "top_k": 40
                 }
             }
-            
+
             response = requests.post(
                 self.api_endpoint,
                 json=payload,
-                timeout=60
+                timeout=(5.0, 20.0)  # 5s connect, 20s read
             )
-            
+
             if response.status_code == 200:
                 result = response.json()
                 generated_text = result.get('response', '')
+                # Persist short memory hint
+                if user_profile is not None:
+                    user_profile["last_intent"] = detect_intent(user_input)
+                    user_profile["last_interaction"] = datetime.now().isoformat()
                 return generated_text.strip()
             else:
                 return None
-                
+
         except Exception as e:
             print(f"Error generating general response with LLM: {str(e)}")
             return None
@@ -704,7 +698,7 @@ Respond ONLY with valid JSON. No markdown formatting, no code blocks, no explana
             response = requests.post(
                 self.api_endpoint,
                 json=payload,
-                timeout=60
+                timeout=(5.0, 20.0)  # 5s connect, 20s read
             )
             
             if response.status_code == 200:

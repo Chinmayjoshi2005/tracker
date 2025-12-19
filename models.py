@@ -93,3 +93,31 @@ class ScheduleFeedback(db.Model):
     
     def __repr__(self):
         return f'<ScheduleFeedback {self.id} - Rating: {self.overall_rating}>'
+
+class ChatMessage(db.Model):
+    """Model to store chat history between user and AI"""
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    role = db.Column(db.String(20), nullable=False)  # 'user' or 'assistant'
+    content = db.Column(db.Text, nullable=False)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'role': self.role,
+            'content': self.content,
+            'timestamp': self.timestamp.isoformat()
+        }
+    
+    def __repr__(self):
+        return f'<ChatMessage {self.id} - {self.role}>'
+
+class LoginHistory(db.Model):
+    """Model to track user login history for analytics"""
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    login_timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+    
+    def __repr__(self):
+        return f'<LoginHistory {self.user_id} - {self.login_timestamp}>'
