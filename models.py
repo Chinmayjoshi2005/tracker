@@ -13,6 +13,10 @@ class User(UserMixin, db.Model):
     is_admin = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     
+    # Ban status
+    is_banned = db.Column(db.Boolean, default=False)
+    banned_until = db.Column(db.DateTime, nullable=True)
+    
     # User profile data
     name = db.Column(db.String(100))
     role = db.Column(db.String(50))
@@ -29,6 +33,7 @@ class User(UserMixin, db.Model):
     # Relationship with tasks
     tasks = db.relationship('Task', backref='user', lazy=True)
     schedules = db.relationship('Schedule', backref='user', lazy=True)
+    notifications = db.relationship('Notification', backref='user', lazy=True)
     
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -38,6 +43,17 @@ class User(UserMixin, db.Model):
     
     def __repr__(self):
         return f'<User {self.username}>'
+
+class Notification(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    message = db.Column(db.Text, nullable=False)
+    type = db.Column(db.String(20), default='info')  # info, warning, success, danger
+    is_read = db.Column(db.Boolean, default=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    
+    def __repr__(self):
+        return f'<Notification {self.id} - {self.type}>'
 
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)

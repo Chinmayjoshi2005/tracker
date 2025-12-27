@@ -1,68 +1,436 @@
 {% extends "base.html" %}
 
-{% block title %}Admin Panel - AI Task Optimizer{% endblock %}
+{% block title %}Admin Dashboard - Task Optimizer{% endblock %}
 
 {% block content %}
-<div class="container-fluid py-4">
-    <div class="row">
+<div class="container py-4">
+    <div class="row mb-4">
         <div class="col-12">
-            <div class="header-gradient p-4 rounded mb-4 fade-in">
-                <h1 class="display-5 fw-bold">Admin Panel</h1>
-                <p class="lead">Manage users and system settings</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-12">
-            <div class="card bounce-in">
-                <div class="card-header bg-white d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0"><i class="fas fa-users me-2"></i>User Management</h5>
-                    <span class="badge bg-primary">{{ users|length }} Users</span>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Username</th>
-                                    <th>Email</th>
-                                    <th>Role</th>
-                                    <th>Created</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for user in users %}
-                                <tr>
-                                    <td>{{ user.id }}</td>
-                                    <td>{{ user.username }}</td>
-                                    <td>{{ user.email }}</td>
-                                    <td>
-                                        {% if user.is_admin %}
-                                            <span class="badge bg-danger">Admin</span>
-                                        {% else %}
-                                            <span class="badge bg-success">User</span>
-                                        {% endif %}
-                                    </td>
-                                    <td>{{ user.created_at.strftime('%Y-%m-%d') if user.created_at else 'N/A' }}</td>
-                                    <td>
-                                        {% if not user.is_admin %}
-                                            <button class="btn btn-sm btn-warning">Edit</button>
-                                            <button class="btn btn-sm btn-danger">Delete</button>
-                                        {% else %}
-                                            <span class="text-muted">Admin</span>
-                                        {% endif %}
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
+            <div class="card bg-dark text-white p-4">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h1 class="display-5 fw-bold mb-0">Admin Dashboard</h1>
+                        <p class="lead text-white-50 mb-0">Manage users and system alerts</p>
+                    </div>
+                    <div>
+                        <button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#notifyAllModal">
+                            <i class="fas fa-bullhorn me-2"></i>Notify All Users
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Stats Cards -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card text-center p-3">
+                <h3 class="fw-bold text-primary">{{ users|length }}</h3>
+                <p class="text-muted mb-0">Total Users</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center p-3">
+                <h3 class="fw-bold text-warning">{{ users|selectattr('is_banned')|list|length }}</h3>
+                <p class="text-muted mb-0">Banned Users</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center p-3">
+                <h3 class="fw-bold text-success">{{ users|selectattr('is_admin')|list|length }}</h3>
+                <p class="text-muted mb-0">Admins</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Management Table -->
+    <div class="card">
+        <div class="card-header bg-white py-3">
+            <h5 class="mb-0 fw-bold"><i class="fas fa-users me-2"></i>User Management</h5>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0 align-middle">
+                    <thead class="bg-light">
+                        <tr>
+                            <th class="ps-4">User</th>
+                            <th>Status</th>
+                            <th>Role</th>
+                            <th>Last Active</th>
+                            <th>Joined</th>
+                            <th class="text-end pe-4">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td class="ps-4">
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar bg-light rounded-circle d-flex align-items-center justify-content-center me-3"
+                                        style="width: 40px; height: 40px;">
+                                        <i class="fas fa-user text-secondary"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-0 fw-bold">{{ user.username }}</h6>
+                                        <small class="text-muted">{{ user.email }}</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                {% if user.is_banned %}
+                                <span class="badge bg-danger">Banned</span>
+                                {% if user.banned_until %}
+                                <small class="d-block text-muted" style="font-size: 0.7em;">Until {{
+                                    user.banned_until.strftime('%Y-%m-%d') }}</small>
+                                {% endif %}
+                                {% else %}
+                                <span class="badge bg-success">Active</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if user.is_admin %}
+                                <span class="badge bg-primary">Admin</span>
+                                {% else %}
+                                <span class="badge bg-secondary">User</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if user.last_active %}
+                                <span class="badge bg-light text-dark border">{{ user.last_active.strftime('%Y-%m-%d
+                                    %H:%M') }}</span>
+                                {% else %}
+                                <span class="text-muted small">Never</span>
+                                {% endif %}
+                            </td>
+                            <td class="text-muted small">
+                                {{ user.created_at.strftime('%Y-%m-%d') }}
+                            </td>
+                            <td class="text-end pe-4">
+                                {% if not user.is_admin %} <!-- Cannot manage other admins simply -->
+                                <div class="btn-group">
+                                    <button class="btn btn-sm btn-outline-primary"
+                                        onclick="openNotifyModal('{{ user.id }}', '{{ user.username }}')"
+                                        title="Notify">
+                                        <i class="fas fa-envelope"></i>
+                                    </button>
+
+                                    {% if user.is_banned %}
+                                    <button class="btn btn-sm btn-outline-success" onclick="unbanUser('{{ user.id }}')"
+                                        title="Unban">
+                                        <i class="fas fa-unlock"></i>
+                                    </button>
+                                    {% else %}
+                                    <button class="btn btn-sm btn-outline-warning"
+                                        onclick="openBanModal('{{ user.id }}', '{{ user.username }}')" title="Ban">
+                                        <i class="fas fa-ban"></i>
+                                    </button>
+                                    {% endif %}
+
+                                    <button class="btn btn-sm btn-outline-danger" onclick="deleteUser('{{ user.id }}')"
+                                        title="Delete">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
+
+<!-- Notify Modal -->
+<div class="modal fade" id="notifyModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Send Notification to <span id="notifyUserName"></span></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="notifyUserId">
+                <div class="mb-3">
+                    <label class="form-label">Message</label>
+                    <textarea class="form-control" id="notifyMessage" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="sendNotification()">Send</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Notify All Modal -->
+<div class="modal fade" id="notifyAllModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Send Notification to ALL Users</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label">Message</label>
+                    <textarea class="form-control" id="notifyAllMessage" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="sendNotificationAll()">Send All</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Ban Modal -->
+<div class="modal fade" id="banModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ban User <span id="banUserName"></span></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="banUserId">
+                <div class="mb-3">
+                    <label class="form-label">Duration</label>
+                    <select class="form-select" id="banDuration">
+                        <option value="1">1 Day</option>
+                        <option value="3">3 Days</option>
+                        <option value="7">1 Week</option>
+                        <option value="30">1 Month</option>
+                        <option value="permanent">Permanent</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" onclick="banUser()">Confirm Ban</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+    // Notifications
+    const notifyModalElement = document.getElementById('notifyModal');
+    const notifyAllModalElement = document.getElementById('notifyAllModal');
+    const notifyModal = new bootstrap.Modal(notifyModalElement);
+    const notifyAllModal = new bootstrap.Modal(notifyAllModalElement);
+    const banModal = new bootstrap.Modal(document.getElementById('banModal'));
+
+    function openNotifyModal(id, name) {
+        document.getElementById('notifyUserId').value = id;
+        document.getElementById('notifyUserName').textContent = name;
+        document.getElementById('notifyMessage').value = ''; // Clear previous message
+        resetButton(document.querySelector('#notifyModal .btn-primary'), 'Send');
+        notifyModal.show();
+    }
+
+    // Clear Notify All modal on show
+    notifyAllModalElement.addEventListener('show.bs.modal', function () {
+        document.getElementById('notifyAllMessage').value = '';
+        resetButton(document.querySelector('#notifyAllModal .btn-primary'), 'Send All');
+    });
+
+    function resetButton(btn, text) {
+        btn.disabled = false;
+        btn.textContent = text;
+        btn.classList.remove('btn-success');
+        btn.classList.add('btn-primary');
+    }
+
+    async function sendNotification() {
+        const id = document.getElementById('notifyUserId').value;
+        const msgInput = document.getElementById('notifyMessage');
+        const msg = msgInput.value;
+        const btn = document.querySelector('#notifyModal .btn-primary');
+
+        if (!msg.trim()) {
+            alert('Please enter a message');
+            return;
+        }
+
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Sending...';
+
+        try {
+            const res = await fetch('/admin/notify', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken
+                },
+                body: JSON.stringify({ user_id: id, message: msg })
+            });
+            const data = await res.json();
+
+            if (data.status === 'success') {
+                btn.innerHTML = '<i class="fas fa-check"></i> Sent!';
+                btn.classList.remove('btn-primary');
+                btn.classList.add('btn-success');
+                msgInput.value = ''; // Clear input immediately
+
+                // Reset button after delay but keep modal open
+                setTimeout(() => {
+                    resetButton(btn, 'Send');
+                }, 1500);
+            } else {
+                alert('Error: ' + data.error);
+                resetButton(btn, 'Send');
+            }
+        } catch (e) {
+            console.error(e);
+            alert('Failed to send notification: ' + e.message);
+            resetButton(btn, 'Send');
+        }
+    }
+
+    async function sendNotificationAll() {
+        const msgInput = document.getElementById('notifyAllMessage');
+        const msg = msgInput.value;
+        const btn = document.querySelector('#notifyAllModal .btn-primary');
+
+        if (!msg.trim()) {
+            alert('Please enter a message');
+            return;
+        }
+
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Sending...';
+
+        try {
+            const res = await fetch('/admin/notify', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken
+                },
+                body: JSON.stringify({ user_id: 'all', message: msg })
+            });
+            const data = await res.json();
+
+            if (data.status === 'success') {
+                btn.innerHTML = '<i class="fas fa-check"></i> Sent to All!';
+                btn.classList.remove('btn-primary');
+                btn.classList.add('btn-success');
+                msgInput.value = ''; // Clear input immediately
+
+                // Reset button after delay but keep modal open
+                setTimeout(() => {
+                    resetButton(btn, 'Send All');
+                }, 1500);
+            } else {
+                alert('Error: ' + data.error);
+                resetButton(btn, 'Send All');
+            }
+        } catch (e) {
+            console.error(e);
+            alert('Failed to send notification: ' + e.message);
+            resetButton(btn, 'Send All');
+        }
+    }
+
+    // Ban Logic
+    function openBanModal(id, name) {
+        document.getElementById('banUserId').value = id;
+        document.getElementById('banUserName').textContent = name;
+
+        // Reset button
+        const btn = document.querySelector('#banModal .btn-danger');
+        btn.disabled = false;
+        btn.innerHTML = 'Confirm Ban';
+
+        banModal.show();
+    }
+
+    async function banUser() {
+        const id = document.getElementById('banUserId').value;
+        const duration = document.getElementById('banDuration').value;
+        const btn = document.querySelector('#banModal .btn-danger');
+
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Banning...';
+
+        try {
+            const res = await fetch(`/admin/user/${id}/ban`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken
+                },
+                body: JSON.stringify({ duration: duration })
+            });
+            const data = await res.json();
+
+            if (data.status === 'success') {
+                btn.innerHTML = '<i class="fas fa-check"></i> Banned!';
+                setTimeout(() => {
+                    location.reload();
+                }, 800);
+            } else {
+                alert(data.error);
+                btn.disabled = false;
+                btn.textContent = 'Confirm Ban';
+            }
+        } catch (e) {
+            alert('Error banning user');
+            btn.disabled = false;
+            btn.textContent = 'Confirm Ban';
+        }
+    }
+
+    async function unbanUser(id) {
+        if (!confirm('Are you sure you want to unban this user?')) return;
+
+        try {
+            const res = await fetch(`/admin/user/${id}/unban`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken
+                },
+            });
+            const data = await res.json();
+            if (data.status === 'success') {
+                location.reload();
+            } else {
+                alert(data.error);
+            }
+        } catch (e) {
+            alert('Error unbanning user');
+        }
+    }
+
+    // Delete Logic
+    async function deleteUser(id) {
+        if (!confirm('Are you sure you want to delete this user? This cannot be undone.')) return;
+
+        try {
+            const res = await fetch(`/admin/user/${id}/delete`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken
+                },
+            });
+            const data = await res.json();
+            if (data.status === 'success') {
+                location.reload();
+            } else {
+                alert(data.error);
+            }
+        } catch (e) {
+            alert('Error deleting user');
+        }
+    }
+</script>
 {% endblock %}

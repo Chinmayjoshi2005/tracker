@@ -100,249 +100,433 @@
     </div>
 </div>
 
-<!-- Live Calendar & Stats -->
+<!-- Login Tracker Section -->
 <div class="row mb-4">
-    <div class="col-md-12 fade-in">
-        <div class="card bg-dark text-white overflow-hidden position-relative">
+    <!-- Streak Strip (Restored) -->
+    <div class="col-lg-8 mb-4 mb-lg-0 fade-in">
+        <div class="card bg-dark text-white overflow-hidden position-relative h-100">
             <div class="card-body p-4 d-flex justify-content-between align-items-center">
                 <div>
-                    <h2 class="display-4 fw-bold mb-0" id="live-time">00:00:00</h2>
-                    <p class="lead mb-0 text-white-50" id="live-date">Monday, January 1, 2024</p>
+                    <h6 class="text-uppercase text-white-50 letter-spacing-2 mb-2">Consistency Tracker</h6>
+                    <h2 class="display-4 fw-bold mb-0 text-white">
+                        {{ login_streak }} <span class="fs-4 fw-normal text-white-50">Day Streak</span>
+                    </h2>
+                    <p class="lead mb-0 text-white-50 mt-2">
+                        {% if login_streak > 7 %}
+                        Unstoppable! You're on fire! 🔥
+                        {% elif login_streak > 3 %}
+                        Great consistency! Keep it up! ⚡
+                        {% elif login_streak > 0 %}
+                        Good start! Consistency is key. 🌱
+                        {% else %}
+                        Start your streak today! You got this. 💪
+                        {% endif %}
+                    </p>
                 </div>
-                <div class="d-none d-md-block">
-                    <i class="far fa-clock fa-4x text-white-50 opacity-25"></i>
-                </div>
-            </div>
-            <div class="position-absolute top-0 start-0 w-100 h-100"
-                style="background: linear-gradient(45deg, rgba(var(--bs-primary-rgb), 0.1), rgba(var(--bs-info-rgb), 0.1)); pointer-events: none;">
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Analytics Section -->
-<div class="row mb-4">
-    <div class="col-md-3 slide-in-left">
-        <div class="card h-100">
-            <div class="card-header bg-white">
-                <h5 class="mb-0"><i class="fas fa-chart-bar me-2"></i>Login Activity</h5>
-            </div>
-            <div class="card-body">
-                <canvas id="loginChart"></canvas>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3 bounce-in">
-        <div class="card h-100">
-            <div class="card-header bg-white">
-                <h5 class="mb-0"><i class="fas fa-chart-pie me-2"></i>Task Distribution</h5>
-            </div>
-            <div class="card-body">
-                <canvas id="taskChart"></canvas>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3 slide-in-right">
-        <div class="card h-100">
-            <div class="card-header bg-white">
-                <h5 class="mb-0"><i class="fas fa-history me-2"></i>Completion History</h5>
-            </div>
-            <div class="card-body">
-                <canvas id="historyChart"></canvas>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3 slide-in-right">
-        <div class="card h-100">
-            <div class="card-header bg-white">
-                <h5 class="mb-0"><i class="fas fa-magic me-2"></i>Success Prediction</h5>
-            </div>
-            <div class="card-body text-center d-flex flex-column justify-content-center">
-                <h6 class="text-muted mb-3">Probability of completing all tasks</h6>
-                <div class="position-relative d-inline-block mx-auto mb-3" style="width: 150px; height: 150px;">
-                    <svg viewBox="0 0 36 36" class="circular-chart">
-                        <path class="circle-bg" d="M18 2.0845
-                                    a 15.9155 15.9155 0 0 1 0 31.831
-                                    a 15.9155 15.9155 0 0 1 0 -31.831" />
-                        <path class="circle" stroke-dasharray="{{ completion_score }}, 100" d="M18 2.0845
-                                    a 15.9155 15.9155 0 0 1 0 31.831
-                                    a 15.9155 15.9155 0 0 1 0 -31.831"
-                            data-stroke="{{ '#20bf6b' if completion_score > 70 else '#f7b731' if completion_score > 40 else '#eb3b5a' }}" />
-                        <text x="18" y="20.35" class="percentage">{{ completion_score }}%</text>
-                    </svg>
-                </div>
-                <p class="small text-muted">
-                    {% if completion_score > 80 %}
-                    Excellent! You're on track to crush your goals. 🚀
-                    {% elif completion_score > 50 %}
-                    Good progress. Keep pushing! 💪
-                    {% else %}
-                    You might need to focus more. You got this! 🔥
-                    {% endif %}
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<style>
-    .circular-chart {
-        display: block;
-        margin: 0 auto;
-        max-width: 100%;
-        max-height: 250px;
-    }
-
-    .circle-bg {
-        fill: none;
-        stroke: #eee;
-        stroke-width: 3.8;
-    }
-
-    .circle {
-        fill: none;
-        stroke-width: 2.8;
-        stroke-linecap: round;
-        animation: progress 1s ease-out forwards;
-    }
-
-    .percentage {
-        fill: #666;
-        font-family: sans-serif;
-        font-weight: bold;
-        font-size: 0.5em;
-        text-anchor: middle;
-    }
-
-    @keyframes progress {
-        0% {
-            stroke-dasharray: 0 100;
-        }
-    }
-</style>
-
-<!-- Quick Actions -->
-<div class="row mb-4">
-    <div class="col-12">
-        <div class="card bounce-in">
-            <div class="card-header bg-white">
-                <h5 class="mb-0"><i class="fas fa-bolt me-2"></i>Quick Actions</h5>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-3 mb-3">
-                        <button class="btn btn-primary w-100" onclick="location.href='/tasks'">
-                            <i class="fas fa-plus me-2"></i>Add Task
-                        </button>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <button class="btn btn-success w-100" onclick="generateSchedule()">
-                            <i class="fas fa-calendar-alt me-2"></i>Generate Schedule
-                        </button>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <button class="btn btn-info w-100" onclick="location.href='/profile'">
-                            <i class="fas fa-user-edit me-2"></i>Edit Profile
-                        </button>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <button class="btn btn-secondary w-100" onclick="location.href='/schedule'">
-                            <i class="fas fa-eye me-2"></i>View Schedule
-                        </button>
+                <div class="d-none d-md-block ms-3">
+                    <div class="streak-icon-container">
+                        {% if login_streak > 3 %}
+                        <i class="fas fa-fire fa-5x text-warning streak-fire"></i>
+                        {% else %}
+                        <i class="fas fa-seedling fa-5x text-success streak-seed"></i>
+                        {% endif %}
                     </div>
                 </div>
             </div>
+            <!-- Decorative background -->
+            <div class="position-absolute top-0 end-0 h-100 w-50"
+                style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05)); pointer-events: none;">
+            </div>
         </div>
     </div>
-</div>
 
-<!-- Recent Tasks -->
-<div class="row">
-    <div class="col-lg-6 slide-in-left">
-        <div class="card">
-            <div class="card-header bg-white d-flex justify-content-between align-items-center">
-                <h5 class="mb-0"><i class="fas fa-list-check me-2"></i>Pending Tasks</h5>
-                <span class="badge bg-primary">{{ tasks.pending|length }}</span>
-            </div>
-            <div class="card-body">
-                {% if tasks.pending %}
-                {% for task in tasks.pending[:5] %}
-                <div class="card task-card priority-{{ task.priority }} mb-3"
-                    onclick="completeTask('{{ loop.index0 }}')">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <h6 class="card-title">{{ task.description }}</h6>
-                            <span
-                                class="badge bg-{{ 'danger' if task.priority == 'high' else 'warning' if task.priority == 'medium' else 'success' }}">{{
-                                task.priority }}</span>
+    <!-- Calendar (Compact Side) -->
+    <div class="col-lg-4">
+        <div class="card border-0 shadow-lg overflow-hidden position-relative h-100"
+            style="background: #1a1a2e; border-radius: 15px;">
+            <div class="card-body p-2 d-flex flex-column">
+                <!-- Header -->
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <div class="d-flex align-items-center gap-2">
+                        <select id="calendarMonth"
+                            class="form-select form-select-sm bg-transparent text-white border-0 p-0 fw-bold"
+                            style="width: auto; cursor: pointer; box-shadow: none; -webkit-appearance: none; appearance: none;">
+                            <option value="0" class="text-dark">January</option>
+                            <option value="1" class="text-dark">February</option>
+                            <option value="2" class="text-dark">March</option>
+                            <option value="3" class="text-dark">April</option>
+                            <option value="4" class="text-dark">May</option>
+                            <option value="5" class="text-dark">June</option>
+                            <option value="6" class="text-dark">July</option>
+                            <option value="7" class="text-dark">August</option>
+                            <option value="8" class="text-dark">September</option>
+                            <option value="9" class="text-dark">October</option>
+                            <option value="10" class="text-dark">November</option>
+                            <option value="11" class="text-dark">December</option>
+                        </select>
+                        <select id="calendarYear"
+                            class="form-select form-select-sm bg-transparent text-white border-0 p-0 fw-bold"
+                            style="width: auto; cursor: pointer; box-shadow: none; -webkit-appearance: none; appearance: none;">
+                            <!-- Years will be populated by JS -->
+                        </select>
+                    </div>
+                    <div class="d-flex gap-1">
+                        <button class="btn btn-icon btn-sm btn-glass rounded-circle p-0" id="prevMonth"
+                            style="width: 24px; height: 24px;">
+                            <i class="fas fa-chevron-left text-white" style="font-size: 0.7rem;"></i>
+                        </button>
+                        <button class="btn btn-icon btn-sm btn-glass rounded-circle p-0" id="nextMonth"
+                            style="width: 24px; height: 24px;">
+                            <i class="fas fa-chevron-right text-white" style="font-size: 0.7rem;"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Calendar Grid -->
+                <div class="calendar-container pt-0 flex-grow-1">
+                    <div class="calendar-header d-flex text-white-50 mb-1 text-uppercase fw-bold"
+                        style="font-size: 0.65rem; letter-spacing: 0.5px;">
+                        <div class="calendar-day-header">Su</div>
+                        <div class="calendar-day-header">Mo</div>
+                        <div class="calendar-day-header">Tu</div>
+                        <div class="calendar-day-header">We</div>
+                        <div class="calendar-day-header">Th</div>
+                        <div class="calendar-day-header">Fr</div>
+                        <div class="calendar-day-header">Sa</div>
+                    </div>
+                    <div class="calendar-grid" id="loginCalendar">
+                        <!-- Days generated by JS -->
+                    </div>
+
+                    <!-- Compact Legend -->
+                    <div class="d-flex justify-content-center align-items-center mt-2 pt-2 border-top border-white-10 gap-3"
+                        style="font-size: 0.65rem;">
+                        <div class="d-flex align-items-center text-white-50">
+                            <span class="indicator-dot bg-gradient-primary me-1 shadow-sm"></span> Login
                         </div>
-                        <p class="card-text">
-                            <small class="text-muted">
-                                <i class="fas fa-clock me-1"></i>{{ task.duration }} |
-                                <i class="fas fa-tag me-1"></i>{{ task.type }}
-                            </small>
-                        </p>
-                        <p class="card-text">{{ task.preferences }}</p>
-                        <button class="btn btn-sm btn-success complete-task-btn">
-                            <i class="fas fa-check me-1"></i>Complete
-                        </button>
+                        <div class="d-flex align-items-center text-white-50">
+                            <span class="indicator-dot bg-gradient-danger me-1 shadow-sm"></span> Missed
+                        </div>
+                        <div class="d-flex align-items-center text-white-50 cursor-pointer" onclick="initCalendar()">
+                            <span class="indicator-dot border border-white me-1 shadow-sm"></span> Today
+                        </div>
                     </div>
                 </div>
-                {% endfor %}
-                {% if tasks.pending|length > 5 %}
-                <div class="text-center">
-                    <a href="/tasks" class="btn btn-outline-primary">View All Tasks</a>
+
+                <!-- Ambient Glow -->
+                <div class="position-absolute bottom-0 end-0 p-5 rounded-circle"
+                    style="background: radial-gradient(circle, rgba(106,17,203,0.2) 0%, transparent 70%); width: 150px; height: 150px; pointer-events: none; transform: translate(30%, 30%);">
                 </div>
-                {% endif %}
-                {% else %}
-                <p class="text-muted text-center">No pending tasks. <a href="/tasks">Add some tasks</a> to get started!
-                </p>
-                {% endif %}
             </div>
         </div>
     </div>
 
-    <div class="col-lg-6 slide-in-right">
-        <div class="card">
-            <div class="card-header bg-white d-flex justify-content-between align-items-center">
-                <h5 class="mb-0"><i class="fas fa-chart-line me-2"></i>Your Profile</h5>
-                <a href="/profile" class="btn btn-sm btn-outline-primary">Edit</a>
-            </div>
-            <div class="card-body">
-                {% if profile.name %}
-                <div class="row">
-                    <div class="col-md-6">
-                        <p><strong>Name:</strong> {{ profile.name }}</p>
-                        <p><strong>Role:</strong> {{ profile.role or 'Not set' }}</p>
-                        <p><strong>Peak Energy:</strong> {{ profile.peak_energy or 'Not set' }}</p>
-                        <p><strong>Study Preference:</strong> {{ profile.study_preference or 'Not set' }}</p>
-                    </div>
-                    <div class="col-md-6">
-                        <p><strong>Schedule Days:</strong> {{ profile.schedule_days or 0 }}</p>
-                        <p><strong>Workout Preference:</strong> {{ profile.workout_preference or 'Not set' }}</p>
-                        <p><strong>Family Time:</strong> {{ profile.family_time or 'Not set' }}</p>
-                        <p><strong>Main Goals:</strong> {{ profile.main_goals or 'Not set' }}</p>
+    <style>
+        /* Streak Animations */
+        .streak-fire {
+            animation: pulse-fire 2s infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 165, 0, 0.5));
+        }
+
+        .streak-seed {
+            animation: sway 3s infinite ease-in-out;
+        }
+
+        @keyframes pulse-fire {
+            0% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 10px rgba(255, 165, 0, 0.5));
+            }
+
+            50% {
+                transform: scale(1.1);
+                filter: drop-shadow(0 0 20px rgba(255, 69, 0, 0.7));
+            }
+
+            100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 10px rgba(255, 165, 0, 0.5));
+            }
+        }
+
+        @keyframes sway {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(-5deg);
+            }
+
+            75% {
+                transform: rotate(5deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        /* Calendar Styles */
+        .calendar-container {
+            padding: 0;
+        }
+
+        .calendar-day-header {
+            width: 14.28%;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .calendar-grid {
+            display: flex;
+            flex-wrap: wrap;
+            row-gap: 4px;
+            /* Tighter gap */
+        }
+
+        .btn-glass {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .btn-glass:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .calendar-day {
+            width: 14.28%;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border-radius: 10px;
+            margin: 0;
+        }
+
+        .calendar-day:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            transform: scale(1.15);
+            z-index: 10;
+        }
+
+        .calendar-day.empty {
+            background: transparent !important;
+            cursor: default;
+        }
+
+        .calendar-day.today {
+            border: 2px solid var(--accent-color);
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(255, 107, 107, 0.3);
+        }
+
+        .calendar-day.active {
+            background: linear-gradient(135deg, #00f260 0%, #0575e6 100%);
+            /* Brighter interactive color */
+            color: white;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(5, 117, 230, 0.4);
+            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            border: none;
+        }
+
+        @keyframes popIn {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .calendar-day.missed {
+            background: rgba(255, 71, 87, 0.15);
+            color: #ff4757;
+            position: relative;
+            border: 1px solid rgba(255, 71, 87, 0.2);
+        }
+
+        /* Small dot for missed days instead of full bg might mean 'short'? 
+           User said 'colorfull', so full BG is better. 
+           Let's make missed days subtle but clear. */
+
+        .text-accent {
+            color: var(--accent-color);
+        }
+
+        .bg-gradient-primary {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+        }
+
+        .bg-gradient-danger {
+            background: linear-gradient(135deg, #eb3b5a 0%, #fc5c65 100%);
+        }
+
+        .border-white-10 {
+            border-color: rgba(255, 255, 255, 0.1) !important;
+        }
+
+        .indicator-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .letter-spacing-2 {
+            letter-spacing: 2px;
+        }
+    </style>
+
+
+
+    <!-- Quick Actions -->
+    <div class="row mb-4 mt-5">
+        <div class="col-12">
+            <div class="card bounce-in">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0"><i class="fas fa-bolt me-2"></i>Quick Actions</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <button class="btn btn-primary w-100" onclick="location.href='/tasks'">
+                                <i class="fas fa-plus me-2"></i>Add Task
+                            </button>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <button class="btn btn-success w-100" onclick="generateSchedule()">
+                                <i class="fas fa-calendar-alt me-2"></i>Generate Schedule
+                            </button>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <button class="btn btn-info w-100" onclick="location.href='/profile'">
+                                <i class="fas fa-user-edit me-2"></i>Edit Profile
+                            </button>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <button class="btn btn-secondary w-100" onclick="location.href='/schedule'">
+                                <i class="fas fa-eye me-2"></i>View Schedule
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div class="mt-3">
-                    <h6>Weekly Schedule:</h6>
-                    <div class="progress mt-2">
-                        <div class="progress-bar" role="progressbar"
-                            aria-valuenow="{{ ((profile.schedule_days or 0) / 7 * 100)|int }}"></div>
-                    </div>
-                    <div class="d-flex justify-content-between mt-1">
-                        <small class="text-muted">Progress</small>
-                        <small class="text-muted">{{ ((profile.schedule_days or 0) / 7 * 100)|int }}%</small>
-                    </div>
-                </div>
-                {% else %}
-                <p class="text-muted text-center">No profile found. <a href="/profile">Create your profile</a> to get
-                    personalized schedule recommendations!</p>
-                {% endif %}
             </div>
         </div>
     </div>
-</div>
+
+    <!-- Recent Tasks -->
+    <div class="row">
+        <div class="col-lg-6 slide-in-left">
+            <div class="card">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0"><i class="fas fa-list-check me-2"></i>Pending Tasks</h5>
+                    <span class="badge bg-primary">{{ tasks.pending|length }}</span>
+                </div>
+                <div class="card-body">
+                    {% if tasks.pending %}
+                    {% for task in tasks.pending[:5] %}
+                    <div class="card task-card priority-{{ task.priority }} mb-3"
+                        onclick="completeTask('{{ loop.index0 }}')">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <h6 class="card-title">{{ task.description }}</h6>
+                                <span
+                                    class="badge bg-{{ 'danger' if task.priority == 'high' else 'warning' if task.priority == 'medium' else 'success' }}">{{
+                                    task.priority }}</span>
+                            </div>
+                            <p class="card-text">
+                                <small class="text-muted">
+                                    <i class="fas fa-clock me-1"></i>{{ task.duration }} |
+                                    <i class="fas fa-tag me-1"></i>{{ task.type }}
+                                </small>
+                            </p>
+                            <p class="card-text">{{ task.preferences }}</p>
+                            <button class="btn btn-sm btn-success complete-task-btn">
+                                <i class="fas fa-check me-1"></i>Complete
+                            </button>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% if tasks.pending|length > 5 %}
+                    <div class="text-center">
+                        <a href="/tasks" class="btn btn-outline-primary">View All Tasks</a>
+                    </div>
+                    {% endif %}
+                    {% else %}
+                    <p class="text-muted text-center">No pending tasks. <a href="/tasks">Add some tasks</a> to get
+                        started!
+                    </p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 slide-in-right">
+            <div class="card">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0"><i class="fas fa-chart-line me-2"></i>Your Profile</h5>
+                    <a href="/profile" class="btn btn-sm btn-outline-primary">Edit</a>
+                </div>
+                <div class="card-body">
+                    {% if profile.name %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>Name:</strong> {{ profile.name }}</p>
+                            <p><strong>Role:</strong> {{ profile.role or 'Not set' }}</p>
+                            <p><strong>Peak Energy:</strong> {{ profile.peak_energy or 'Not set' }}</p>
+                            <p><strong>Study Preference:</strong> {{ profile.study_preference or 'Not set' }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Schedule Days:</strong> {{ profile.schedule_days or 0 }}</p>
+                            <p><strong>Workout Preference:</strong> {{ profile.workout_preference or 'Not set' }}</p>
+                            <p><strong>Family Time:</strong> {{ profile.family_time or 'Not set' }}</p>
+                            <p><strong>Main Goals:</strong> {{ profile.main_goals or 'Not set' }}</p>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <h6>Weekly Schedule:</h6>
+                        <div class="progress mt-2">
+                            <div class="progress-bar" role="progressbar"
+                                aria-valuenow="{{ ((profile.schedule_days or 0) / 7 * 100)|int }}"></div>
+                        </div>
+                        <div class="d-flex justify-content-between mt-1">
+                            <small class="text-muted">Progress</small>
+                            <small class="text-muted">{{ ((profile.schedule_days or 0) / 7 * 100)|int }}%</small>
+                        </div>
+                    </div>
+                    {% else %}
+                    <p class="text-muted text-center">No profile found. <a href="/profile">Create your profile</a> to
+                        get
+                        personalized schedule recommendations!</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -483,8 +667,118 @@
         }, 3000);
     }
 
+    // Calendar Logic
+    let currentDate = new Date();
+
+    function initCalendar() {
+        populateYears();
+        renderCalendar(currentDate);
+
+        // Remove existing listeners to prevent duplicates if init called multiple times
+        $('#prevMonth').off('click').click(() => {
+            const prevMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
+            currentDate = prevMonth;
+            renderCalendar(currentDate);
+        });
+
+        $('#nextMonth').off('click').click(() => {
+            const nextMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1);
+            currentDate = nextMonth;
+            renderCalendar(currentDate);
+        });
+
+        $('#calendarMonth').off('change').change(function () {
+            const newMonth = parseInt($(this).val());
+            // Set to 1st of month to avoid rollover issues (e.g. Jan 31 -> Feb)
+            currentDate = new Date(currentDate.getFullYear(), newMonth, 1);
+            renderCalendar(currentDate);
+        });
+
+        $('#calendarYear').off('change').change(function () {
+            const newYear = parseInt($(this).val());
+            // Set to 1st of month to preserve month but change year safely
+            currentDate = new Date(newYear, currentDate.getMonth(), 1);
+            renderCalendar(currentDate);
+        });
+    }
+
+    function populateYears() {
+        const yearSelect = $('#calendarYear');
+        const currentYear = new Date().getFullYear();
+        yearSelect.empty();
+        for (let i = currentYear - 5; i <= currentYear + 5; i++) {
+            yearSelect.append(`<option value="${i}" class="text-dark">${i}</option>`);
+        }
+    }
+
+    function renderCalendar(date) {
+        const year = date.getFullYear();
+        const month = date.getMonth();
+
+        // Update Selectors
+        $('#calendarMonth').val(month);
+        $('#calendarYear').val(year);
+
+        // Fetch login history
+        $.ajax({
+            url: `/api/login-history?year=${year}&month=${month + 1}`,
+            method: 'GET',
+            success: function (response) {
+                if (response.status === 'success') {
+                    drawCalendarGrid(year, month, new Set(response.login_days), response.created_at);
+                }
+            },
+            error: function () {
+                // Fallback (show empty calendar)
+                drawCalendarGrid(year, month, new Set());
+            }
+        });
+    }
+
+    function drawCalendarGrid(year, month, loginDays, createdAtIso) {
+        const calendarEl = $('#loginCalendar');
+        calendarEl.empty();
+
+        const firstDay = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const today = new Date();
+        const isCurrentMonth = today.getFullYear() === year && today.getMonth() === month;
+        const joinedDate = createdAtIso ? new Date(createdAtIso) : null;
+        if (joinedDate) joinedDate.setHours(0, 0, 0, 0); // normalize
+
+        // Empty slots for previous month
+        for (let i = 0; i < firstDay; i++) {
+            calendarEl.append('<div class="calendar-day empty"></div>');
+        }
+
+        // Days
+        for (let day = 1; day <= daysInMonth; day++) {
+            let classes = 'calendar-day';
+
+            // Check if today
+            if (isCurrentMonth && day === today.getDate()) {
+                classes += ' today';
+            }
+
+            // Check login status
+            if (loginDays.has(day)) {
+                classes += ' active';
+            } else if ((isCurrentMonth && day < today.getDate()) || (new Date(year, month, day) < today)) {
+                // Past days without login (red dot), but only if after joined date
+                const currentDate = new Date(year, month, day);
+                if (!joinedDate || currentDate >= joinedDate) {
+                    classes += ' missed';
+                }
+            }
+
+            calendarEl.append(`<div class="${classes}">${day}</div>`);
+        }
+    }
+
     // Add hover effects to cards
     $(document).ready(function () {
+        initCalendar();
+
         // Initialize dynamic styles from data attributes to fix linter errors
         $('.card').hover(
             function () {

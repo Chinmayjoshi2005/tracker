@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{% block title %}AI Task Optimizer{% endblock %}</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -116,6 +117,7 @@
             font-weight: 800;
             font-size: 1.8rem;
             background: var(--purple-gradient);
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -396,6 +398,7 @@
             font-size: 2.5rem;
             font-weight: 800;
             background: var(--purple-gradient);
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin: 10px 0;
@@ -900,6 +903,11 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     {% if current_user.is_authenticated %}
+                    {% if current_user.is_admin %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin"><i class="fas fa-cogs me-1"></i> Admin Panel</a>
+                    </li>
+                    {% else %}
                     <li class="nav-item">
                         <a class="nav-link" href="/"><i class="fas fa-home me-1"></i> Home</a>
                     </li>
@@ -911,10 +919,6 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/schedule"><i class="fas fa-calendar-alt me-1"></i> Schedule</a>
-                    </li>
-                    {% if current_user.is_admin %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="/admin"><i class="fas fa-cogs me-1"></i> Admin</a>
                     </li>
                     {% endif %}
                     <li class="nav-item">
@@ -935,43 +939,8 @@
 
     <div class="container-fluid">
         <div class="row">
-            <!-- Sidebar -->
-            {% if current_user.is_authenticated %}
-            <div class="col-lg-2 d-none d-lg-block sidebar">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link {{ 'active' if request.endpoint == 'index' else '' }}" href="/">
-                            <i class="fas fa-home me-2"></i> Dashboard
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ 'active' if request.endpoint == 'profile' else '' }}" href="/profile">
-                            <i class="fas fa-user me-2"></i> Profile
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ 'active' if request.endpoint == 'tasks' else '' }}" href="/tasks">
-                            <i class="fas fa-tasks me-2"></i> Tasks
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ 'active' if request.endpoint == 'schedule' else '' }}" href="/schedule">
-                            <i class="fas fa-calendar-alt me-2"></i> Schedule
-                        </a>
-                    </li>
-                    {% if current_user.is_admin %}
-                    <li class="nav-item">
-                        <a class="nav-link {{ 'active' if request.endpoint == 'admin' else '' }}" href="/admin">
-                            <i class="fas fa-cogs me-2"></i> Admin Panel
-                        </a>
-                    </li>
-                    {% endif %}
-                </ul>
-            </div>
-            {% endif %}
-
             <!-- Main Content -->
-            <div class="{% if current_user.is_authenticated %}col-lg-10 col-md-12{% else %}col-12{% endif %}">
+            <div class="col-12">
                 {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
                 {% for category, message in messages %}
@@ -982,6 +951,26 @@
                 {% endfor %}
                 {% endif %}
                 {% endwith %}
+
+                <!-- Admin Notifications for Users -->
+                {% if current_user.is_authenticated and not current_user.is_admin and current_user.notifications %}
+                {% for notification in current_user.notifications %}
+                {% if not notification.is_read %}
+                <div class="alert alert-info alert-dismissible fade show m-3" role="alert"
+                    id="notification-{{ notification.id }}">
+                    <i class="fas fa-bell me-2"></i> <strong>Admin Notification:</strong> {{ notification.message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+                        onclick="markRead('{{ notification.id }}')"></button>
+                </div>
+                {% endif %}
+                {% endfor %}
+                <script>
+                    function markRead(id) {
+                        fetch(`/api/notification/${id}/read`, { method: 'POST' });
+                    }
+                </script>
+                {% endif %}
+
                 {% block content %}{% endblock %}
             </div>
         </div>
@@ -1025,7 +1014,7 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    {% if current_user.is_authenticated %}
+    {% if current_user.is_authenticated and not current_user.is_admin %}
     <button class="ai-fab" id="openAiOptimizer" title="AI Optimizer"><i class="fas fa-robot"></i></button>
     <div class="ai-panel" id="aiPanel">
         <div class="panel-header">

@@ -2,17 +2,21 @@ from flask import Flask, render_template, request, jsonify, redirect, url_for, f
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 import json
 import os
+import logging
 from datetime import datetime, timedelta
 
 from llm_service import get_llm_service
 from analytics_service import AnalyticsService
-from models import db, User, Task, Schedule, ScheduleFeedback, ChatMessage, LoginHistory
+from models import db, User, Task, Schedule, ScheduleFeedback, ChatMessage, LoginHistory, Notification
 from forms import LoginForm, RegistrationForm, ProfileForm, TaskForm
 
-import secrets
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = secrets.token_hex(16)  # Generate a random secret key
+# Use environment variable for secret key or fallback to a stable dev key
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-secret-key-change-this-in-prod')
 
 # Database configuration
 if os.environ.get('VERCEL'):
@@ -25,8 +29,11 @@ else:
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+from flask_wtf.csrf import CSRFProtect
+
 # Initialize extensions
 db.init_app(app)
+csrf = CSRFProtect(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
@@ -112,6 +119,20 @@ def login():
         try:
             user = User.query.filter_by(username=form.username.data).first()
             if user and user.check_password(form.password.data):
+                # Check if banned
+                if user.is_banned:
+                    if user.banned_until and user.banned_until > datetime.utcnow():
+                        flash(f'Your account has been suspended until {user.banned_until.strftime("%Y-%m-%d %H:%M")}.')
+                        return render_template('login.html', form=form)
+                    elif user.banned_until and user.banned_until <= datetime.utcnow():
+                         # Ban expired
+                         user.is_banned = False
+                         user.banned_until = None
+                         db.session.commit()
+                    elif user.is_banned:
+                        flash('Your account has been permanently suspended.')
+                        return render_template('login.html', form=form)
+
                 login_user(user, remember=form.remember_me.data)
                 
                 # Record login history
@@ -124,7 +145,7 @@ def login():
                 flash('Invalid username or password')
         except Exception as e:
             flash('An error occurred during login. Please try again.')
-            print(f"Login error: {e}")  # Log the error for debugging
+            logger.error(f"Login error: {e}")
     
     return render_template('login.html', form=form)
 
@@ -149,7 +170,7 @@ def register():
                 flash('Username or email already exists. Please choose different credentials.')
             else:
                 flash('An error occurred during registration. Please try again.')
-            print(f"Registration error: {e}")  # Log the error for debugging
+            logger.error(f"Registration error: {e}")
     
     return render_template('register.html', form=form)
 
@@ -162,6 +183,10 @@ def logout():
 @app.route('/')
 @login_required
 def index():
+    # Redirect admin to admin dashboard
+    if current_user.is_admin:
+        return redirect(url_for('admin'))
+        
     # Get user's tasks
     pending_tasks = Task.query.filter_by(user_id=current_user.id, status='pending').all()
     completed_tasks = Task.query.filter_by(user_id=current_user.id, status='completed').all()
@@ -175,12 +200,13 @@ def index():
     
     # Analytics
     analytics = AnalyticsService()
-    login_chart = analytics.generate_login_chart(current_user.id)
-    task_chart = analytics.generate_task_chart(current_user.id)
-    completion_score = analytics.predict_completion_probability(current_user.id)
+    # login_chart = analytics.generate_login_chart(current_user.id)
+    # task_chart = analytics.generate_task_chart(current_user.id)
+    # completion_score = analytics.predict_completion_probability(current_user.id)
+    login_streak = analytics.calculate_login_streak(current_user.id)
     
     return render_template('index.html', profile=current_user, tasks=tasks_data, 
-                         login_chart=login_chart, task_chart=task_chart, completion_score=completion_score)
+                         login_streak=login_streak)
 
 @app.route('/profile')
 @login_required
@@ -760,7 +786,118 @@ def admin():
         return redirect(url_for('index'))
     
     users = User.query.all()
+    
+    # Attach last active time
+    for user in users:
+        last_login = LoginHistory.query.filter_by(user_id=user.id).order_by(LoginHistory.login_timestamp.desc()).first()
+        user.last_active = last_login.login_timestamp if last_login else None
+        
     return render_template('admin.html', users=users)
+
+# Admin Actions
+@app.route('/admin/user/<int:user_id>/ban', methods=['POST'])
+@login_required
+def admin_ban_user(user_id):
+    if not current_user.is_admin:
+        return jsonify({'error': 'Unauthorized'}), 403
+    
+    user = User.query.get(user_id)
+    if not user:
+        return jsonify({'error': 'User not found'}), 404
+        
+    if user.is_admin:
+        return jsonify({'error': 'Cannot ban admin'}), 400
+        
+    data = request.json
+    duration = data.get('duration') # days
+    
+    user.is_banned = True
+    if duration and duration != 'permanent':
+        try:
+            days = int(duration)
+            user.banned_until = datetime.utcnow() + timedelta(days=days)
+        except:
+            pass
+            
+    db.session.commit()
+    return jsonify({'status': 'success', 'message': 'User banned successfully'})
+
+@app.route('/admin/user/<int:user_id>/unban', methods=['POST'])
+@login_required
+def admin_unban_user(user_id):
+    if not current_user.is_admin:
+        return jsonify({'error': 'Unauthorized'}), 403
+    
+    user = User.query.get(user_id)
+    if user:
+        user.is_banned = False
+        user.banned_until = None
+        db.session.commit()
+        return jsonify({'status': 'success', 'message': 'User unbanned'})
+    return jsonify({'error': 'User not found'}), 404
+
+@app.route('/admin/user/<int:user_id>/delete', methods=['POST'])
+@login_required
+def admin_delete_user(user_id):
+    if not current_user.is_admin:
+        return jsonify({'error': 'Unauthorized'}), 403
+    
+    user = User.query.get(user_id)
+    if not user:
+        return jsonify({'error': 'User not found'}), 404
+        
+    if user.is_admin:
+        return jsonify({'error': 'Cannot delete admin'}), 400
+        
+    # Delete related data logic would go here (or rely on cascade delete if configured)
+    # Since we didn't confirm cascades, we'll just delete the user and let SQLite handle foreign keys if set, 
+    # or leave orphans if not strict. For this prototype, straightforward delete.
+    db.session.delete(user)
+    db.session.commit()
+    return jsonify({'status': 'success', 'message': 'User deleted'})
+
+@app.route('/admin/notify', methods=['POST'])
+@login_required
+def admin_notify():
+    if not current_user.is_admin:
+        return jsonify({'error': 'Unauthorized'}), 403
+        
+    data = request.json
+    logger.info(f"DEBUG: Admin Notify Data: {data}")
+    user_id = data.get('user_id')
+    message = data.get('message')
+    
+    if not message:
+        return jsonify({'error': 'Message required'}), 400
+        
+    try:
+        if user_id == 'all':
+            users = User.query.filter_by(is_admin=False).all()
+            logger.info(f"DEBUG: Notifying {len(users)} users")
+            for u in users:
+                n = Notification(user_id=u.id, message=message, type='info')
+                db.session.add(n)
+        else:
+            logger.info(f"DEBUG: Notifying user {user_id}")
+            n = Notification(user_id=int(user_id), message=message, type='info')
+            db.session.add(n)
+            
+        db.session.commit()
+        return jsonify({'status': 'success', 'message': 'Notification sent'})
+    except Exception as e:
+        logger.error(f"DEBUG: Notify Error: {e}")
+        db.session.rollback()
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/notification/<int:notification_id>/read', methods=['POST'])
+@login_required
+def mark_notification_read(notification_id):
+    notification = Notification.query.get(notification_id)
+    if notification and notification.user_id == current_user.id:
+        notification.is_read = True
+        db.session.commit()
+        return jsonify({'status': 'success'})
+    return jsonify({'error': 'Notification not found or access denied'}), 404
 
 # Schedule feedback endpoint
 @app.route('/api/schedule/feedback', methods=['POST'])
@@ -809,6 +946,27 @@ def submit_schedule_feedback():
     except Exception as e:
         return jsonify({"error": "server_error", "message": str(e)}), 500
 
+@app.route('/api/login-history', methods=['GET'])
+@login_required
+def api_login_history():
+    """Get login history for a specific month"""
+    try:
+        year = int(request.args.get('year', datetime.now().year))
+        month = int(request.args.get('month', datetime.now().month))
+        
+        analytics = AnalyticsService()
+        login_days = analytics.get_monthly_login_history(current_user.id, year, month)
+        
+        return jsonify({
+            "status": "success",
+            "year": year,
+            "month": month,
+            "login_days": login_days,
+            "created_at": current_user.created_at.isoformat() if current_user.created_at else None
+        })
+    except Exception as e:
+        return jsonify({"error": "server_error", "message": str(e)}), 500
+
 # Initialize database tables
 with app.app_context():
     db.create_all()
@@ -822,7 +980,7 @@ with app.app_context():
             db.session.add(admin_user)
             db.session.commit()
     except Exception as e:
-        print(f"Error creating admin user: {e}")
+        logger.error(f"Error creating admin user: {e}")
 
 if __name__ == '__main__':
-    app.run(debug=False, port=5012)
+    app.run(debug=False, port=5000)

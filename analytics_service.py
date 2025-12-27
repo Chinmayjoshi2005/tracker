@@ -1,8 +1,12 @@
 import io
 import base64
-import matplotlib
-matplotlib.use('Agg')  # Use non-interactive backend
-import matplotlib.pyplot as plt
+try:
+    import matplotlib
+    matplotlib.use('Agg')  # Use non-interactive backend
+    import matplotlib.pyplot as plt
+except ImportError:
+    matplotlib = None
+    plt = None
 from models import LoginHistory, Task, db
 from datetime import datetime, timedelta
 from sqlalchemy import func
@@ -106,3 +110,81 @@ class AnalyticsService:
         except Exception as e:
             print(f"Error predicting completion: {e}")
             return 0
+    def calculate_login_streak(self, user_id):
+        """Calculate the current login streak in days"""
+        try:
+            # Get all distinct login dates for the user
+            logins = db.session.query(
+                func.date(LoginHistory.login_timestamp)
+            ).filter(
+                LoginHistory.user_id == user_id
+            ).distinct().order_by(
+                func.date(LoginHistory.login_timestamp).desc()
+            ).all()
+            
+            if not logins:
+                return 0
+                
+            # Convert to list of dates
+            login_dates = [datetime.strptime(l[0], "%Y-%m-%d").date() for l in logins]
+            
+            today = datetime.utcnow().date()
+            yesterday = today - timedelta(days=1)
+            
+            current_streak = 0
+            
+            # Check if user logged in today or yesterday (to keep streak alive)
+            if login_dates[0] == today:
+                current_streak = 1
+                check_date = yesterday
+                idx = 1
+            elif login_dates[0] == yesterday:
+                current_streak = 1
+                check_date = yesterday - timedelta(days=1)
+                idx = 1
+            else:
+                return 0  # Streak broken
+                
+            # Count consecutive days backwards
+            while idx < len(login_dates):
+                if login_dates[idx] == check_date:
+                    current_streak += 1
+                    check_date -= timedelta(days=1)
+                    idx += 1
+                else:
+                    break
+                    
+            return current_streak
+        except Exception as e:
+            print(f"Error calculating streak: {e}")
+            return 0
+
+    def get_monthly_login_history(self, user_id, year, month):
+        """Get set of days (int) the user logged in for a specific month"""
+        try:
+            # Calculate start and end date of the month
+            start_date = datetime(year, month, 1)
+            if month == 12:
+                end_date = datetime(year + 1, 1, 1)
+            else:
+                end_date = datetime(year, month + 1, 1)
+            
+            # Query login dates
+            logins = db.session.query(
+                func.date(LoginHistory.login_timestamp)
+            ).filter(
+                LoginHistory.user_id == user_id,
+                LoginHistory.login_timestamp >= start_date,
+                LoginHistory.login_timestamp < end_date
+            ).distinct().all()
+            
+            # Extract day numbers
+            login_days = set()
+            for l in logins:
+                dt = datetime.strptime(l[0], "%Y-%m-%d")
+                login_days.add(dt.day)
+                
+            return list(login_days)
+        except Exception as e:
+            print(f"Error getting monthly history: {e}")
+            return []
