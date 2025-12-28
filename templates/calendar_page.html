@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Activity Calendar{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Your Activity Calendar</h1>
+    <p class="lead">Track your login activity with color-coded days</p>
+    
+    <!-- Include the new calendar component -->
+    {% include 'components/calendar.html' %}
+    
+    <div class="mt-4">
+        <div class="card">
+            <div class="card-body">
+                <h5>Legend:</h5>
+                <div class="d-flex gap-3">
+                    <div>
+                        <span class="badge bg-success p-2">Green</span>
+                        <span class="ms-2">Logged in that day</span>
+                    </div>
+                    <div>
+                        <span class="badge bg-danger p-2">Red</span>
+                        <span class="ms-2">Not logged in</span>
+                    </div>
+                    <div>
+                        <span class="badge bg-warning p-2">Yellow Border</span>
+                        <span class="ms-2">Today</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Include calendar JavaScript -->
+<script src="{{ url_for('static', filename='js/calendar.js') }}"></script>
+{% endblock %}

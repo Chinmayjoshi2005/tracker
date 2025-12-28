@@ -1,0 +1,46 @@
+{% macro render_calendar() %}
+<!-- Calendar Container -->
+<div class="calendar-container">
+    <!-- Month/Year Navigation -->
+    <div class="calendar-header">
+        <button id="prev-month" class="nav-btn">&larr;</button>
+        <h2 id="current-month-year">Loading...</h2>
+        <button id="next-month" class="nav-btn">&rarr;</button>
+    </div>
+    
+    <!-- Month/Year Selection -->
+    <div class="month-year-selector">
+        <select id="month-select" class="form-control">
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+        </select>
+        <input type="number" id="year-select" class="form-control" min="2020" max="2030" value="2025">
+        <button id="go-date" class="btn btn-primary">Go</button>
+    </div>
+    
+    <!-- Calendar Grid -->
+    <div class="calendar-grid" id="calendar-grid">
+        <!-- Days will be populated by JavaScript -->
+    </div>
+    
+    <!-- Progress Summary -->
+    <div class="progress-summary">
+        <h4>Monthly Progress</h4>
+        <p>Days logged in: <span id="login-count">0</span> / <span id="total-days">0</span></p>
+        <div class="progress-bar">
+            <div id="progress-fill" class="progress-fill"></div>
+        </div>
+        <p id="progress-percentage">0%</p>
+    </div>
+</div>
+{% endmacro %}

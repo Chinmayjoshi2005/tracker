@@ -31,6 +31,8 @@
             overflow-x: hidden;
             display: flex;
             flex-direction: column;
+            margin: 0;
+            padding: 0;
         }
 
         /* Animated background */
@@ -107,10 +109,25 @@
             background: rgba(255, 255, 255, 0.95);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
             position: relative;
-            overflow: hidden;
+            /* overflow: hidden; Removed to allow dropdowns/collapse to work properly */
             z-index: 1000;
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        @media (max-width: 768px) {
+            .navbar-brand {
+                font-size: 1.4rem;
+                /* Smaller on mobile */
+                max-width: 70%;
+                /* Prevent taking full width */
+            }
+
+            .navbar-brand span {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
         }
 
         .navbar-brand {
@@ -409,7 +426,12 @@
             background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
             color: white;
             padding: 2.5rem 0 1.5rem;
+            margin: 0;
             margin-top: auto;
+            width: 100%;
+            position: relative;
+            left: 0;
+            right: 0;
         }
 
         .footer-content {
@@ -685,6 +707,10 @@
             /* IE and Edge */
             scrollbar-width: none;
             /* Firefox */
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100%;
+            overflow-x: hidden;
         }
 
         .ai-fab {

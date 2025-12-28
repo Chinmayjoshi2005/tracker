@@ -108,11 +108,32 @@ def parse_time_str(time_str):
     except:
         return datetime.strptime("7:00 AM", "%I:%M %p")
 
+@app.before_request
+def update_login_streak():
+    """Update login streak for specific routes if user is authenticated"""
+    # List of routes that should count as a "daily visit"
+    # Exempt static files and API calls that happen automatically
+    exempt_prefixes = ['/static', '/api/calendar-data', '/api/chat/history', '/favicon.ico']
+    
+    if request.path.startswith('/static') or request.path == '/favicon.ico':
+        return
+        
+    if current_user.is_authenticated:
+        # Only update if accessing a page, not just a background API call
+        # But for now, let's just update on any non-static request to be safe
+        current_user.add_login_date()
+
 # Routes for authentication
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
+
+    if user:  # After successful authentication
+        user.add_login_date()  # Add this line
+        login_user(user, remember=form.remember.data)
+        flash('Logged in successfully!', 'success')
+        return redirect(url_for('dashboard'))
     
     form = LoginForm()
     if form.validate_on_submit():
@@ -981,6 +1002,37 @@ with app.app_context():
             db.session.commit()
     except Exception as e:
         logger.error(f"Error creating admin user: {e}")
+
+
+@app.route('/api/calendar-data/<int:year>/<int:month>')
+@login_required
+def calendar_data(year, month):
+    """Get login data for calendar display"""
+    user = current_user
+    import json
+    from datetime import date
+    
+    # Parse user's login dates
+    try:
+        login_dates = json.loads(user.login_dates) if user.login_dates else []
+    except:
+        login_dates = []
+    
+    # Prepare response
+    data = {
+        'year': year,
+        'month': month,
+        'login_dates': login_dates,
+        'today': str(date.today())
+    }
+    
+    return jsonify(data)
+
+@app.route('/calendar')
+@login_required
+def calendar_view():
+    """Enhanced calendar page"""
+    return render_template('calendar_page.html')
 
 if __name__ == '__main__':
     app.run(debug=False, port=5000)

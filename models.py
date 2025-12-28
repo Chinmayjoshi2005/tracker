@@ -44,6 +44,22 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         return f'<User {self.username}>'
 
+    # Add this new field for tracking login dates
+    login_dates = db.Column(db.Text, default='[]')  # Store as JSON list of dates
+    
+    def add_login_date(self):
+        """Record today's date as a login date"""
+        import json
+        from datetime import date
+        
+        dates_list = json.loads(self.login_dates) if self.login_dates else []
+        today = str(date.today())
+        
+        if today not in dates_list:
+            dates_list.append(today)
+            self.login_dates = json.dumps(dates_list)
+            db.session.commit()
+
 class Notification(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)

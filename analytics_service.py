@@ -7,7 +7,7 @@ try:
 except ImportError:
     matplotlib = None
     plt = None
-from models import LoginHistory, Task, db
+from models import LoginHistory, Task, User, db
 from datetime import datetime, timedelta
 from sqlalchemy import func
 
@@ -111,29 +111,37 @@ class AnalyticsService:
             print(f"Error predicting completion: {e}")
             return 0
     def calculate_login_streak(self, user_id):
-        """Calculate the current login streak in days"""
+        """Calculate the current login streak in days using User.login_dates"""
         try:
-            # Get all distinct login dates for the user
-            logins = db.session.query(
-                func.date(LoginHistory.login_timestamp)
-            ).filter(
-                LoginHistory.user_id == user_id
-            ).distinct().order_by(
-                func.date(LoginHistory.login_timestamp).desc()
-            ).all()
-            
-            if not logins:
+            # Get user to access login_dates
+            user = db.session.get(User, user_id)
+            if not user or not user.login_dates:
                 return 0
                 
-            # Convert to list of dates
-            login_dates = [datetime.strptime(l[0], "%Y-%m-%d").date() for l in logins]
+            import json
+            try:
+                dates_list = json.loads(user.login_dates)
+            except:
+                return 0
+                
+            if not dates_list:
+                return 0
+                
+            # Convert strings to date objects and sort unique
+            login_dates = sorted(list(set(
+                [datetime.strptime(d, "%Y-%m-%d").date() for d in dates_list]
+            )), reverse=True)
             
-            today = datetime.utcnow().date()
+            today = datetime.now().date()
             yesterday = today - timedelta(days=1)
             
             current_streak = 0
             
             # Check if user logged in today or yesterday (to keep streak alive)
+            if not login_dates:
+                 return 0
+                 
+            # Find start of streak
             if login_dates[0] == today:
                 current_streak = 1
                 check_date = yesterday
@@ -143,7 +151,7 @@ class AnalyticsService:
                 check_date = yesterday - timedelta(days=1)
                 idx = 1
             else:
-                return 0  # Streak broken
+                return 0  # Streak broken (last login was before yesterday)
                 
             # Count consecutive days backwards
             while idx < len(login_dates):
@@ -152,6 +160,7 @@ class AnalyticsService:
                     check_date -= timedelta(days=1)
                     idx += 1
                 else:
+                    # Gap found
                     break
                     
             return current_streak
