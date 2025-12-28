@@ -132,6 +132,17 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         try:
+            # Auto-recovery for admin on ephemeral filesystems (Vercel)
+            if form.username.data == 'admin':
+                admin_user = User.query.filter_by(username='admin').first()
+                if not admin_user:
+                    # Recreate admin if missing
+                    admin_user = User(username='admin', email='admin@example.com', is_admin=True)
+                    admin_user.set_password(os.environ.get("ADMIN_PASSWORD", "change_me_now"))
+                    db.session.add(admin_user)
+                    db.session.commit()
+                    logger.info("Admin user recreated during login attempt")
+
             user = User.query.filter_by(username=form.username.data).first()
             if user and user.check_password(form.password.data):
                 # Check if banned
