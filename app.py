@@ -19,9 +19,21 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-secret-key-change-this-in-prod')
 
 # Database configuration
-if os.environ.get('VERCEL'):
-    # Vercel filesystem is read-only, so we use /tmp for SQLite
-    # NOTE: Data will be lost on every redeploy/restart!
+# Database configuration
+# Prioritize persistent database (Postgres) if available
+if os.environ.get('DATABASE_URL'):
+    db_url = os.environ.get('DATABASE_URL')
+    if db_url.startswith("postgres://"):
+        db_url = db_url.replace("postgres://", "postgresql://", 1)
+    app.config['SQLALCHEMY_DATABASE_URI'] = db_url
+elif os.environ.get('POSTGRES_URL'):
+    # Vercel Blob/Postgres specific
+    db_url = os.environ.get('POSTGRES_URL')
+    if db_url.startswith("postgres://"):
+        db_url = db_url.replace("postgres://", "postgresql://", 1)
+    app.config['SQLALCHEMY_DATABASE_URI'] = db_url
+elif os.environ.get('VERCEL'):
+    # Vercel filesystem is read-only, so we use /tmp for SQLite (NON-PERSISTENT FALLBACK)
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/task_optimizer.db'
 else:
     # Local development
@@ -51,7 +63,9 @@ def favicon():
 
 # Helper function to get today's date
 def get_today():
-    return datetime.now().strftime("%Y-%m-%d")
+    # Fix: User is in IST (UTC+5:30), Vercel is UTC. Adjust manually.
+    ist_offset = timedelta(hours=5, minutes=30)
+    return (datetime.utcnow() + ist_offset).strftime("%Y-%m-%d")
 
 # Helper methods for time calculations
 def add_time(time_str, minutes):
@@ -130,6 +144,11 @@ def login():
         return redirect(url_for('index'))
 
     form = LoginForm()
+    
+    # Warning for Vercel users
+    if os.environ.get('VERCEL') and not current_user.is_authenticated:
+        flash('Note: This is a demo running on temporary storage. Please login as "admin" for better persistence.', 'info')
+
     if form.validate_on_submit():
         try:
             # Auto-recovery for admin on ephemeral filesystems (Vercel)
