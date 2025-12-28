@@ -988,12 +988,22 @@ def api_login_history():
     except Exception as e:
         return jsonify({"error": "server_error", "message": str(e)}), 500
 
+import traceback
+
+@app.errorhandler(500)
+def internal_error(error):
+    return f"<h1>Internal Server Error (Debug Mode)</h1><pre>{traceback.format_exc()}</pre>", 500
+
+@app.errorhandler(404)
+def not_found_error(error):
+    return render_template('404.html'), 404
+
 # Initialize database tables
 with app.app_context():
-    db.create_all()
-    
-    # Create admin user if not exists
     try:
+        db.create_all()
+        
+        # Create admin user if not exists
         admin_user = User.query.filter_by(username='admin').first()
         if not admin_user:
             admin_user = User(username='admin', email='admin@example.com', is_admin=True)
@@ -1001,7 +1011,8 @@ with app.app_context():
             db.session.add(admin_user)
             db.session.commit()
     except Exception as e:
-        logger.error(f"Error creating admin user: {e}")
+        logger.error(f"Database initialization error: {e}")
+        print(f"Database initialization error: {e}")
 
 
 @app.route('/api/calendar-data/<int:year>/<int:month>')
