@@ -129,12 +129,6 @@ def login():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
 
-    if user:  # After successful authentication
-        user.add_login_date()  # Add this line
-        login_user(user, remember=form.remember.data)
-        flash('Logged in successfully!', 'success')
-        return redirect(url_for('dashboard'))
-    
     form = LoginForm()
     if form.validate_on_submit():
         try:
@@ -154,6 +148,7 @@ def login():
                         flash('Your account has been permanently suspended.')
                         return render_template('login.html', form=form)
 
+                user.add_login_date()
                 login_user(user, remember=form.remember_me.data)
                 
                 # Record login history
