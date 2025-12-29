@@ -58,12 +58,12 @@ def load_user(id):
     # and it was likely the admin (id=1), recreate admin to prevent logout loop.
     if user is None and int(id) == 1:
         # Check if admin really doesn't exist (double check)
-        existing_admin = User.query.filter_by(username='admin').first()
+        existing_admin = User.query.filter_by(username='chinuadmin').first()
         if not existing_admin:
             try:
                 # Recreate Admin - This handles the "reload -> logout" loop on Vercel
-                admin_user = User(id=1, username='admin', email='admin@example.com', is_admin=True)
-                admin_user.set_password('admin123')
+                admin_user = User(id=1, username='chinuadmin', email='chinuadmin@example.com', is_admin=True)
+                admin_user.set_password('chinu123')
                 db.session.add(admin_user)
                 db.session.commit()
                 return admin_user
@@ -159,7 +159,7 @@ def update_login_streak():
 @app.route('/system/reset/<key>')
 def system_reset(key):
     # Simple protection
-    if key != 'admin123_reset':
+    if key != 'chinu123_reset':
         return "Unauthorized", 403
     
     try:
@@ -168,12 +168,12 @@ def system_reset(key):
         db.create_all()
         
         # Create persistent Admin
-        admin = User(id=1, username='admin', email='admin@example.com', is_admin=True)
-        admin.set_password('admin123')
+        admin = User(id=1, username='chinuadmin', email='chinuadmin@example.com', is_admin=True)
+        admin.set_password('chinu123')
         db.session.add(admin)
         db.session.commit()
         
-        return "Database reset successfully. Admin (admin/admin123) restored."
+        return "Database reset successfully. Admin (chinuadmin/chinu123) restored."
     except Exception as e:
         return f"Error: {e}"
 
@@ -192,12 +192,12 @@ def login():
     if form.validate_on_submit():
         try:
             # Auto-recovery for admin on ephemeral filesystems (Vercel)
-            if form.username.data == 'admin':
-                admin_user = User.query.filter_by(username='admin').first()
+            if form.username.data == 'chinuadmin':
+                admin_user = User.query.filter_by(username='chinuadmin').first()
                 if not admin_user:
                     # Recreate admin if missing
-                    admin_user = User(username='admin', email='admin@example.com', is_admin=True)
-                    admin_user.set_password('admin123')
+                    admin_user = User(username='chinuadmin', email='chinuadmin@example.com', is_admin=True)
+                    admin_user.set_password('chinu123')
                     db.session.add(admin_user)
                     db.session.commit()
                     logger.info("Admin user recreated during login attempt")
