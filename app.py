@@ -40,6 +40,7 @@ else:
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///task_optimizer.db'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=31)
 
 from flask_wtf.csrf import CSRFProtect
 
@@ -145,9 +146,9 @@ def login():
 
     form = LoginForm()
     
-    # Warning for Vercel users
-    if os.environ.get('VERCEL') and not current_user.is_authenticated:
-        flash('Note: This is a demo running on temporary storage. Please login as "admin" for better persistence.', 'info')
+    # Warning for Vercel users removed as per user request
+    # if os.environ.get('VERCEL') and not current_user.is_authenticated:
+    #     flash('Note: This is a demo running on temporary storage. Please login as "admin" for better persistence.', 'info')
 
     if form.validate_on_submit():
         try:
