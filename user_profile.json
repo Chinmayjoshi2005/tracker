@@ -1,0 +1,6902 @@
+[
+  {
+    "id": 1,
+    "name": "Student_1",
+    "role": "Student (Business)",
+    "schedule_days": 7,
+    "peak_energy": "morning",
+    "study_preference": "flexible",
+    "family_time": "20:00 PM - 19:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "neutral",
+    "main_goals": "Balance studies with health and social life",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 2,
+    "name": "Student_2",
+    "role": "Student (Arts)",
+    "schedule_days": 5,
+    "peak_energy": "afternoon",
+    "study_preference": "deep work",
+    "family_time": "18:00 PM - 19:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "energized",
+    "main_goals": "Build technical skills for career",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 3,
+    "name": "Student_3",
+    "role": "Student (Computer Science)",
+    "schedule_days": 6,
+    "peak_energy": "afternoon",
+    "study_preference": "flexible",
+    "family_time": "20:00 PM - 21:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "energized",
+    "main_goals": "Complete projects on time",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 4,
+    "name": "Student_4",
+    "role": "Student (Medical)",
+    "schedule_days": 6,
+    "peak_energy": "morning",
+    "study_preference": "flexible",
+    "family_time": "19:00 PM - 20:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "neutral",
+    "main_goals": "Complete projects on time",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 5,
+    "name": "Student_5",
+    "role": "Student (Computer Science)",
+    "schedule_days": 6,
+    "peak_energy": "morning",
+    "study_preference": "flexible",
+    "family_time": "18:00 PM - 19:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "energized",
+    "main_goals": "Complete projects on time",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 6,
+    "name": "Student_6",
+    "role": "Student (Arts)",
+    "schedule_days": 6,
+    "peak_energy": "morning",
+    "study_preference": "flexible",
+    "family_time": "20:00 PM - 19:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "energized",
+    "main_goals": "Develop leadership and communication skills",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 7,
+    "name": "Student_7",
+    "role": "Student (Medical)",
+    "schedule_days": 6,
+    "peak_energy": "evening",
+    "study_preference": "flexible",
+    "family_time": "18:00 PM - 20:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "tired",
+    "main_goals": "Balance studies with health and social life",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 8,
+    "name": "Student_8",
+    "role": "Student (Computer Science)",
+    "schedule_days": 7,
+    "peak_energy": "evening",
+    "study_preference": "flexible",
+    "family_time": "18:00 PM - 21:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "tired",
+    "main_goals": "Build technical skills for career",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 9,
+    "name": "Student_9",
+    "role": "Student (Business)",
+    "schedule_days": 7,
+    "peak_energy": "afternoon",
+    "study_preference": "deep work",
+    "family_time": "18:00 PM - 21:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "neutral",
+    "main_goals": "Build technical skills for career",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 10,
+    "name": "Student_10",
+    "role": "Student (Medical)",
+    "schedule_days": 7,
+    "peak_energy": "afternoon",
+    "study_preference": "deep work",
+    "family_time": "20:00 PM - 21:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "neutral",
+    "main_goals": "Develop leadership and communication skills",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 11,
+    "name": "Student_11",
+    "role": "Student (Computer Science)",
+    "schedule_days": 5,
+    "peak_energy": "morning",
+    "study_preference": "flexible",
+    "family_time": "19:00 PM - 20:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "neutral",
+    "main_goals": "Improve grades and academic performance",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 12,
+    "name": "Student_12",
+    "role": "Student (Computer Science)",
+    "schedule_days": 6,
+    "peak_energy": "afternoon",
+    "study_preference": "flexible",
+    "family_time": "18:00 PM - 20:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "energized",
+    "main_goals": "Complete projects on time",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 13,
+    "name": "Student_13",
+    "role": "Student (Medical)",
+    "schedule_days": 5,
+    "peak_energy": "morning",
+    "study_preference": "deep work",
+    "family_time": "19:00 PM - 19:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "neutral",
+    "main_goals": "Balance studies with health and social life",
+    "sleep_schedule": {
+      "wake_time": "8:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 14,
+    "name": "Student_14",
+    "role": "Student (Medical)",
+    "schedule_days": 7,
+    "peak_energy": "evening",
+    "study_preference": "flexible",
+    "family_time": "20:00 PM - 21:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "tired",
+    "main_goals": "Develop leadership and communication skills",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 15,
+    "name": "Student_15",
+    "role": "Student (Business)",
+    "schedule_days": 5,
+    "peak_energy": "afternoon",
+    "study_preference": "flexible",
+    "family_time": "19:00 PM - 20:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "tired",
+    "main_goals": "Improve grades and academic performance",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 16,
+    "name": "Student_16",
+    "role": "Student (Medical)",
+    "schedule_days": 7,
+    "peak_energy": "afternoon",
+    "study_preference": "deep work",
+    "family_time": "20:00 PM - 21:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "tired",
+    "main_goals": "Develop leadership and communication skills",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 17,
+    "name": "Student_17",
+    "role": "Student (Computer Science)",
+    "schedule_days": 6,
+    "peak_energy": "afternoon",
+    "study_preference": "deep work",
+    "family_time": "19:00 PM - 20:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "neutral",
+    "main_goals": "Balance studies with health and social life",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 18,
+    "name": "Student_18",
+    "role": "Student (Medical)",
+    "schedule_days": 5,
+    "peak_energy": "morning",
+    "study_preference": "deep work",
+    "family_time": "19:00 PM - 19:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "neutral",
+    "main_goals": "Improve grades and academic performance",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 19,
+    "name": "Student_19",
+    "role": "Student (Medical)",
+    "schedule_days": 6,
+    "peak_energy": "morning",
+    "study_preference": "flexible",
+    "family_time": "20:00 PM - 20:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "energized",
+    "main_goals": "Develop leadership and communication skills",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 20,
+    "name": "Student_20",
+    "role": "Student (Medical)",
+    "schedule_days": 6,
+    "peak_energy": "evening",
+    "study_preference": "deep work",
+    "family_time": "20:00 PM - 21:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "energized",
+    "main_goals": "Develop leadership and communication skills",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 21,
+    "name": "Student_21",
+    "role": "Student (Engineering)",
+    "schedule_days": 6,
+    "peak_energy": "morning",
+    "study_preference": "deep work",
+    "family_time": "20:00 PM - 20:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "energized",
+    "main_goals": "Develop leadership and communication skills",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 22,
+    "name": "Student_22",
+    "role": "Student (Arts)",
+    "schedule_days": 7,
+    "peak_energy": "morning",
+    "study_preference": "deep work",
+    "family_time": "19:00 PM - 20:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "energized",
+    "main_goals": "Develop leadership and communication skills",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 23,
+    "name": "Student_23",
+    "role": "Student (Medical)",
+    "schedule_days": 6,
+    "peak_energy": "afternoon",
+    "study_preference": "deep work",
+    "family_time": "18:00 PM - 21:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "energized",
+    "main_goals": "Improve grades and academic performance",
+    "sleep_schedule": {
+      "wake_time": "8:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 24,
+    "name": "Student_24",
+    "role": "Student (Engineering)",
+    "schedule_days": 7,
+    "peak_energy": "evening",
+    "study_preference": "flexible",
+    "family_time": "20:00 PM - 20:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "energized",
+    "main_goals": "Complete projects on time",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 25,
+    "name": "Student_25",
+    "role": "Student (Business)",
+    "schedule_days": 7,
+    "peak_energy": "morning",
+    "study_preference": "flexible",
+    "family_time": "20:00 PM - 20:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "neutral",
+    "main_goals": "Improve grades and academic performance",
+    "sleep_schedule": {
+      "wake_time": "8:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 26,
+    "name": "Student_26",
+    "role": "Student (Computer Science)",
+    "schedule_days": 6,
+    "peak_energy": "evening",
+    "study_preference": "flexible",
+    "family_time": "19:00 PM - 20:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "energized",
+    "main_goals": "Develop leadership and communication skills",
+    "sleep_schedule": {
+      "wake_time": "8:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 27,
+    "name": "Student_27",
+    "role": "Student (Computer Science)",
+    "schedule_days": 7,
+    "peak_energy": "morning",
+    "study_preference": "flexible",
+    "family_time": "20:00 PM - 21:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "neutral",
+    "main_goals": "Develop leadership and communication skills",
+    "sleep_schedule": {
+      "wake_time": "8:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 28,
+    "name": "Student_28",
+    "role": "Student (Medical)",
+    "schedule_days": 7,
+    "peak_energy": "afternoon",
+    "study_preference": "flexible",
+    "family_time": "19:00 PM - 20:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "neutral",
+    "main_goals": "Complete projects on time",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 29,
+    "name": "Student_29",
+    "role": "Student (Medical)",
+    "schedule_days": 7,
+    "peak_energy": "morning",
+    "study_preference": "flexible",
+    "family_time": "18:00 PM - 21:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "energized",
+    "main_goals": "Develop leadership and communication skills",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 30,
+    "name": "Student_30",
+    "role": "Student (Business)",
+    "schedule_days": 6,
+    "peak_energy": "morning",
+    "study_preference": "flexible",
+    "family_time": "19:00 PM - 20:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "tired",
+    "main_goals": "Complete projects on time",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 31,
+    "name": "Student_31",
+    "role": "Student (Medical)",
+    "schedule_days": 5,
+    "peak_energy": "afternoon",
+    "study_preference": "flexible",
+    "family_time": "19:00 PM - 20:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "tired",
+    "main_goals": "Build technical skills for career",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 32,
+    "name": "Student_32",
+    "role": "Student (Engineering)",
+    "schedule_days": 5,
+    "peak_energy": "morning",
+    "study_preference": "deep work",
+    "family_time": "20:00 PM - 20:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "tired",
+    "main_goals": "Balance studies with health and social life",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 33,
+    "name": "Student_33",
+    "role": "Student (Business)",
+    "schedule_days": 6,
+    "peak_energy": "morning",
+    "study_preference": "flexible",
+    "family_time": "19:00 PM - 21:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "neutral",
+    "main_goals": "Improve grades and academic performance",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 34,
+    "name": "Student_34",
+    "role": "Student (Business)",
+    "schedule_days": 6,
+    "peak_energy": "afternoon",
+    "study_preference": "deep work",
+    "family_time": "20:00 PM - 19:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "neutral",
+    "main_goals": "Balance studies with health and social life",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 35,
+    "name": "Student_35",
+    "role": "Student (Computer Science)",
+    "schedule_days": 6,
+    "peak_energy": "evening",
+    "study_preference": "deep work",
+    "family_time": "19:00 PM - 19:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "tired",
+    "main_goals": "Improve grades and academic performance",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 36,
+    "name": "Student_36",
+    "role": "Student (Computer Science)",
+    "schedule_days": 7,
+    "peak_energy": "evening",
+    "study_preference": "flexible",
+    "family_time": "19:00 PM - 21:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "tired",
+    "main_goals": "Improve grades and academic performance",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 37,
+    "name": "Student_37",
+    "role": "Student (Computer Science)",
+    "schedule_days": 7,
+    "peak_energy": "afternoon",
+    "study_preference": "flexible",
+    "family_time": "18:00 PM - 19:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "energized",
+    "main_goals": "Improve grades and academic performance",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 38,
+    "name": "Student_38",
+    "role": "Student (Engineering)",
+    "schedule_days": 5,
+    "peak_energy": "afternoon",
+    "study_preference": "deep work",
+    "family_time": "19:00 PM - 19:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "neutral",
+    "main_goals": "Complete projects on time",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 39,
+    "name": "Student_39",
+    "role": "Student (Computer Science)",
+    "schedule_days": 6,
+    "peak_energy": "evening",
+    "study_preference": "flexible",
+    "family_time": "19:00 PM - 21:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "neutral",
+    "main_goals": "Build technical skills for career",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 40,
+    "name": "Student_40",
+    "role": "Student (Arts)",
+    "schedule_days": 6,
+    "peak_energy": "afternoon",
+    "study_preference": "flexible",
+    "family_time": "19:00 PM - 20:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "tired",
+    "main_goals": "Improve grades and academic performance",
+    "sleep_schedule": {
+      "wake_time": "8:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 41,
+    "name": "Student_41",
+    "role": "Student (Arts)",
+    "schedule_days": 7,
+    "peak_energy": "afternoon",
+    "study_preference": "flexible",
+    "family_time": "19:00 PM - 19:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "tired",
+    "main_goals": "Balance studies with health and social life",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 42,
+    "name": "Student_42",
+    "role": "Student (Engineering)",
+    "schedule_days": 5,
+    "peak_energy": "morning",
+    "study_preference": "flexible",
+    "family_time": "20:00 PM - 19:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "neutral",
+    "main_goals": "Improve grades and academic performance",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 43,
+    "name": "Student_43",
+    "role": "Student (Computer Science)",
+    "schedule_days": 5,
+    "peak_energy": "evening",
+    "study_preference": "deep work",
+    "family_time": "20:00 PM - 20:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "tired",
+    "main_goals": "Develop leadership and communication skills",
+    "sleep_schedule": {
+      "wake_time": "8:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 44,
+    "name": "Student_44",
+    "role": "Student (Arts)",
+    "schedule_days": 5,
+    "peak_energy": "morning",
+    "study_preference": "flexible",
+    "family_time": "19:00 PM - 19:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "tired",
+    "main_goals": "Complete projects on time",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 45,
+    "name": "Student_45",
+    "role": "Student (Engineering)",
+    "schedule_days": 7,
+    "peak_energy": "morning",
+    "study_preference": "flexible",
+    "family_time": "18:00 PM - 21:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "neutral",
+    "main_goals": "Balance studies with health and social life",
+    "sleep_schedule": {
+      "wake_time": "8:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 46,
+    "name": "Student_46",
+    "role": "Student (Engineering)",
+    "schedule_days": 5,
+    "peak_energy": "evening",
+    "study_preference": "deep work",
+    "family_time": "19:00 PM - 19:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "neutral",
+    "main_goals": "Build technical skills for career",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 47,
+    "name": "Student_47",
+    "role": "Student (Engineering)",
+    "schedule_days": 6,
+    "peak_energy": "evening",
+    "study_preference": "flexible",
+    "family_time": "18:00 PM - 19:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "neutral",
+    "main_goals": "Develop leadership and communication skills",
+    "sleep_schedule": {
+      "wake_time": "8:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 48,
+    "name": "Student_48",
+    "role": "Student (Engineering)",
+    "schedule_days": 5,
+    "peak_energy": "afternoon",
+    "study_preference": "flexible",
+    "family_time": "18:00 PM - 19:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "tired",
+    "main_goals": "Build technical skills for career",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 49,
+    "name": "Student_49",
+    "role": "Student (Medical)",
+    "schedule_days": 6,
+    "peak_energy": "morning",
+    "study_preference": "flexible",
+    "family_time": "18:00 PM - 21:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "tired",
+    "main_goals": "Complete projects on time",
+    "sleep_schedule": {
+      "wake_time": "8:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 50,
+    "name": "Student_50",
+    "role": "Student (Arts)",
+    "schedule_days": 7,
+    "peak_energy": "evening",
+    "study_preference": "deep work",
+    "family_time": "20:00 PM - 20:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "energized",
+    "main_goals": "Balance studies with health and social life",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 51,
+    "name": "Student_51",
+    "role": "Student (Engineering)",
+    "schedule_days": 6,
+    "peak_energy": "afternoon",
+    "study_preference": "flexible",
+    "family_time": "20:00 PM - 20:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "tired",
+    "main_goals": "Balance studies with health and social life",
+    "sleep_schedule": {
+      "wake_time": "8:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 52,
+    "name": "Student_52",
+    "role": "Student (Medical)",
+    "schedule_days": 6,
+    "peak_energy": "evening",
+    "study_preference": "flexible",
+    "family_time": "20:00 PM - 20:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "energized",
+    "main_goals": "Develop leadership and communication skills",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 53,
+    "name": "Student_53",
+    "role": "Student (Computer Science)",
+    "schedule_days": 7,
+    "peak_energy": "evening",
+    "study_preference": "flexible",
+    "family_time": "18:00 PM - 19:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "tired",
+    "main_goals": "Build technical skills for career",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 54,
+    "name": "Student_54",
+    "role": "Student (Medical)",
+    "schedule_days": 6,
+    "peak_energy": "afternoon",
+    "study_preference": "deep work",
+    "family_time": "20:00 PM - 19:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "tired",
+    "main_goals": "Improve grades and academic performance",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 55,
+    "name": "Student_55",
+    "role": "Student (Medical)",
+    "schedule_days": 7,
+    "peak_energy": "evening",
+    "study_preference": "deep work",
+    "family_time": "18:00 PM - 21:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "tired",
+    "main_goals": "Build technical skills for career",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 56,
+    "name": "Student_56",
+    "role": "Student (Business)",
+    "schedule_days": 7,
+    "peak_energy": "evening",
+    "study_preference": "flexible",
+    "family_time": "20:00 PM - 21:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "energized",
+    "main_goals": "Balance studies with health and social life",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 57,
+    "name": "Student_57",
+    "role": "Student (Engineering)",
+    "schedule_days": 7,
+    "peak_energy": "evening",
+    "study_preference": "flexible",
+    "family_time": "18:00 PM - 20:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "neutral",
+    "main_goals": "Build technical skills for career",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 58,
+    "name": "Student_58",
+    "role": "Student (Business)",
+    "schedule_days": 7,
+    "peak_energy": "afternoon",
+    "study_preference": "flexible",
+    "family_time": "18:00 PM - 21:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "tired",
+    "main_goals": "Develop leadership and communication skills",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 59,
+    "name": "Student_59",
+    "role": "Student (Arts)",
+    "schedule_days": 7,
+    "peak_energy": "afternoon",
+    "study_preference": "flexible",
+    "family_time": "19:00 PM - 19:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "energized",
+    "main_goals": "Improve grades and academic performance",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 60,
+    "name": "Student_60",
+    "role": "Student (Arts)",
+    "schedule_days": 5,
+    "peak_energy": "afternoon",
+    "study_preference": "deep work",
+    "family_time": "19:00 PM - 20:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "neutral",
+    "main_goals": "Balance studies with health and social life",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 61,
+    "name": "Student_61",
+    "role": "Student (Engineering)",
+    "schedule_days": 7,
+    "peak_energy": "morning",
+    "study_preference": "flexible",
+    "family_time": "18:00 PM - 20:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "tired",
+    "main_goals": "Complete projects on time",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 62,
+    "name": "Student_62",
+    "role": "Student (Arts)",
+    "schedule_days": 5,
+    "peak_energy": "afternoon",
+    "study_preference": "flexible",
+    "family_time": "20:00 PM - 21:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "neutral",
+    "main_goals": "Balance studies with health and social life",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 63,
+    "name": "Student_63",
+    "role": "Student (Engineering)",
+    "schedule_days": 7,
+    "peak_energy": "morning",
+    "study_preference": "deep work",
+    "family_time": "18:00 PM - 19:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "neutral",
+    "main_goals": "Develop leadership and communication skills",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 64,
+    "name": "Student_64",
+    "role": "Student (Computer Science)",
+    "schedule_days": 5,
+    "peak_energy": "afternoon",
+    "study_preference": "deep work",
+    "family_time": "19:00 PM - 19:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "neutral",
+    "main_goals": "Balance studies with health and social life",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 65,
+    "name": "Student_65",
+    "role": "Student (Computer Science)",
+    "schedule_days": 5,
+    "peak_energy": "morning",
+    "study_preference": "deep work",
+    "family_time": "19:00 PM - 19:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "neutral",
+    "main_goals": "Improve grades and academic performance",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 66,
+    "name": "Student_66",
+    "role": "Student (Medical)",
+    "schedule_days": 6,
+    "peak_energy": "afternoon",
+    "study_preference": "flexible",
+    "family_time": "19:00 PM - 19:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "energized",
+    "main_goals": "Develop leadership and communication skills",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 67,
+    "name": "Student_67",
+    "role": "Student (Arts)",
+    "schedule_days": 5,
+    "peak_energy": "afternoon",
+    "study_preference": "deep work",
+    "family_time": "19:00 PM - 19:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "neutral",
+    "main_goals": "Develop leadership and communication skills",
+    "sleep_schedule": {
+      "wake_time": "8:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 68,
+    "name": "Student_68",
+    "role": "Student (Business)",
+    "schedule_days": 7,
+    "peak_energy": "morning",
+    "study_preference": "deep work",
+    "family_time": "18:00 PM - 21:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "neutral",
+    "main_goals": "Build technical skills for career",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 69,
+    "name": "Student_69",
+    "role": "Student (Business)",
+    "schedule_days": 5,
+    "peak_energy": "morning",
+    "study_preference": "deep work",
+    "family_time": "19:00 PM - 20:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "neutral",
+    "main_goals": "Complete projects on time",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 70,
+    "name": "Student_70",
+    "role": "Student (Engineering)",
+    "schedule_days": 6,
+    "peak_energy": "morning",
+    "study_preference": "flexible",
+    "family_time": "19:00 PM - 19:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "neutral",
+    "main_goals": "Improve grades and academic performance",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 71,
+    "name": "Student_71",
+    "role": "Student (Business)",
+    "schedule_days": 6,
+    "peak_energy": "evening",
+    "study_preference": "deep work",
+    "family_time": "19:00 PM - 21:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "neutral",
+    "main_goals": "Balance studies with health and social life",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 72,
+    "name": "Student_72",
+    "role": "Student (Computer Science)",
+    "schedule_days": 7,
+    "peak_energy": "evening",
+    "study_preference": "flexible",
+    "family_time": "18:00 PM - 20:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "energized",
+    "main_goals": "Complete projects on time",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 73,
+    "name": "Student_73",
+    "role": "Student (Arts)",
+    "schedule_days": 6,
+    "peak_energy": "morning",
+    "study_preference": "deep work",
+    "family_time": "19:00 PM - 21:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "energized",
+    "main_goals": "Complete projects on time",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 74,
+    "name": "Student_74",
+    "role": "Student (Business)",
+    "schedule_days": 5,
+    "peak_energy": "afternoon",
+    "study_preference": "deep work",
+    "family_time": "20:00 PM - 19:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "tired",
+    "main_goals": "Develop leadership and communication skills",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 75,
+    "name": "Student_75",
+    "role": "Student (Computer Science)",
+    "schedule_days": 7,
+    "peak_energy": "morning",
+    "study_preference": "deep work",
+    "family_time": "20:00 PM - 19:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "energized",
+    "main_goals": "Balance studies with health and social life",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 76,
+    "name": "Student_76",
+    "role": "Student (Arts)",
+    "schedule_days": 6,
+    "peak_energy": "evening",
+    "study_preference": "flexible",
+    "family_time": "20:00 PM - 19:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "tired",
+    "main_goals": "Balance studies with health and social life",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 77,
+    "name": "Student_77",
+    "role": "Student (Business)",
+    "schedule_days": 6,
+    "peak_energy": "morning",
+    "study_preference": "flexible",
+    "family_time": "18:00 PM - 21:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "neutral",
+    "main_goals": "Build technical skills for career",
+    "sleep_schedule": {
+      "wake_time": "8:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 78,
+    "name": "Student_78",
+    "role": "Student (Engineering)",
+    "schedule_days": 5,
+    "peak_energy": "morning",
+    "study_preference": "flexible",
+    "family_time": "19:00 PM - 21:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "neutral",
+    "main_goals": "Balance studies with health and social life",
+    "sleep_schedule": {
+      "wake_time": "8:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 79,
+    "name": "Student_79",
+    "role": "Student (Business)",
+    "schedule_days": 5,
+    "peak_energy": "afternoon",
+    "study_preference": "flexible",
+    "family_time": "19:00 PM - 21:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "tired",
+    "main_goals": "Balance studies with health and social life",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 80,
+    "name": "Student_80",
+    "role": "Student (Business)",
+    "schedule_days": 6,
+    "peak_energy": "evening",
+    "study_preference": "flexible",
+    "family_time": "18:00 PM - 20:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "neutral",
+    "main_goals": "Balance studies with health and social life",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 81,
+    "name": "Student_81",
+    "role": "Student (Arts)",
+    "schedule_days": 7,
+    "peak_energy": "morning",
+    "study_preference": "deep work",
+    "family_time": "19:00 PM - 21:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "tired",
+    "main_goals": "Balance studies with health and social life",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 82,
+    "name": "Student_82",
+    "role": "Student (Business)",
+    "schedule_days": 7,
+    "peak_energy": "morning",
+    "study_preference": "deep work",
+    "family_time": "20:00 PM - 20:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "energized",
+    "main_goals": "Balance studies with health and social life",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 83,
+    "name": "Student_83",
+    "role": "Student (Computer Science)",
+    "schedule_days": 7,
+    "peak_energy": "morning",
+    "study_preference": "deep work",
+    "family_time": "18:00 PM - 21:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "neutral",
+    "main_goals": "Build technical skills for career",
+    "sleep_schedule": {
+      "wake_time": "8:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 84,
+    "name": "Student_84",
+    "role": "Student (Medical)",
+    "schedule_days": 6,
+    "peak_energy": "morning",
+    "study_preference": "flexible",
+    "family_time": "18:00 PM - 21:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "neutral",
+    "main_goals": "Balance studies with health and social life",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 85,
+    "name": "Student_85",
+    "role": "Student (Engineering)",
+    "schedule_days": 5,
+    "peak_energy": "evening",
+    "study_preference": "deep work",
+    "family_time": "19:00 PM - 21:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "neutral",
+    "main_goals": "Improve grades and academic performance",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 86,
+    "name": "Student_86",
+    "role": "Student (Medical)",
+    "schedule_days": 6,
+    "peak_energy": "morning",
+    "study_preference": "deep work",
+    "family_time": "19:00 PM - 21:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "tired",
+    "main_goals": "Complete projects on time",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 87,
+    "name": "Student_87",
+    "role": "Student (Business)",
+    "schedule_days": 7,
+    "peak_energy": "afternoon",
+    "study_preference": "deep work",
+    "family_time": "18:00 PM - 19:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "energized",
+    "main_goals": "Improve grades and academic performance",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 88,
+    "name": "Student_88",
+    "role": "Student (Engineering)",
+    "schedule_days": 6,
+    "peak_energy": "afternoon",
+    "study_preference": "flexible",
+    "family_time": "19:00 PM - 19:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "neutral",
+    "main_goals": "Develop leadership and communication skills",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 89,
+    "name": "Student_89",
+    "role": "Student (Computer Science)",
+    "schedule_days": 5,
+    "peak_energy": "evening",
+    "study_preference": "flexible",
+    "family_time": "20:00 PM - 21:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "neutral",
+    "main_goals": "Complete projects on time",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 90,
+    "name": "Student_90",
+    "role": "Student (Arts)",
+    "schedule_days": 6,
+    "peak_energy": "afternoon",
+    "study_preference": "deep work",
+    "family_time": "18:00 PM - 19:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "energized",
+    "main_goals": "Build technical skills for career",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 91,
+    "name": "Student_91",
+    "role": "Student (Medical)",
+    "schedule_days": 7,
+    "peak_energy": "morning",
+    "study_preference": "flexible",
+    "family_time": "20:00 PM - 20:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "energized",
+    "main_goals": "Complete projects on time",
+    "sleep_schedule": {
+      "wake_time": "8:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 92,
+    "name": "Student_92",
+    "role": "Student (Computer Science)",
+    "schedule_days": 6,
+    "peak_energy": "afternoon",
+    "study_preference": "deep work",
+    "family_time": "18:00 PM - 20:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "tired",
+    "main_goals": "Develop leadership and communication skills",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 93,
+    "name": "Student_93",
+    "role": "Student (Computer Science)",
+    "schedule_days": 7,
+    "peak_energy": "afternoon",
+    "study_preference": "flexible",
+    "family_time": "19:00 PM - 20:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "neutral",
+    "main_goals": "Complete projects on time",
+    "sleep_schedule": {
+      "wake_time": "8:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 94,
+    "name": "Student_94",
+    "role": "Student (Arts)",
+    "schedule_days": 5,
+    "peak_energy": "afternoon",
+    "study_preference": "deep work",
+    "family_time": "20:00 PM - 20:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "neutral",
+    "main_goals": "Improve grades and academic performance",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 95,
+    "name": "Student_95",
+    "role": "Student (Medical)",
+    "schedule_days": 5,
+    "peak_energy": "afternoon",
+    "study_preference": "flexible",
+    "family_time": "18:00 PM - 19:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "energized",
+    "main_goals": "Improve grades and academic performance",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 96,
+    "name": "Student_96",
+    "role": "Student (Arts)",
+    "schedule_days": 5,
+    "peak_energy": "afternoon",
+    "study_preference": "flexible",
+    "family_time": "19:00 PM - 21:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "neutral",
+    "main_goals": "Balance studies with health and social life",
+    "sleep_schedule": {
+      "wake_time": "8:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 97,
+    "name": "Student_97",
+    "role": "Student (Engineering)",
+    "schedule_days": 5,
+    "peak_energy": "morning",
+    "study_preference": "deep work",
+    "family_time": "19:00 PM - 21:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "energized",
+    "main_goals": "Improve grades and academic performance",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 98,
+    "name": "Student_98",
+    "role": "Student (Business)",
+    "schedule_days": 5,
+    "peak_energy": "afternoon",
+    "study_preference": "deep work",
+    "family_time": "19:00 PM - 19:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "energized",
+    "main_goals": "Balance studies with health and social life",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 99,
+    "name": "Student_99",
+    "role": "Student (Engineering)",
+    "schedule_days": 5,
+    "peak_energy": "morning",
+    "study_preference": "flexible",
+    "family_time": "18:00 PM - 20:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "neutral",
+    "main_goals": "Complete projects on time",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 100,
+    "name": "Student_100",
+    "role": "Student (Medical)",
+    "schedule_days": 7,
+    "peak_energy": "evening",
+    "study_preference": "deep work",
+    "family_time": "20:00 PM - 20:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "neutral",
+    "main_goals": "Complete projects on time",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 101,
+    "name": "Student_101",
+    "role": "Student (Arts)",
+    "schedule_days": 7,
+    "peak_energy": "evening",
+    "study_preference": "flexible",
+    "family_time": "19:00 PM - 19:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "tired",
+    "main_goals": "Complete projects on time",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 102,
+    "name": "Student_102",
+    "role": "Student (Medical)",
+    "schedule_days": 7,
+    "peak_energy": "evening",
+    "study_preference": "flexible",
+    "family_time": "20:00 PM - 19:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "neutral",
+    "main_goals": "Develop leadership and communication skills",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 103,
+    "name": "Student_103",
+    "role": "Student (Arts)",
+    "schedule_days": 6,
+    "peak_energy": "afternoon",
+    "study_preference": "deep work",
+    "family_time": "18:00 PM - 20:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "energized",
+    "main_goals": "Balance studies with health and social life",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 104,
+    "name": "Student_104",
+    "role": "Student (Business)",
+    "schedule_days": 5,
+    "peak_energy": "morning",
+    "study_preference": "flexible",
+    "family_time": "18:00 PM - 20:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "neutral",
+    "main_goals": "Develop leadership and communication skills",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 105,
+    "name": "Student_105",
+    "role": "Student (Arts)",
+    "schedule_days": 6,
+    "peak_energy": "evening",
+    "study_preference": "flexible",
+    "family_time": "18:00 PM - 21:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "neutral",
+    "main_goals": "Complete projects on time",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 106,
+    "name": "Student_106",
+    "role": "Student (Arts)",
+    "schedule_days": 7,
+    "peak_energy": "evening",
+    "study_preference": "deep work",
+    "family_time": "19:00 PM - 20:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "neutral",
+    "main_goals": "Build technical skills for career",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 107,
+    "name": "Student_107",
+    "role": "Student (Computer Science)",
+    "schedule_days": 7,
+    "peak_energy": "evening",
+    "study_preference": "flexible",
+    "family_time": "20:00 PM - 20:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "tired",
+    "main_goals": "Improve grades and academic performance",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 108,
+    "name": "Student_108",
+    "role": "Student (Engineering)",
+    "schedule_days": 5,
+    "peak_energy": "afternoon",
+    "study_preference": "deep work",
+    "family_time": "19:00 PM - 20:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "tired",
+    "main_goals": "Develop leadership and communication skills",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 109,
+    "name": "Student_109",
+    "role": "Student (Computer Science)",
+    "schedule_days": 7,
+    "peak_energy": "afternoon",
+    "study_preference": "flexible",
+    "family_time": "19:00 PM - 20:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "tired",
+    "main_goals": "Balance studies with health and social life",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 110,
+    "name": "Student_110",
+    "role": "Student (Engineering)",
+    "schedule_days": 7,
+    "peak_energy": "evening",
+    "study_preference": "flexible",
+    "family_time": "18:00 PM - 21:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "tired",
+    "main_goals": "Develop leadership and communication skills",
+    "sleep_schedule": {
+      "wake_time": "8:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 111,
+    "name": "Student_111",
+    "role": "Student (Business)",
+    "schedule_days": 6,
+    "peak_energy": "evening",
+    "study_preference": "deep work",
+    "family_time": "20:00 PM - 20:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "tired",
+    "main_goals": "Complete projects on time",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 112,
+    "name": "Student_112",
+    "role": "Student (Business)",
+    "schedule_days": 7,
+    "peak_energy": "morning",
+    "study_preference": "flexible",
+    "family_time": "20:00 PM - 21:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "neutral",
+    "main_goals": "Build technical skills for career",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 113,
+    "name": "Student_113",
+    "role": "Student (Arts)",
+    "schedule_days": 5,
+    "peak_energy": "morning",
+    "study_preference": "deep work",
+    "family_time": "19:00 PM - 21:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "neutral",
+    "main_goals": "Build technical skills for career",
+    "sleep_schedule": {
+      "wake_time": "8:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 114,
+    "name": "Student_114",
+    "role": "Student (Engineering)",
+    "schedule_days": 6,
+    "peak_energy": "evening",
+    "study_preference": "flexible",
+    "family_time": "19:00 PM - 20:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "neutral",
+    "main_goals": "Balance studies with health and social life",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 115,
+    "name": "Student_115",
+    "role": "Student (Engineering)",
+    "schedule_days": 5,
+    "peak_energy": "morning",
+    "study_preference": "flexible",
+    "family_time": "18:00 PM - 21:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "neutral",
+    "main_goals": "Develop leadership and communication skills",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 116,
+    "name": "Student_116",
+    "role": "Student (Computer Science)",
+    "schedule_days": 6,
+    "peak_energy": "morning",
+    "study_preference": "flexible",
+    "family_time": "19:00 PM - 21:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "neutral",
+    "main_goals": "Develop leadership and communication skills",
+    "sleep_schedule": {
+      "wake_time": "8:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 117,
+    "name": "Student_117",
+    "role": "Student (Medical)",
+    "schedule_days": 7,
+    "peak_energy": "morning",
+    "study_preference": "deep work",
+    "family_time": "19:00 PM - 21:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "tired",
+    "main_goals": "Complete projects on time",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 118,
+    "name": "Student_118",
+    "role": "Student (Engineering)",
+    "schedule_days": 5,
+    "peak_energy": "evening",
+    "study_preference": "flexible",
+    "family_time": "19:00 PM - 19:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "neutral",
+    "main_goals": "Build technical skills for career",
+    "sleep_schedule": {
+      "wake_time": "8:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 119,
+    "name": "Student_119",
+    "role": "Student (Business)",
+    "schedule_days": 7,
+    "peak_energy": "afternoon",
+    "study_preference": "flexible",
+    "family_time": "18:00 PM - 20:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "tired",
+    "main_goals": "Build technical skills for career",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 120,
+    "name": "Student_120",
+    "role": "Student (Medical)",
+    "schedule_days": 7,
+    "peak_energy": "morning",
+    "study_preference": "flexible",
+    "family_time": "18:00 PM - 19:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "neutral",
+    "main_goals": "Build technical skills for career",
+    "sleep_schedule": {
+      "wake_time": "8:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 121,
+    "name": "Student_121",
+    "role": "Student (Arts)",
+    "schedule_days": 6,
+    "peak_energy": "evening",
+    "study_preference": "deep work",
+    "family_time": "20:00 PM - 19:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "neutral",
+    "main_goals": "Improve grades and academic performance",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 122,
+    "name": "Student_122",
+    "role": "Student (Business)",
+    "schedule_days": 5,
+    "peak_energy": "evening",
+    "study_preference": "deep work",
+    "family_time": "19:00 PM - 20:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "neutral",
+    "main_goals": "Develop leadership and communication skills",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 123,
+    "name": "Student_123",
+    "role": "Student (Engineering)",
+    "schedule_days": 7,
+    "peak_energy": "afternoon",
+    "study_preference": "deep work",
+    "family_time": "19:00 PM - 19:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "neutral",
+    "main_goals": "Build technical skills for career",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 124,
+    "name": "Student_124",
+    "role": "Student (Computer Science)",
+    "schedule_days": 6,
+    "peak_energy": "evening",
+    "study_preference": "flexible",
+    "family_time": "18:00 PM - 21:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "tired",
+    "main_goals": "Balance studies with health and social life",
+    "sleep_schedule": {
+      "wake_time": "8:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 125,
+    "name": "Student_125",
+    "role": "Student (Computer Science)",
+    "schedule_days": 7,
+    "peak_energy": "evening",
+    "study_preference": "flexible",
+    "family_time": "19:00 PM - 20:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "tired",
+    "main_goals": "Develop leadership and communication skills",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 126,
+    "name": "Student_126",
+    "role": "Student (Business)",
+    "schedule_days": 5,
+    "peak_energy": "evening",
+    "study_preference": "flexible",
+    "family_time": "19:00 PM - 21:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "neutral",
+    "main_goals": "Complete projects on time",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 127,
+    "name": "Student_127",
+    "role": "Student (Engineering)",
+    "schedule_days": 5,
+    "peak_energy": "morning",
+    "study_preference": "flexible",
+    "family_time": "20:00 PM - 20:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "energized",
+    "main_goals": "Complete projects on time",
+    "sleep_schedule": {
+      "wake_time": "8:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 128,
+    "name": "Student_128",
+    "role": "Student (Business)",
+    "schedule_days": 5,
+    "peak_energy": "morning",
+    "study_preference": "deep work",
+    "family_time": "19:00 PM - 21:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "neutral",
+    "main_goals": "Improve grades and academic performance",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 129,
+    "name": "Student_129",
+    "role": "Student (Medical)",
+    "schedule_days": 5,
+    "peak_energy": "evening",
+    "study_preference": "flexible",
+    "family_time": "19:00 PM - 19:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "energized",
+    "main_goals": "Improve grades and academic performance",
+    "sleep_schedule": {
+      "wake_time": "8:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 130,
+    "name": "Student_130",
+    "role": "Student (Arts)",
+    "schedule_days": 5,
+    "peak_energy": "evening",
+    "study_preference": "flexible",
+    "family_time": "20:00 PM - 20:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "neutral",
+    "main_goals": "Complete projects on time",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 131,
+    "name": "Student_131",
+    "role": "Student (Medical)",
+    "schedule_days": 6,
+    "peak_energy": "morning",
+    "study_preference": "deep work",
+    "family_time": "20:00 PM - 20:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "tired",
+    "main_goals": "Balance studies with health and social life",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 132,
+    "name": "Student_132",
+    "role": "Student (Computer Science)",
+    "schedule_days": 6,
+    "peak_energy": "morning",
+    "study_preference": "flexible",
+    "family_time": "20:00 PM - 20:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "tired",
+    "main_goals": "Improve grades and academic performance",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 133,
+    "name": "Student_133",
+    "role": "Student (Computer Science)",
+    "schedule_days": 6,
+    "peak_energy": "evening",
+    "study_preference": "deep work",
+    "family_time": "19:00 PM - 19:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "tired",
+    "main_goals": "Improve grades and academic performance",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 134,
+    "name": "Student_134",
+    "role": "Student (Arts)",
+    "schedule_days": 5,
+    "peak_energy": "morning",
+    "study_preference": "deep work",
+    "family_time": "18:00 PM - 21:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "tired",
+    "main_goals": "Balance studies with health and social life",
+    "sleep_schedule": {
+      "wake_time": "8:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 135,
+    "name": "Student_135",
+    "role": "Student (Engineering)",
+    "schedule_days": 5,
+    "peak_energy": "afternoon",
+    "study_preference": "deep work",
+    "family_time": "20:00 PM - 19:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "energized",
+    "main_goals": "Build technical skills for career",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 136,
+    "name": "Student_136",
+    "role": "Student (Arts)",
+    "schedule_days": 5,
+    "peak_energy": "evening",
+    "study_preference": "deep work",
+    "family_time": "20:00 PM - 19:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "neutral",
+    "main_goals": "Develop leadership and communication skills",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 137,
+    "name": "Student_137",
+    "role": "Student (Medical)",
+    "schedule_days": 6,
+    "peak_energy": "morning",
+    "study_preference": "deep work",
+    "family_time": "20:00 PM - 20:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "neutral",
+    "main_goals": "Develop leadership and communication skills",
+    "sleep_schedule": {
+      "wake_time": "8:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 138,
+    "name": "Student_138",
+    "role": "Student (Business)",
+    "schedule_days": 5,
+    "peak_energy": "evening",
+    "study_preference": "deep work",
+    "family_time": "19:00 PM - 21:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "neutral",
+    "main_goals": "Build technical skills for career",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 139,
+    "name": "Student_139",
+    "role": "Student (Business)",
+    "schedule_days": 5,
+    "peak_energy": "morning",
+    "study_preference": "flexible",
+    "family_time": "18:00 PM - 20:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "energized",
+    "main_goals": "Develop leadership and communication skills",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 140,
+    "name": "Student_140",
+    "role": "Student (Arts)",
+    "schedule_days": 6,
+    "peak_energy": "morning",
+    "study_preference": "flexible",
+    "family_time": "18:00 PM - 21:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "neutral",
+    "main_goals": "Improve grades and academic performance",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 141,
+    "name": "Student_141",
+    "role": "Student (Computer Science)",
+    "schedule_days": 7,
+    "peak_energy": "morning",
+    "study_preference": "deep work",
+    "family_time": "18:00 PM - 20:00 PM",
+    "workout_preference": "morning",
+    "workout_impact": "neutral",
+    "main_goals": "Balance studies with health and social life",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 142,
+    "name": "Student_142",
+    "role": "Student (Engineering)",
+    "schedule_days": 6,
+    "peak_energy": "afternoon",
+    "study_preference": "deep work",
+    "family_time": "20:00 PM - 20:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "energized",
+    "main_goals": "Build technical skills for career",
+    "sleep_schedule": {
+      "wake_time": "8:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 143,
+    "name": "Student_143",
+    "role": "Student (Business)",
+    "schedule_days": 6,
+    "peak_energy": "evening",
+    "study_preference": "deep work",
+    "family_time": "19:00 PM - 20:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "tired",
+    "main_goals": "Improve grades and academic performance",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 144,
+    "name": "Student_144",
+    "role": "Student (Engineering)",
+    "schedule_days": 5,
+    "peak_energy": "evening",
+    "study_preference": "deep work",
+    "family_time": "19:00 PM - 19:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "tired",
+    "main_goals": "Build technical skills for career",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 145,
+    "name": "Student_145",
+    "role": "Student (Arts)",
+    "schedule_days": 7,
+    "peak_energy": "evening",
+    "study_preference": "deep work",
+    "family_time": "19:00 PM - 21:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "tired",
+    "main_goals": "Develop leadership and communication skills",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 146,
+    "name": "Student_146",
+    "role": "Student (Engineering)",
+    "schedule_days": 5,
+    "peak_energy": "evening",
+    "study_preference": "flexible",
+    "family_time": "19:00 PM - 19:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "energized",
+    "main_goals": "Improve grades and academic performance",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 147,
+    "name": "Student_147",
+    "role": "Student (Medical)",
+    "schedule_days": 5,
+    "peak_energy": "morning",
+    "study_preference": "flexible",
+    "family_time": "19:00 PM - 19:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "neutral",
+    "main_goals": "Improve grades and academic performance",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 148,
+    "name": "Student_148",
+    "role": "Student (Arts)",
+    "schedule_days": 6,
+    "peak_energy": "afternoon",
+    "study_preference": "flexible",
+    "family_time": "18:00 PM - 19:00 PM",
+    "workout_preference": "flexible",
+    "workout_impact": "energized",
+    "main_goals": "Develop leadership and communication skills",
+    "sleep_schedule": {
+      "wake_time": "7:00 AM",
+      "bedtime": "12:00 AM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 149,
+    "name": "Student_149",
+    "role": "Student (Business)",
+    "schedule_days": 7,
+    "peak_energy": "afternoon",
+    "study_preference": "flexible",
+    "family_time": "19:00 PM - 21:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "tired",
+    "main_goals": "Build technical skills for career",
+    "sleep_schedule": {
+      "wake_time": "6:00 AM",
+      "bedtime": "11:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  },
+  {
+    "id": 150,
+    "name": "Student_150",
+    "role": "Student (Computer Science)",
+    "schedule_days": 5,
+    "peak_energy": "morning",
+    "study_preference": "flexible",
+    "family_time": "19:00 PM - 21:00 PM",
+    "workout_preference": "evening",
+    "workout_impact": "neutral",
+    "main_goals": "Improve grades and academic performance",
+    "sleep_schedule": {
+      "wake_time": "9:00 AM",
+      "bedtime": "10:00 PM"
+    },
+    "weekly_schedule": {
+      "Monday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Tuesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Wednesday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Thursday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Friday": {
+        "start": "9:00 AM",
+        "end": "5:00 PM"
+      },
+      "Saturday": {
+        "start": "10:00 AM",
+        "end": "2:00 PM"
+      },
+      "Sunday": {
+        "start": "None",
+        "end": "None"
+      }
+    }
+  }
+]
