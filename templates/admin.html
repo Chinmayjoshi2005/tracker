@@ -84,8 +84,10 @@
                                 <small class="d-block text-muted" style="font-size: 0.7em;">Until {{
                                     user.banned_until.strftime('%Y-%m-%d') }}</small>
                                 {% endif %}
-                                {% else %}
+                                {% elif user.activity_status == 'Active' %}
                                 <span class="badge bg-success">Active</span>
+                                {% else %}
+                                <span class="badge bg-secondary">Inactive</span>
                                 {% endif %}
                             </td>
                             <td>

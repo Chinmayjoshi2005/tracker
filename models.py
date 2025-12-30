@@ -46,6 +46,9 @@ class User(UserMixin, db.Model):
 
     # Add this new field for tracking login dates
     login_dates = db.Column(db.Text, default='[]')  # Store as JSON list of dates
+
+    # Last active timestamp for activity tracking
+    last_active_at = db.Column(db.DateTime, default=datetime.utcnow)
     
     def add_login_date(self):
         """Record today's date as a login date"""

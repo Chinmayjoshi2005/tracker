@@ -41,6 +41,10 @@ else:
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=31)
+# Security hardening
+app.config['SESSION_COOKIE_SECURE'] = os.environ.get('VERCEL') is not None  # Only True in production (HTTPS)
+app.config['SESSION_COOKIE_HTTPONLY'] = True
+app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 
 from flask_wtf.csrf import CSRFProtect
 
@@ -53,24 +57,7 @@ login_manager.login_view = 'login'
 
 @login_manager.user_loader
 def load_user(id):
-    user = User.query.get(int(id))
-    # Vercel Fix: If user session exists but DB was wiped (user is None), 
-    # and it was likely the admin (id=1), recreate admin to prevent logout loop.
-    if user is None and int(id) == 1:
-        # Check if admin really doesn't exist (double check)
-        existing_admin = User.query.filter_by(username='chinuadmin').first()
-        if not existing_admin:
-            try:
-                # Recreate Admin - This handles the "reload -> logout" loop on Vercel
-                admin_user = User(id=1, username='chinuadmin', email='chinuadmin@example.com', is_admin=True)
-                admin_user.set_password('chinu123')
-                db.session.add(admin_user)
-                db.session.commit()
-                return admin_user
-            except Exception as e:
-                logger.error(f"Failed to auto-recover admin: {e}")
-                return None
-    return user
+    return User.query.get(int(id))
 
 # Serve favicon
 @app.route('/favicon.ico')
@@ -154,6 +141,8 @@ def update_login_streak():
         # Only update if accessing a page, not just a background API call
         # But for now, let's just update on any non-static request to be safe
         current_user.add_login_date()
+        current_user.last_active_at = datetime.utcnow()
+        db.session.commit()
 
 # System maintenance route (Hidden)
 @app.route('/system/reset/<key>')
@@ -191,17 +180,6 @@ def login():
 
     if form.validate_on_submit():
         try:
-            # Auto-recovery for admin on ephemeral filesystems (Vercel)
-            if form.username.data == 'chinuadmin':
-                admin_user = User.query.filter_by(username='chinuadmin').first()
-                if not admin_user:
-                    # Recreate admin if missing
-                    admin_user = User(username='chinuadmin', email='chinuadmin@example.com', is_admin=True)
-                    admin_user.set_password('chinu123')
-                    db.session.add(admin_user)
-                    db.session.commit()
-                    logger.info("Admin user recreated during login attempt")
-
             user = User.query.filter_by(username=form.username.data).first()
             if user and user.check_password(form.password.data):
                 # Check if banned
@@ -872,11 +850,16 @@ def admin():
         return redirect(url_for('index'))
     
     users = User.query.all()
-    
-    # Attach last active time
+
+    # Calculate activity status
+    now = datetime.utcnow()
+    threshold = timedelta(minutes=10)  # 10 minutes for active
     for user in users:
-        last_login = LoginHistory.query.filter_by(user_id=user.id).order_by(LoginHistory.login_timestamp.desc()).first()
-        user.last_active = last_login.login_timestamp if last_login else None
+        if user.last_active_at and (now - user.last_active_at) < threshold:
+            user.activity_status = 'Active'
+        else:
+            user.activity_status = 'Inactive'
+        user.last_active = user.last_active_at
         
     return render_template('admin.html', users=users)
 
@@ -935,9 +918,14 @@ def admin_delete_user(user_id):
     if user.is_admin:
         return jsonify({'error': 'Cannot delete admin'}), 400
         
-    # Delete related data logic would go here (or rely on cascade delete if configured)
-    # Since we didn't confirm cascades, we'll just delete the user and let SQLite handle foreign keys if set, 
-    # or leave orphans if not strict. For this prototype, straightforward delete.
+    # Delete related data safely
+    Task.query.filter_by(user_id=user_id).delete()
+    Schedule.query.filter_by(user_id=user_id).delete()
+    ScheduleFeedback.query.filter_by(user_id=user_id).delete()
+    ChatMessage.query.filter_by(user_id=user_id).delete()
+    LoginHistory.query.filter_by(user_id=user_id).delete()
+    Notification.query.filter_by(user_id=user_id).delete()
+
     db.session.delete(user)
     db.session.commit()
     return jsonify({'status': 'success', 'message': 'User deleted'})
@@ -1057,7 +1045,10 @@ import traceback
 
 @app.errorhandler(500)
 def internal_error(error):
-    return f"<h1>Internal Server Error (Debug Mode)</h1><pre>{traceback.format_exc()}</pre>", 500
+    # Only show traceback in development
+    if os.environ.get('FLASK_DEBUG') == '1' or app.debug:
+        return f"<h1>Internal Server Error (Debug Mode)</h1><pre>{traceback.format_exc()}</pre>", 500
+    return render_template('500.html'), 500
 
 @app.errorhandler(404)
 def not_found_error(error):
@@ -1069,10 +1060,10 @@ with app.app_context():
         db.create_all()
         
         # Create admin user if not exists
-        admin_user = User.query.filter_by(username='admin').first()
+        admin_user = User.query.filter_by(username='chinuadmin').first()
         if not admin_user:
-            admin_user = User(username='admin', email='admin@example.com', is_admin=True)
-            admin_user.set_password(os.environ.get("ADMIN_PASSWORD", "change_me_now"))
+            admin_user = User(username='chinuadmin', email='chinuadmin@example.com', is_admin=True)
+            admin_user.set_password('chinu123')
             db.session.add(admin_user)
             db.session.commit()
     except Exception as e:
