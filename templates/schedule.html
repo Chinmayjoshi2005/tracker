@@ -153,7 +153,42 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     document.getElementById('aiOptimize').addEventListener('click', function() {
-        if (window.openAiPanel) { window.openAiPanel(); }
+        const date = document.getElementById('scheduleDate').value || new Date().toISOString().split('T')[0];
+
+        // Show loading state
+        const originalText = this.innerHTML;
+        this.innerHTML = '<span class="loading"></span> Optimizing...';
+        this.disabled = true;
+
+        $.ajax({
+            url: '/api/ai_optimize',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({date: date, prompt: 'Optimize my schedule based on my profile and task priorities'}),
+            success: function(response) {
+                if (response.status === 'success') {
+                    showNotification('Schedule optimized successfully!', 'success');
+                    setTimeout(() => {
+                        location.reload();
+                    }, 1500);
+                } else {
+                    showNotification('Optimization failed: ' + (response.message || 'Unknown error'), 'error');
+                }
+            },
+            error: function(xhr) {
+                let errorMsg = 'Error optimizing schedule';
+                try {
+                    const errorData = JSON.parse(xhr.responseText);
+                    errorMsg = errorData.message || errorMsg;
+                } catch (e) {}
+                showNotification(errorMsg, 'error');
+            },
+            complete: function() {
+                // Reset button
+                document.getElementById('aiOptimize').innerHTML = originalText;
+                document.getElementById('aiOptimize').disabled = false;
+            }
+        });
     });
     
     // View historical schedule

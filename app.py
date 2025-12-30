@@ -1008,25 +1008,25 @@ def mark_notification_read(notification_id):
 @app.route('/api/schedule/feedback', methods=['POST'])
 @login_required
 def submit_schedule_feedback():
-    """Submit user feedback for a schedule"""
+    """Submit user feedback for a schedule and potentially retrain ML model"""
     try:
         data = request.json
         schedule_id = data.get('schedule_id')
-        
+
         if not schedule_id:
             return jsonify({"error": "Schedule ID required"}), 400
-        
+
         # Verify schedule exists and belongs to user
         schedule = Schedule.query.filter_by(id=schedule_id, user_id=current_user.id).first()
         if not schedule:
             return jsonify({"error": "Schedule not found"}), 404
-        
+
         # Update schedule with user rating
         overall_rating = data.get('overall_rating')
         if overall_rating:
             schedule.user_rating = overall_rating
             schedule.user_feedback = data.get('feedback_text', '')
-        
+
         # Create detailed feedback record
         feedback = ScheduleFeedback(
             schedule_id=schedule_id,
@@ -1039,17 +1039,90 @@ def submit_schedule_feedback():
             positive_aspects=data.get('positive_aspects', []),
             negative_aspects=data.get('negative_aspects', [])
         )
-        
+
         db.session.add(feedback)
         db.session.commit()
-        
+
+        # Collect feedback for ML model retraining
+        try:
+            llm_service = get_llm_service()
+            if hasattr(llm_service, 'ml_scheduler') and llm_service.ml_scheduler:
+                # Prepare data for ML feedback
+                user_profile = {
+                    'id': current_user.id,
+                    'name': current_user.name,
+                    'role': current_user.role,
+                    'peak_energy': current_user.peak_energy,
+                    'study_preference': current_user.study_preference,
+                    'workout_preference': current_user.workout_preference,
+                    'workout_impact': current_user.workout_impact,
+                    'family_time': current_user.family_time,
+                    'sleep_schedule': current_user.sleep_schedule,
+                    'weekly_schedule': current_user.weekly_schedule
+                }
+
+                # Get tasks that were scheduled
+                pending_tasks = Task.query.filter_by(user_id=current_user.id, status='pending').all()
+                tasks_data = [
+                    {
+                        'description': task.description,
+                        'priority': task.priority,
+                        'duration': task.duration,
+                        'type': task.type,
+                        'preferences': task.preferences
+                    } for task in pending_tasks
+                ]
+
+                # Collect feedback
+                feedback_data = {
+                    'overall_rating': overall_rating or 3,
+                    'accuracy_rating': data.get('accuracy_rating'),
+                    'realism_rating': data.get('realism_rating'),
+                    'helpfulness_rating': data.get('helpfulness_rating'),
+                    'feedback_text': data.get('feedback_text'),
+                    'positive_aspects': data.get('positive_aspects', []),
+                    'negative_aspects': data.get('negative_aspects', [])
+                }
+
+                llm_service.ml_scheduler.collect_feedback(user_profile, tasks_data, schedule.schedule_data, feedback_data)
+
+                # Retrain model if enough feedback collected
+                if overall_rating and overall_rating >= 4:  # Good feedback
+                    # Check if we should retrain (every 10 positive feedbacks)
+                    feedback_count = sum(1 for line in open('scheduler_feedback.jsonl') if line.strip()) if os.path.exists('scheduler_feedback.jsonl') else 0
+                    if feedback_count % 10 == 0 and feedback_count > 0:
+                        llm_service.ml_scheduler.retrain_model()
+
+        except Exception as e:
+            logger.warning(f"ML feedback collection failed: {e}")
+
         return jsonify({
             "status": "success",
             "message": "Thank you for your feedback! This helps improve AI scheduling."
         })
-        
+
     except Exception as e:
         return jsonify({"error": "server_error", "message": str(e)}), 500
+
+@app.route('/admin/retrain-model', methods=['POST'])
+@login_required
+def admin_retrain_model():
+    """Admin endpoint to retrain the ML scheduling model"""
+    if not current_user.is_admin:
+        return jsonify({'error': 'Unauthorized'}), 403
+
+    try:
+        llm_service = get_llm_service()
+        if hasattr(llm_service, 'ml_scheduler') and llm_service.ml_scheduler:
+            success = llm_service.ml_scheduler.retrain_model()
+            if success:
+                return jsonify({'status': 'success', 'message': 'Model retrained successfully'})
+            else:
+                return jsonify({'status': 'error', 'message': 'Retraining failed or no new data'})
+        else:
+            return jsonify({'status': 'error', 'message': 'ML scheduler not available'})
+    except Exception as e:
+        return jsonify({'status': 'error', 'message': str(e)}), 500
 
 @app.route('/api/login-history', methods=['GET'])
 @login_required
@@ -1133,4 +1206,4 @@ def calendar_view():
     return render_template('calendar_page.html')
 
 if __name__ == '__main__':
-    app.run(debug=False, port=5000)
+    app.run(debug=False, port=5002)

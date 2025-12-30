@@ -9,6 +9,12 @@ MODEL_CONFIG = {
     'model_name': 'mistral',
     'base_url': 'http://localhost:11434',
     
+    # Gemini Configuration
+    'gemini': {
+        'model_name': 'gemini-pro',
+        'api_key_env': 'GEMINI_API_KEY',
+    },
+    
     # Generation parameters by complexity
     'parameters': {
         'simple': {

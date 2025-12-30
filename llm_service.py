@@ -8,9 +8,370 @@ conversations, and more based on user requests.
 
 import requests
 import json
+import os
+import google.generativeai as genai
 from datetime import datetime, timedelta
 from typing import Dict, List, Optional
-from llm_config import PROMPT_CONFIG
+from llm_config import PROMPT_CONFIG, MODEL_CONFIG
+import joblib
+import pandas as pd
+
+class MLScheduler:
+    """ML-based scheduler using trained Random Forest model"""
+
+    def __init__(self, model_path='intelligent_scheduler.pkl'):
+        self.model = None
+        self.encoders = None
+        self.load_model(model_path)
+
+    def load_model(self, model_path):
+        """Load the trained model and encoders"""
+        try:
+            if os.path.exists(model_path):
+                data = joblib.load(model_path)
+                self.model = data['model']
+                self.encoders = data['encoders']
+                print("✅ ML Scheduler model loaded successfully")
+            else:
+                print("❌ ML model file not found, will use fallback")
+        except Exception as e:
+            print(f"❌ Error loading ML model: {e}")
+
+    def predict_time_slot(self, profile, task):
+        """Predict best time slot for a task"""
+        if not self.model or not self.encoders:
+            return 'morning'  # Default fallback
+
+        input_data = {
+            'role': profile.get('role', 'Student (Engineering)'),
+            'peak_energy': profile.get('peak_energy', 'morning'),
+            'study_preference': profile.get('study_preference', 'deep work'),
+            'workout_preference': profile.get('workout_preference', 'evening'),
+            'workout_impact': profile.get('workout_impact', 'energized'),
+            'task_priority': task.get('priority', 'Medium'),
+            'task_type': task.get('type', 'Study'),
+            'task_duration': task.get('duration', '1 hour'),
+            'flexibility': 'flexible'
+        }
+
+        # Encode
+        encoded = {}
+        for key, value in input_data.items():
+            if key in self.encoders:
+                try:
+                    encoded[key] = self.encoders[key].transform([value])[0]
+                except:
+                    encoded[key] = 0  # Default if unseen
+            else:
+                encoded[key] = value
+
+        df_input = pd.DataFrame([encoded])
+        prediction = self.model.predict(df_input)[0]
+        return prediction
+
+    def generate_schedule(self, user_profile: Dict, tasks: List[Dict], user_prompt: str = "") -> Optional[Dict]:
+        """Generate a schedule using ML model with enhanced prompt parsing"""
+        if not self.model:
+            return None
+
+        # Enhanced prompt parsing
+        prompt_lower = user_prompt.lower()
+        preferences = {
+            'morning_focus': any(word in prompt_lower for word in ['morning', 'early', 'start early', 'morning focus']),
+            'afternoon_focus': any(word in prompt_lower for word in ['afternoon', 'midday', 'afternoon work']),
+            'evening_focus': any(word in prompt_lower for word in ['evening', 'night', 'late', 'evening study']),
+            'deep_work': any(word in prompt_lower for word in ['deep work', 'focus', 'concentrate', 'intensive']),
+            'light_tasks': any(word in prompt_lower for word in ['light', 'easy', 'quick', 'simple tasks']),
+            'high_priority': any(word in prompt_lower for word in ['high priority', 'important', 'urgent', 'prioritize']),
+            'balanced': any(word in prompt_lower for word in ['balanced', 'mix', 'variety', 'diverse'])
+        }
+
+        schedule_items = []
+
+        # Get user schedule info
+        sleep_schedule = user_profile.get('sleep_schedule', {})
+        if isinstance(sleep_schedule, str):
+            try:
+                sleep_schedule = json.loads(sleep_schedule)
+            except:
+                sleep_schedule = {}
+        wake_time = sleep_schedule.get('wake_time', '7:00 AM')
+        bed_time = sleep_schedule.get('bedtime', '11:00 PM')
+
+        # Morning routine
+        morning_end = self.add_time(wake_time, 30)
+        schedule_items.append({
+            "time": f"{wake_time} - {morning_end}",
+            "task": "Morning routine & breakfast",
+            "reason": "Gentle start to energize your day",
+            "type": "personal",
+            "priority": "high",
+            "flexibility": "fixed"
+        })
+
+        # Schedule tasks using model predictions with prompt adjustments
+        current_time = self.add_time(wake_time, 60)
+
+        # Sort tasks by priority and apply prompt preferences
+        sorted_tasks = sorted(tasks, key=lambda x: (
+            0 if x.get('priority', '').lower() == 'high' else
+            1 if x.get('priority', '').lower() == 'medium' else 2,
+            x.get('duration', '1 hour')
+        ))
+
+        if preferences['high_priority']:
+            # Prioritize high priority tasks
+            sorted_tasks = [t for t in sorted_tasks if t.get('priority', '').lower() == 'high'] + \
+                          [t for t in sorted_tasks if t.get('priority', '').lower() != 'high']
+
+        for task in sorted_tasks[:6]:  # Limit to 6 tasks
+            predicted_slot = self.predict_time_slot(user_profile, task)
+
+            # Apply prompt-based adjustments
+            if preferences['morning_focus'] and predicted_slot != 'morning':
+                predicted_slot = 'morning'
+            elif preferences['afternoon_focus'] and predicted_slot != 'afternoon':
+                predicted_slot = 'afternoon'
+            elif preferences['evening_focus'] and predicted_slot != 'evening':
+                predicted_slot = 'evening'
+
+            # Map to actual time based on slot and current schedule
+            if predicted_slot == 'morning':
+                if current_time.endswith('AM'):
+                    slot_start = current_time
+                else:
+                    slot_start = '9:00 AM'
+            elif predicted_slot == 'afternoon':
+                slot_start = '1:00 PM'
+            elif predicted_slot == 'evening':
+                slot_start = '6:00 PM'
+            else:
+                slot_start = '8:00 PM'
+
+            # Parse duration
+            duration = task.get('duration', '1 hour')
+            dur_minutes = self.parse_duration(duration)
+
+            # Adjust for deep work preference
+            if preferences['deep_work'] and task.get('type', '').lower() in ['study', 'work']:
+                dur_minutes = min(dur_minutes + 30, 180)  # Add 30 min for deep work, max 3 hours
+
+            end_time = self.add_time(slot_start, dur_minutes)
+
+            schedule_items.append({
+                "time": f"{slot_start} - {end_time}",
+                "task": task['description'],
+                "reason": f"Scheduled in {predicted_slot} based on your energy pattern and preferences",
+                "type": task['type'].lower(),
+                "priority": task['priority'].lower(),
+                "flexibility": "semi-flexible"
+            })
+
+            current_time = self.add_time(end_time, 15)  # Buffer
+
+        # Add standard breaks and activities
+        schedule_items.append({
+            "time": "12:00 PM - 1:00 PM",
+            "task": "Lunch break",
+            "reason": "Nutrition and rest",
+            "type": "personal",
+            "priority": "high",
+            "flexibility": "fixed"
+        })
+
+        # Family time
+        family_time = user_profile.get('family_time', '6:00 PM - 7:00 PM')
+        schedule_items.append({
+            "time": family_time,
+            "task": "Family time",
+            "reason": "Personal balance",
+            "type": "family",
+            "priority": "high",
+            "flexibility": "fixed"
+        })
+
+        # Workout
+        workout_time = "7:00 PM - 8:00 PM"
+        schedule_items.append({
+            "time": workout_time,
+            "task": "Workout session",
+            "reason": f"{user_profile.get('workout_preference', 'evening')} workout",
+            "type": "health",
+            "priority": "medium",
+            "flexibility": "semi-flexible"
+        })
+
+        # Evening review
+        review_start = self.subtract_time(bed_time, 60)
+        schedule_items.append({
+            "time": f"{review_start} - {bed_time}",
+            "task": "Review and plan tomorrow",
+            "reason": "Reflect and prepare",
+            "type": "personal",
+            "priority": "medium",
+            "flexibility": "fixed"
+        })
+
+        # Create response
+        prompt_summary = ""
+        if preferences['morning_focus']:
+            prompt_summary = "with morning focus as requested"
+        elif preferences['deep_work']:
+            prompt_summary = "optimized for deep work sessions"
+        elif preferences['high_priority']:
+            prompt_summary = "prioritizing high-priority tasks"
+
+        return {
+            "schedule": schedule_items,
+            "daily_summary": f"ML-optimized schedule for {user_profile.get('role', 'student')} {prompt_summary}. Aligned with your {user_profile.get('peak_energy', 'morning')} energy pattern and {len(tasks)} pending tasks.",
+            "tips": [
+                "Focus on high-priority tasks during your peak energy time",
+                "Take short breaks between tasks to maintain productivity",
+                "Adjust schedule as needed while maintaining work-life balance",
+                "Use the ML model's predictions to optimize your time"
+            ],
+            "source": "ml_model"
+        }
+
+    def add_time(self, time_str, minutes):
+        """Add minutes to time"""
+        try:
+            dt = datetime.strptime(time_str, "%I:%M %p")
+            dt = dt + timedelta(minutes=minutes)
+            return dt.strftime("%I:%M %p").lstrip('0')
+        except:
+            return time_str
+
+    def subtract_time(self, time_str, minutes):
+        """Subtract minutes from time"""
+        try:
+            dt = datetime.strptime(time_str, "%I:%M %p")
+            dt = dt - timedelta(minutes=minutes)
+            return dt.strftime("%I:%M %p").lstrip('0')
+        except:
+            return time_str
+
+    def parse_duration(self, duration):
+        """Parse duration string to minutes"""
+        if 'hour' in duration.lower():
+            return int(float(duration.split()[0]) * 60)
+        elif 'min' in duration.lower():
+            return int(duration.split()[0])
+        return 60
+
+    def collect_feedback(self, user_profile: Dict, tasks: List[Dict], schedule: Dict, feedback_data: Dict):
+        """Collect user feedback for model retraining"""
+        try:
+            feedback_entry = {
+                'user_profile': user_profile,
+                'tasks': tasks,
+                'schedule': schedule,
+                'feedback': feedback_data,
+                'timestamp': datetime.now().isoformat()
+            }
+
+            # Save to feedback file
+            feedback_file = 'scheduler_feedback.jsonl'
+            with open(feedback_file, 'a') as f:
+                f.write(json.dumps(feedback_entry) + '\n')
+
+            print(f"✅ Feedback collected for user {user_profile.get('id', 'unknown')}")
+            return True
+        except Exception as e:
+            print(f"❌ Error collecting feedback: {e}")
+            return False
+
+    def retrain_model(self):
+        """Retrain the model using collected feedback"""
+        try:
+            feedback_file = 'scheduler_feedback.jsonl'
+            if not os.path.exists(feedback_file):
+                print("No feedback data available for retraining")
+                return False
+
+            # Load existing training data
+            with open('user_profile.json', 'r') as f:
+                profiles = json.load(f)
+            with open('tasks.json', 'r') as f:
+                tasks = json.load(f)
+            with open('schedules.json', 'r') as f:
+                schedules = json.load(f)
+
+            # Load feedback data
+            feedback_data = []
+            with open(feedback_file, 'r') as f:
+                for line in f:
+                    if line.strip():
+                        feedback_data.append(json.loads(line))
+
+            print(f"Loaded {len(feedback_data)} feedback entries")
+
+            # Process feedback to create new training examples
+            new_training_data = []
+
+            for feedback in feedback_data:
+                user_profile = feedback['user_profile']
+                tasks_list = feedback['tasks']
+                schedule_items = feedback['schedule']['schedule']
+                feedback_scores = feedback['feedback']
+
+                # Create training examples from user-approved schedules
+                if feedback_scores.get('overall_rating', 3) >= 4:  # Good feedback
+                    for item in schedule_items:
+                        if 'task' in item and item['task'] not in ['Morning routine & breakfast', 'Short break', 'Lunch break', 'Family time', 'Workout session', 'Review and plan tomorrow']:
+                            task_desc = item['task'].replace('Deep work: ', '')
+                            task = next((t for t in tasks_list if t['description'] in task_desc), None)
+
+                            if task:
+                                time_str = item['time'].split(' - ')[0]
+                                hour = int(time_str.split(':')[0])
+                                if 'PM' in time_str and hour != 12:
+                                    hour += 12
+                                elif 'AM' in time_str and hour == 12:
+                                    hour = 0
+
+                                time_slot = 'morning' if 6 <= hour < 12 else 'afternoon' if 12 <= hour < 17 else 'evening' if 17 <= hour < 21 else 'night'
+
+                                new_training_data.append({
+                                    'role': user_profile.get('role', 'Student'),
+                                    'peak_energy': user_profile.get('peak_energy', 'morning'),
+                                    'study_preference': user_profile.get('study_preference', 'deep work'),
+                                    'workout_preference': user_profile.get('workout_preference', 'evening'),
+                                    'workout_impact': user_profile.get('workout_impact', 'energized'),
+                                    'task_priority': task.get('priority', 'Medium'),
+                                    'task_type': task.get('type', 'Study'),
+                                    'task_duration': task.get('duration', '1 hour'),
+                                    'time_slot': time_slot,
+                                    'flexibility': item.get('flexibility', 'flexible')
+                                })
+
+            if new_training_data:
+                # Combine with existing data
+                from train_scheduler import prepare_training_data, train_model
+                all_profiles = profiles + [fb['user_profile'] for fb in feedback_data]
+                all_tasks = tasks + [task for fb in feedback_data for task in fb['tasks']]
+                all_schedules = schedules + [{'user_id': fb['user_profile']['id'], 'schedule_data': fb['schedule']} for fb in feedback_data]
+
+                # Prepare and train
+                df = prepare_training_data(all_profiles, all_tasks, all_schedules)
+                new_model, new_encoders = train_model(df)
+
+                # Save updated model
+                joblib.dump({'model': new_model, 'encoders': new_encoders}, 'intelligent_scheduler.pkl')
+
+                # Reload in this instance
+                self.load_model('intelligent_scheduler.pkl')
+
+                print(f"✅ Model retrained with {len(new_training_data)} new examples")
+                return True
+            else:
+                print("No positive feedback data for retraining")
+                return False
+
+        except Exception as e:
+            print(f"❌ Error retraining model: {e}")
+            return False
+
 
 # Intent detection utility
 def detect_intent(user_prompt: str) -> str:
@@ -38,18 +399,42 @@ def detect_intent(user_prompt: str) -> str:
 
 class OllamaLLMService:
     """Service class for interacting with Ollama Mistral model for general-purpose AI assistance"""
-    
+
     def __init__(self, base_url: str = "http://localhost:11434"):
         """
         Initialize the Ollama LLM service
-        
+
         Args:
             base_url: The base URL for Ollama API (default: http://localhost:11434)
         """
         self.base_url = base_url
         self.model = "mistral"
         self.api_endpoint = f"{base_url}/api/generate"
+
+        # Configure Gemini
+        self.gemini_api_key = os.environ.get('GEMINI_API_KEY')
+        self.use_gemini = False
+        if self.gemini_api_key:
+            try:
+                genai.configure(api_key=self.gemini_api_key)
+                self.gemini_model = genai.GenerativeModel('gemini-pro')
+                self.use_gemini = True
+                print("✅ Google Gemini API Configured successfully")
+            except Exception as e:
+                print(f"❌ Error configuring Gemini: {e}")
+
+        # Initialize ML Scheduler
+        self.ml_scheduler = MLScheduler()
     
+    def check_llm_status(self) -> bool:
+        """
+        Check if any LLM service (Gemini or Ollama) is available
+        """
+        if self.use_gemini:
+            return True
+            
+        return self.check_ollama_status()
+
     def check_ollama_status(self) -> bool:
         """
         Check if Ollama service is running and the model is available
@@ -673,7 +1058,8 @@ Respond ONLY with valid JSON. No markdown formatting, no code blocks, no explana
             else:
                 return "To create a schedule, please ensure your profile is complete and try using the Schedule section."
 
-        if not self.check_ollama_status():
+        if not self.check_llm_status():
+            # Fallback for non-scheduling requests
             # Fallback for non-scheduling requests
             if intent == "motivation":
                 return "Stay focused and keep pushing forward! You've got this."
@@ -693,6 +1079,22 @@ Respond ONLY with valid JSON. No markdown formatting, no code blocks, no explana
         )
 
         try:
+            # Try Gemini first if available
+            if self.use_gemini:
+                try:
+                    chat = self.gemini_model.start_chat(history=[])
+                    response = chat.send_message(prompt)
+                    
+                    # Persist short memory hint
+                    if user_profile is not None:
+                        user_profile["last_intent"] = detect_intent(user_input)
+                        user_profile["last_interaction"] = datetime.now().isoformat()
+                        
+                    return response.text.strip()
+                except Exception as e:
+                    print(f"Error with Gemini generation: {e}")
+                    # Fallthrough to Ollama
+            
             payload = {
                 "model": self.model,
                 "prompt": prompt,
@@ -766,17 +1168,27 @@ Respond ONLY with valid JSON. No markdown formatting, no code blocks, no explana
     
     def generate_schedule(self, user_profile: Dict, tasks: List[Dict], user_prompt: str = "") -> Optional[Dict]:
         """
-        Generate an optimized schedule using Ollama Mistral
-        
+        Generate an optimized schedule using ML model first, then LLM as fallback
+
         Args:
             user_profile: User profile information
             tasks: List of pending tasks
             user_prompt: Additional user context
-            
+
         Returns:
             Dict containing the generated schedule or None if failed
         """
-        if not self.check_ollama_status():
+        # Try ML scheduler first
+        if self.ml_scheduler and self.ml_scheduler.model:
+            try:
+                ml_schedule = self.ml_scheduler.generate_schedule(user_profile, tasks, user_prompt)
+                if ml_schedule:
+                    return ml_schedule
+            except Exception as e:
+                print(f"ML scheduler failed: {e}")
+
+        # Fallback to LLM
+        if not self.check_llm_status():
             return None
         
         # Calculate task complexity
@@ -788,6 +1200,35 @@ Respond ONLY with valid JSON. No markdown formatting, no code blocks, no explana
         prompt = self.create_prompt(user_profile, tasks, user_prompt)
         
         try:
+            # Try Gemini first if available
+            if self.use_gemini:
+                try:
+                    # Enforce JSON structure for Gemini
+                    gemini_prompt = prompt + "\n\nIMPORTANT: Return ONLY valid, raw JSON. Do not include markdown formatting (like ```json ... ```) or any preamble."
+                    
+                    response = self.gemini_model.generate_content(gemini_prompt)
+                    text = response.text.strip()
+                    
+                    # Clean markdown code blocks if present
+                    if text.startswith("```"):
+                        lines = text.split('\n')
+                        if lines[0].strip().startswith("```"):
+                            lines = lines[1:]
+                        if lines[-1].strip().startswith("```"):
+                            lines = lines[:-1]
+                        text = "\n".join(lines)
+                    
+                    try:
+                        return json.loads(text)
+                    except json.JSONDecodeError:
+                        print(f"Failed to parse Gemini JSON: {text[:100]}...")
+                        # Proceed to fallback or retry logic if we had it
+                        return None
+                        
+                except Exception as e:
+                    print(f"Error with Gemini schedule generation: {e}")
+                    # Fallthrough to Ollama
+
             payload = {
                 "model": self.model,
                 "prompt": prompt,
