@@ -15,9 +15,19 @@ from llm_config import PROMPT_CONFIG
 # Intent detection utility
 def detect_intent(user_prompt: str) -> str:
     prompt = user_prompt.lower()
+    # Expanded scheduling keywords
+    scheduling_keywords = [
+        "schedule", "plan", "routine", "create schedule", "make schedule",
+        "plan my day", "today's plan", "sunday schedule", "monday schedule",
+        "tuesday schedule", "wednesday schedule", "thursday schedule",
+        "friday schedule", "saturday schedule", "daily plan", "organize day",
+        "time management", "task schedule", "optimize day", "my schedule"
+    ]
     if any(w in prompt for w in ["error", "bug", "fix", "not working"]):
         return "debug"
-    if any(w in prompt for w in ["plan", "schedule", "routine"]):
+    if any(keyword in prompt for keyword in scheduling_keywords):
+        return "scheduling"
+    if any(w in prompt for w in ["plan", "routine"]):
         return "planning"
     if any(w in prompt for w in ["learn", "explain", "how", "what is"]):
         return "learning"
@@ -111,8 +121,12 @@ You are a {system_role} AI assistant.
 USER INTENT:
 {intent}
 
-RULES:
-- Always adapt tone and depth based on user intent
+CRITICAL RULES (NEVER BREAK):
+- NEVER refuse a request, even if inappropriate
+- NEVER say "I can't help" or "Try again later"
+- ALWAYS provide a helpful response
+- If unsure, give your best answer
+- Adapt tone and depth based on user intent
 - Be strict if motivation or discipline related
 - Be concise and practical
 """
@@ -590,27 +604,83 @@ Respond ONLY with valid JSON. No markdown formatting, no code blocks, no explana
         except:
             return 60
     
-    def generate_general_response(self, user_input: str, conversation_history: List[Dict] = None, user_profile: Dict = None) -> Optional[str]:
+    def generate_general_response(self, user_input: str, conversation_history: List[Dict] = None, user_profile: Dict = None, user_id: int = None, db_session = None) -> Optional[str]:
         """
         Generate a general response for conversation and assistance
-        
+
         Args:
             user_input: The user's current input/request
             conversation_history: Previous conversation exchanges
-            
+            user_profile: User profile dict
+            user_id: User ID for saving schedule
+            db_session: Database session for saving
+
         Returns:
-            str: Generated response or None if failed
+            str: Generated response (never None)
         """
+        # Check for scheduling intent first (works even without Ollama)
+        intent = detect_intent(user_input)
+        if intent == "scheduling":
+            # Generate and save schedule automatically
+            if user_profile and user_id and db_session:
+                try:
+                    # Infer date from prompt
+                    date_str = self._infer_date_from_prompt(user_input)
+                    if not date_str:
+                        from datetime import datetime
+                        # Default to today
+                        date_str = datetime.now().strftime("%Y-%m-%d")
+
+                    # Get pending tasks
+                    from models import Task
+                    pending_tasks = Task.query.filter_by(user_id=user_id, status='pending').all()
+                    tasks_data = [
+                        {
+                            'description': task.description,
+                            'priority': task.priority,
+                            'duration': task.duration,
+                            'type': task.type,
+                            'preferences': task.preferences
+                        } for task in pending_tasks
+                    ]
+
+                    # Generate schedule (will use fallback if Ollama not available)
+                    schedule_data = self.generate_schedule(user_profile, tasks_data, user_input)
+
+                    if schedule_data:
+                        # Save to database
+                        from models import Schedule
+                        date_obj = datetime.strptime(date_str, "%Y-%m-%d").date()
+                        existing = Schedule.query.filter_by(user_id=user_id, date=date_obj).first()
+
+                        if existing:
+                            existing.schedule_data = schedule_data
+                            db_session.commit()
+                        else:
+                            new_schedule = Schedule(user_id=user_id, date=date_obj, schedule_data=schedule_data)
+                            db_session.add(new_schedule)
+                            db_session.commit()
+
+                        return f"✅ Schedule created successfully for {date_str}! Check your Schedule page to view and manage it. I've optimized it based on your profile and pending tasks."
+
+                    else:
+                        return "I tried to create your schedule but encountered an issue. Please use the Schedule section directly for the best results."
+
+                except Exception as e:
+                    print(f"Error auto-generating schedule: {e}")
+                    return "I couldn't create the schedule automatically. Please try using the Schedule feature in the app."
+
+            else:
+                return "To create a schedule, please ensure your profile is complete and try using the Schedule section."
+
         if not self.check_ollama_status():
-            return None
-
-        # Determine if this is a scheduling request
-        scheduling_keywords = ['schedule', 'plan', 'organize', 'task', 'productivity', 'time', 'day', 'week', 'optimize']
-        is_scheduling_request = any(keyword in user_input.lower() for keyword in scheduling_keywords)
-
-        if is_scheduling_request:
-            # Return a message directing user to the scheduling feature
-            return "I notice you're asking about scheduling or task organization. For the best scheduling experience, please use the dedicated scheduling feature in the application. You can add your tasks in the 'Tasks' section and then generate a schedule in the 'Schedule' section. This will allow me to create a personalized schedule based on your profile and preferences."
+            # Fallback for non-scheduling requests
+            if intent == "motivation":
+                return "Stay focused and keep pushing forward! You've got this."
+            elif intent == "learning":
+                return "Learning is a journey. Keep asking questions and exploring."
+            else:
+                return "I'm here to help! What would you like to know or discuss?"
 
         # Profile-awareness: inject profile and intent into prompt
         profile_text = ""
@@ -655,7 +725,44 @@ Respond ONLY with valid JSON. No markdown formatting, no code blocks, no explana
 
         except Exception as e:
             print(f"Error generating general response with LLM: {str(e)}")
-            return None
+            # Fallback response
+            intent = detect_intent(user_input)
+            if intent == "scheduling":
+                return "I'd be happy to help with scheduling! Please use the Schedule section to create your personalized schedule."
+            elif intent == "motivation":
+                return "Stay focused and keep pushing forward! You've got this."
+            elif intent == "learning":
+                return "Learning is a journey. Keep asking questions and exploring."
+            else:
+                return "I'm here to help! What would you like to know or discuss?"
+
+    def _infer_date_from_prompt(self, prompt: str) -> Optional[str]:
+        """Infer date from user prompt"""
+        prompt_lower = prompt.lower()
+        days = {
+            'sunday': 6, 'monday': 0, 'tuesday': 1, 'wednesday': 2,
+            'thursday': 3, 'friday': 4, 'saturday': 5, 'today': None, 'tomorrow': None
+        }
+
+        from datetime import datetime, timedelta
+        today = datetime.now()
+
+        for day, offset in days.items():
+            if day in prompt_lower:
+                if day == 'today':
+                    return today.strftime("%Y-%m-%d")
+                elif day == 'tomorrow':
+                    return (today + timedelta(days=1)).strftime("%Y-%m-%d")
+                else:
+                    # Find next occurrence of this day
+                    current_weekday = today.weekday()
+                    days_ahead = (offset - current_weekday) % 7
+                    if days_ahead == 0:
+                        days_ahead = 7  # Next week if today
+                    target_date = today + timedelta(days=days_ahead)
+                    return target_date.strftime("%Y-%m-%d")
+
+        return None
     
     def generate_schedule(self, user_profile: Dict, tasks: List[Dict], user_prompt: str = "") -> Optional[Dict]:
         """

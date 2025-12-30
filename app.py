@@ -540,11 +540,18 @@ def api_ai_chat():
                 'main_goals': current_user.main_goals,
                 'peak_energy': current_user.peak_energy,
                 'study_preference': current_user.study_preference,
+                'workout_preference': current_user.workout_preference,
+                'workout_impact': current_user.workout_impact,
+                'family_time': current_user.family_time,
+                'sleep_schedule': current_user.sleep_schedule,
+                'weekly_schedule': current_user.weekly_schedule
             }
             response = llm_service.generate_general_response(
                 user_message,
                 conversation_history,
-                user_profile
+                user_profile,
+                current_user.id,
+                db
             )
             
             if response:
