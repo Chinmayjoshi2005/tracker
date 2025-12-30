@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify, redirect, url_for, flash, send_from_directory
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
+from flask_wtf.csrf import CSRFProtect
 import json
 import os
 import logging
@@ -16,48 +17,71 @@ logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
 # Use environment variable for secret key or fallback to a stable dev key
+# Use environment variable for secret key or fallback to a stable dev key
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-secret-key-change-this-in-prod')
 
 # Database configuration
-# Database configuration
-# Prioritize persistent database (Postgres) if available
-if os.environ.get('DATABASE_URL'):
-    db_url = os.environ.get('DATABASE_URL')
+db_url = os.environ.get('DATABASE_URL') or os.environ.get('POSTGRES_URL')
+
+if db_url:
+    # Fix for SQLAlchemy requiring 'postgresql://' instead of 'postgres://' (common in Vercel/Heroku)
     if db_url.startswith("postgres://"):
         db_url = db_url.replace("postgres://", "postgresql://", 1)
     app.config['SQLALCHEMY_DATABASE_URI'] = db_url
-elif os.environ.get('POSTGRES_URL'):
-    # Vercel Blob/Postgres specific
-    db_url = os.environ.get('POSTGRES_URL')
-    if db_url.startswith("postgres://"):
-        db_url = db_url.replace("postgres://", "postgresql://", 1)
-    app.config['SQLALCHEMY_DATABASE_URI'] = db_url
-elif os.environ.get('VERCEL'):
-    # Vercel filesystem is read-only, so we use /tmp for SQLite (NON-PERSISTENT FALLBACK)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/task_optimizer.db'
 else:
-    # Local development
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///task_optimizer.db'
+    # Local development or fallback
+    if os.environ.get('VERCEL'):
+        # CRITICAL: Running on Vercel without a persistent database
+        logger.error("CRITICAL: No DATABASE_URL found. Using ephemeral SQLite in /tmp. DATA WILL BE LOST on restart.")
+        # Fallback to /tmp to prevent immediately crashing, but this IS NOT persistent
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/task_optimizer.db'
+    else:
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///task_optimizer.db'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+# Session configuration
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=31)
-# Security hardening
-app.config['SESSION_COOKIE_SECURE'] = os.environ.get('VERCEL') is not None  # Only True in production (HTTPS)
 app.config['SESSION_COOKIE_HTTPONLY'] = True
 app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
-
-from flask_wtf.csrf import CSRFProtect
+# Secure cookies only in production (HTTPS)
+app.config['SESSION_COOKIE_SECURE'] = os.environ.get('VERCEL') is not None
+app.config['REMEMBER_COOKIE_SECURE'] = os.environ.get('VERCEL') is not None
+app.config['REMEMBER_COOKIE_HTTPONLY'] = True
 
 # Initialize extensions
 db.init_app(app)
 csrf = CSRFProtect(app)
-login_manager = LoginManager()
-login_manager.init_app(app)
+login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 
 @login_manager.user_loader
-def load_user(id):
-    return User.query.get(int(id))
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+# Add Health Check Route for Deployment Verification
+@app.route('/health')
+def health_check():
+    db_status = "Connected"
+    db_type = "Unknown"
+    
+    try:
+        # Check database connection
+        db.session.execute(db.text('SELECT 1'))
+        uri = app.config['SQLALCHEMY_DATABASE_URI']
+        if 'sqlite' in uri:
+            db_type = "SQLite (Ephemeral)" if '/tmp' in uri else "SQLite (Local)"
+        elif 'postgres' in uri:
+            db_type = "PostgreSQL (Persistent)"
+    except Exception as e:
+        db_status = f"Error: {str(e)}"
+    
+    return jsonify({
+        "status": "healthy", 
+        "database_type": db_type,
+        "database_status": db_status,
+        "environment": "Production" if os.environ.get('VERCEL') else "Development"
+    })
 
 # Serve favicon
 @app.route('/favicon.ico')
